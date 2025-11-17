@@ -3,61 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <title>Certificates | Mohammad Tayyab Khan</title>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
+
 <body class="site-body">
+
   <canvas id="particleCanvas"></canvas>
 
+  <!-- ================= HEADER / NAV ================= -->
   <header class="site-header">
     <nav class="nav-container">
+
       <div class="nav-left">
         <h1 id="typingName" class="nav-name">Mohammad Tayyab Khan</h1>
       </div>
+
       <ul id="navLinks" class="nav-links">
         <li><a href="index.html">About</a></li>
         <li><a href="projects.html">Projects</a></li>
+        <li><a href="experience.html">Experience</a></li>
         <li><a href="resume.html">Resume</a></li>
         <li><a href="certificates.html" class="active">Certificates</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+
     </nav>
   </header>
 
+  <!-- ================= MAIN CONTENT ================= -->
   <main class="page-main">
     <section class="card-section">
       <div class="content-card">
+
         <h2 class="section-heading">Certificates</h2>
         <p class="section-subtext">
-          Industry-recognized credentials that validate my skills across data analytics and BI tools.
+          Industry-recognized credentials validating my skills in data analytics, business intelligence, and visualization.
         </p>
 
         <div class="cert-grid">
+          
+          <!-- CERTIFICATE 1 -->
           <article class="cert-item">
-            <img src="assets/certificates/cert1.jpg" alt="Microsoft Power BI Data Analyst Associate" class="cert-img" />
-            <h3 class="cert-title">Microsoft Certified: Power BI Data Analyst Associate</h3>
+            <img src="assets/certificates/cert1.jpg" 
+                 alt="Certified Data Analyst" 
+                 class="cert-img" />
+            <h3 class="cert-title">Certified Data Analyst</h3>
             <button class="btn-secondary" onclick="openCertModal('cert1')">View Details</button>
           </article>
 
+          <!-- CERTIFICATE 2 -->
           <article class="cert-item">
-            <img src="assets/certificates/cert2.jpg" alt="Google Data Analytics Professional Certificate" class="cert-img" />
-            <h3 class="cert-title">Google Data Analytics Professional Certificate</h3>
+            <img src="assets/certificates/cert2.jpg" 
+                 alt="Data Visualisation: Empowering Business with Effective Insights" 
+                 class="cert-img" />
+            <h3 class="cert-title">Data Visualisation: Empowering Business with Effective Insights</h3>
             <button class="btn-secondary" onclick="openCertModal('cert2')">View Details</button>
           </article>
+
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Shared Contact Footer -->
+  <!-- ================= CONTACT FOOTER ================= -->
   <footer class="contact-footer">
     <div class="contact-footer-inner">
+
       <div class="contact-footer-left">
         <h3 class="footer-heading">Contact</h3>
         <p class="footer-text">
-          Feel free to reach out if you’d like to know more about any of these certifications or my learning journey.
+          Want to discuss my certifications or my data analytics journey? Feel free to reach out anytime.
         </p>
+
         <div class="footer-social-row">
           <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-pill linkedin">
             <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
@@ -66,72 +86,72 @@
             <i class="fa-brands fa-github"></i><span>GitHub</span>
           </a>
         </div>
+
         <div class="footer-email-row">
           <i class="fa-solid fa-envelope"></i>
           <a href="mailto:mdtayyabkhan02@gmail.com">mdtayyabkhan02@gmail.com</a>
         </div>
       </div>
+
       <div class="contact-footer-right">
         <form id="footerContactForm" class="footer-form">
           <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a42-b38b-7edb2acfa61a" />
+
           <input type="text" name="name" placeholder="Your name" required />
           <input type="email" name="email" placeholder="Your email" required />
           <textarea name="message" placeholder="Write a short message..." required></textarea>
+
           <button type="submit" class="btn-primary w-full">Send Message</button>
           <div id="footerFormMessage" class="footer-form-message"></div>
         </form>
       </div>
+
     </div>
   </footer>
 
-  <!-- Modal -->
+  <!-- ================= MODAL (Only one, shared across pages) ================= -->
   <div id="modalOverlay" class="modal-overlay hidden">
     <div id="modalContent" class="modal-content">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <button id="closeModal" class="modal-close">&times;</button>
       <div id="modalBody"></div>
     </div>
   </div>
 
-  <!-- POPUP MODAL (COMMON FOR ALL PAGES) -->
-<div id="modalOverlay" class="modal-overlay hidden">
-  <div id="modalContent" class="modal-content">
-    <button id="closeModal" class="close-modal-btn">&times;</button>
-    <div id="modalBody"></div>
+  <!-- ================= CHATBOT ================= -->
+  <div class="chatbot-launcher">
+    <p class="ai-label">Tayyab AI Assistant</p>
+    <div id="chatbot-icon" class="chatbot-icon">🤖</div>
   </div>
-</div>
 
+  <div id="chatbot" class="chatbot hidden flex-col">
+    <div class="chat-header">Tayyab’s AI Assistant</div>
 
-<!-- CHATBOT (AI Assistant) -->
-<div class="chatbot-launcher">
-  <p class="ai-label">Tayyab AI Assistant</p>
-  <div id="chatbot-icon" class="chatbot-icon">🤖</div>
-</div>
+    <div id="chat-body" class="chat-body"></div>
 
-<div id="chatbot" class="chatbot hidden flex-col">
-  <div class="chat-header">Tayyab’s AI Assistant</div>
-  <div id="chat-body" class="chat-body"></div>
-  <div class="chat-input">
-    <button id="optionsBtn" title="Quick options">⚙️</button>
-    <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
-    <button id="sendBtn">Send</button>
+    <div class="chat-input">
+      <button id="optionsBtn" title="Quick options">⚙️</button>
+      <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
+      <button id="sendBtn">Send</button>
+    </div>
+
+    <div id="optionsMenu" class="options-menu hidden">
+      <button class="option-item">About</button>
+      <button class="option-item">Education</button>
+      <button class="option-item">Skills</button>
+      <button class="option-item">Experience</button>
+      <button class="option-item">Projects</button>
+      <button class="option-item">Certificates</button>
+      <button class="option-item">Mail ID</button>
+      <button class="option-item">LinkedIn ID</button>
+      <button class="option-item">Roles and Responsibilities</button>
+    </div>
+
   </div>
-  <div id="optionsMenu" class="options-menu hidden">
-    <button class="option-item">About</button>
-    <button class="option-item">Education</button>
-    <button class="option-item">Skills</button>
-    <button class="option-item">Experience</button>
-    <button class="option-item">Projects</button>
-    <button class="option-item">Certificates</button>
-    <button class="option-item">Mail ID</button>
-    <button class="option-item">LinkedIn ID</button>
-    <button class="option-item">Roles and Responsibilities</button>
-  </div>
-</div>
 
-<!-- Scripts -->
-<script src="data.js"></script>
-<script src="script.js"></script>
-<script src="particles.js"></script>
+  <!-- ================= SCRIPTS ================= -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script src="particles.js"></script>
+
 </body>
 </html>
-

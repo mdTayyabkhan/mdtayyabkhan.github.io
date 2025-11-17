@@ -7,17 +7,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
+
 <body class="site-body">
+
   <canvas id="particleCanvas"></canvas>
 
+  <!-- ================= NAVIGATION ================= -->
   <header class="site-header">
     <nav class="nav-container">
       <div class="nav-left">
         <h1 id="typingName" class="nav-name">Mohammad Tayyab Khan</h1>
       </div>
+
       <ul id="navLinks" class="nav-links">
         <li><a href="index.html">About</a></li>
         <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="experience.html">Experience</a></li>
         <li><a href="resume.html">Resume</a></li>
         <li><a href="certificates.html">Certificates</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -25,22 +30,30 @@
     </nav>
   </header>
 
+  <!-- ================= PROJECTS SECTION ================= -->
   <main class="page-main">
     <section class="card-section">
       <div class="content-card">
+
         <h2 class="section-heading">Projects</h2>
         <p class="section-subtext">
-          A snapshot of analytics dashboards and solutions I’ve built across stock markets, retail and supply chain.
+          A snapshot of dashboards and analytics solutions I've developed using SQL, Power BI and Excel.
         </p>
 
         <div class="projects-grid">
+
           <!-- Project 1 -->
           <article class="project-item">
-            <img src="assets/projects/project1.jpg" alt="Stock Market Analytics Dashboard" class="project-thumb" />
+            <img src="assets/projects/project1.jpg"
+                 alt="Stock Market Analytics Dashboard"
+                 class="project-thumb" />
+
             <h3 class="project-title">Stock Market Analytics Dashboard</h3>
             <p class="project-desc">
-              Power BI dashboard analyzing NIFTY 50 trends, moving averages, and key indicators for better trading insights.
+              A Power BI dashboard analyzing major stock performance indicators, trends,
+              and derived insights from multi-year data.
             </p>
+
             <div class="project-actions">
               <a href="project1.html" target="_blank" class="btn-primary">Explore Dashboard</a>
               <button class="btn-secondary" onclick="openProjectModal('project1')">More Info</button>
@@ -49,11 +62,17 @@
 
           <!-- Project 2 -->
           <article class="project-item">
-            <img src="assets/projects/project2.jpg" alt="Superstore Sales Insights" class="project-thumb" />
-            <h3 class="project-title">Superstore Sales Insights</h3>
+            <img src="assets/projects/project2.jpg"
+                 alt="Pizza Sales Analytics"
+                 class="project-thumb" />
+
+            <h3 class="project-title">Pizza Sales Analytics</h3>
+
             <p class="project-desc">
-              This dynamic Pizza Shop Sales Dashboard was built using SQL for data extraction and Power BI for visualization. It provides a comprehensive analysis of sales performance, tracking key KPIs like revenue, order volume, and average order value. Users can interactively filter data and navigate between "Sales Analytics," "Best Sellers," and "Less Sellers" pages to identify top-performing products and discover growth opportunities.
+              A complete BI solution built using SQL for ETL and Power BI for visualization.
+              Includes KPI tracking, best-seller analysis and interactive multi-page reporting.
             </p>
+
             <div class="project-actions">
               <a href="project2.html" target="_blank" class="btn-primary">Explore Dashboard</a>
               <button class="btn-secondary" onclick="openProjectModal('project2')">More Info</button>
@@ -62,48 +81,62 @@
 
           <!-- Project 3 -->
           <article class="project-item">
-            <img src="assets/projects/project3.jpg" alt="Flipkart Sales Analytics Dashboard" class="project-thumb" />
+            <img src="assets/projects/project3.jpg"
+                 alt="Flipkart Sales Analytics Dashboard"
+                 class="project-thumb" />
+
             <h3 class="project-title">Flipkart Sales Analytics Dashboard</h3>
+
             <p class="project-desc">
-              This Flipkart Sales Analytics dashboard was built to transform raw sales data into actionable insights. I used SQL to query and extract the necessary data, which was then cleaned and processed in Excel. Finally, I brought it all to life in Power BI, creating interactive visuals that track key metrics like revenue, order volume, and category performance to help identify sales trends and opportunities for growth.
+              End-to-end analytics project using SQL, Excel, and Power BI. Includes revenue KPIs,
+              profit insights, product analysis, and forecast modelling in an interactive multi-page report.
             </p>
+
             <div class="project-actions">
               <a href="project3.html" target="_blank" class="btn-primary">Explore Dashboard</a>
               <button class="btn-secondary" onclick="openProjectModal('project3')">More Info</button>
             </div>
           </article>
+
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Shared Contact Footer -->
+  <!-- ================= FOOTER CONTACT SECTION ================= -->
   <footer class="contact-footer">
     <div class="contact-footer-inner">
+
       <div class="contact-footer-left">
         <h3 class="footer-heading">Contact</h3>
         <p class="footer-text">
-          Want to discuss one of these projects or something similar? Reach out using the form or connect via LinkedIn.
+          Want to discuss one of these projects or explore collaboration opportunities? I’d be happy to connect.
         </p>
+
         <div class="footer-social-row">
           <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-pill linkedin">
             <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
           </a>
+
           <a href="https://github.com/mdTayyabkhan" target="_blank" class="social-pill github">
             <i class="fa-brands fa-github"></i><span>GitHub</span>
           </a>
         </div>
+
         <div class="footer-email-row">
           <i class="fa-solid fa-envelope"></i>
           <a href="mailto:mdtayyabkhan02@gmail.com">mdtayyabkhan02@gmail.com</a>
         </div>
       </div>
+
       <div class="contact-footer-right">
         <form id="footerContactForm" class="footer-form">
-          <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a42-b38b-7edb2acfa61a" />
+          <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a02-b38b-7edb2acfa61a" />
+
           <input type="text" name="name" placeholder="Your name" required />
           <input type="email" name="email" placeholder="Your email" required />
           <textarea name="message" placeholder="Write a short message..." required></textarea>
+
           <button type="submit" class="btn-primary w-full">Send Message</button>
           <div id="footerFormMessage" class="footer-form-message"></div>
         </form>
@@ -111,7 +144,7 @@
     </div>
   </footer>
 
-  <!-- Modal -->
+  <!-- ================= MODAL (ONLY ONE — NO DUPLICATES) ================= -->
   <div id="modalOverlay" class="modal-overlay hidden">
     <div id="modalContent" class="modal-content">
       <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -119,45 +152,39 @@
     </div>
   </div>
 
-  <!-- POPUP MODAL (COMMON FOR ALL PAGES) -->
-<div id="modalOverlay" class="modal-overlay hidden">
-  <div id="modalContent" class="modal-content">
-    <button id="closeModal" class="close-modal-btn">&times;</button>
-    <div id="modalBody"></div>
+  <!-- ================= AI CHATBOT ================= -->
+  <div class="chatbot-launcher">
+    <p class="ai-label">Tayyab AI Assistant</p>
+    <div id="chatbot-icon" class="chatbot-icon">🤖</div>
   </div>
-</div>
 
-  <!-- CHATBOT (AI Assistant) -->
-<div class="chatbot-launcher">
-  <p class="ai-label">Tayyab AI Assistant</p>
-  <div id="chatbot-icon" class="chatbot-icon">🤖</div>
-</div>
+  <div id="chatbot" class="chatbot hidden flex-col">
+    <div class="chat-header">Tayyab’s AI Assistant</div>
+    <div id="chat-body" class="chat-body"></div>
 
-<div id="chatbot" class="chatbot hidden flex-col">
-  <div class="chat-header">Tayyab’s AI Assistant</div>
-  <div id="chat-body" class="chat-body"></div>
-  <div class="chat-input">
-    <button id="optionsBtn" title="Quick options">⚙️</button>
-    <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
-    <button id="sendBtn">Send</button>
+    <div class="chat-input">
+      <button id="optionsBtn" title="Quick options">⚙️</button>
+      <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
+      <button id="sendBtn">Send</button>
+    </div>
+
+    <div id="optionsMenu" class="options-menu hidden">
+      <button class="option-item">About</button>
+      <button class="option-item">Education</button>
+      <button class="option-item">Skills</button>
+      <button class="option-item">Experience</button>
+      <button class="option-item">Projects</button>
+      <button class="option-item">Certificates</button>
+      <button class="option-item">Mail ID</button>
+      <button class="option-item">LinkedIn ID</button>
+      <button class="option-item">Roles and Responsibilities</button>
+    </div>
   </div>
-  <div id="optionsMenu" class="options-menu hidden">
-    <button class="option-item">About</button>
-    <button class="option-item">Education</button>
-    <button class="option-item">Skills</button>
-    <button class="option-item">Experience</button>
-    <button class="option-item">Projects</button>
-    <button class="option-item">Certificates</button>
-    <button class="option-item">Mail ID</button>
-    <button class="option-item">LinkedIn ID</button>
-    <button class="option-item">Roles and Responsibilities</button>
-  </div>
-</div>
 
-<!-- Scripts -->
-<script src="data.js"></script>
-<script src="script.js"></script>
-<script src="particles.js"></script>
+  <!-- ================= SCRIPTS ================= -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script src="particles.js"></script>
+
 </body>
 </html>
-

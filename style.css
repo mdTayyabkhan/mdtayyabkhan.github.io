@@ -603,37 +603,6 @@
 /* ============================
    MODAL
 ============================ */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.8);
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background: #020617;
-  border-radius: 18px;
-  padding: 1.6rem 1.8rem 1.4rem;
-  max-width: 520px;
-  width: 90%;
-  position: relative;
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
-}
-
-.modal-close {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  font-size: 1.6rem;
-  background: transparent;
-  border: none;
-  color: #e5e7eb;
-  cursor: pointer;
-}
 
 /* ============================
    UTILITIES

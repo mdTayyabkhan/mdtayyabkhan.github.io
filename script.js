@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "power2.out",
     });
 
-    gsap.from(".about-card, .content-card, .project-card, .certificate-card", {
+    gsap.from(".about-card, .content-card", {
       duration: 1,
       opacity: 0,
       y: 30,
@@ -46,40 +46,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
      MODAL — PROJECTS + CERTIFICATES
-     (Shows only text description — no images)
+     (Shows text only — no images)
   ===================================================== */
+
+  // ⭐ PROJECT MODAL
   window.openProjectModal = (projectId) => {
     if (!modalOverlay || !modalBody) return;
+
     const details = projectDetails[projectId];
     if (!details) return;
 
+    const pointHTML = details.points
+      .map((p) => `<li style="margin-bottom:6px;">${p}</li>`)
+      .join("");
+
     modalBody.innerHTML = `
       <h3 class="text-2xl font-bold mb-3" style="color:#1C3D5A;">${details.title}</h3>
-      <p class="leading-relaxed text-base mb-4" style="color:#1C3D5A;">${details.brief}</p>
+      <ul style="color:#1C3D5A; line-height:1.6;">${pointHTML}</ul>
     `;
 
     modalOverlay.classList.remove("hidden");
   };
 
+  // ⭐ CERTIFICATE MODAL
   window.openCertModal = (certId) => {
     if (!modalOverlay || !modalBody) return;
-    const details = certDetails[certId];
-    if (!details) return;
+
+    const cert = certDetails[certId];
+    if (!cert) return;
 
     modalBody.innerHTML = `
-      <h3 class="text-2xl font-bold mb-3" style="color:#1C3D5A;">${details.title}</h3>
-      <p class="leading-relaxed text-base mb-4" style="color:#1C3D5A;">${details.brief}</p>
+      <h3 class="text-2xl font-bold mb-3" style="color:#1C3D5A;">${cert.title}</h3>
+      <p style="color:#1C3D5A; margin-bottom:10px;">${cert.issuedBy}</p>
+      <p style="opacity:0.9; color:#1C3D5A;">This credential validates core skills related to data analytics and visualization.</p>
     `;
 
     modalOverlay.classList.remove("hidden");
   };
 
+  // Close modal (button)
   if (closeModalBtn) {
     closeModalBtn.addEventListener("click", () => {
       modalOverlay.classList.add("hidden");
     });
   }
 
+  // Close modal (click outside)
   if (modalOverlay) {
     modalOverlay.addEventListener("click", (e) => {
       if (e.target.id === "modalOverlay") {
@@ -102,30 +114,28 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const handleChatbotResponse = (query) => {
-    const lowerQuery = query.toLowerCase();
+    const q = query.toLowerCase();
     let response = "I can answer questions about Mohammad Tayyab Khan. Try a quick option.";
 
-    if (lowerQuery.includes("about")) response = portfolioData.summary;
-    else if (lowerQuery.includes("education")) response = portfolioData.education;
-    else if (lowerQuery.includes("skills")) response = portfolioData.skills.join(", ");
-    else if (lowerQuery.includes("experience")) response = portfolioData.experience;
-    else if (lowerQuery.includes("projects"))
-      response = "Projects: " + portfolioData.projects.join(", ");
-    else if (lowerQuery.includes("cert"))
-      response = "Certificates: " + portfolioData.certificates.join(", ");
-    else if (lowerQuery.includes("linkedin"))
+    if (q.includes("about")) response = portfolioData.summary;
+    else if (q.includes("education")) response = portfolioData.education;
+    else if (q.includes("skills")) response = portfolioData.skills.join(", ");
+    else if (q.includes("experience")) response = portfolioData.experience;
+    else if (q.includes("projects")) response = portfolioData.projects.join(", ");
+    else if (q.includes("cert")) response = portfolioData.certificates.join(", ");
+    else if (q.includes("linkedin"))
       response = `<a href="${portfolioData.contact.linkedin}" target="_blank" class="underline">LinkedIn Profile</a>`;
-    else if (lowerQuery.includes("github"))
+    else if (q.includes("github"))
       response = `<a href="${portfolioData.contact.github}" target="_blank" class="underline">GitHub Profile</a>`;
-    else if (lowerQuery.includes("mail") || lowerQuery.includes("email"))
+    else if (q.includes("mail") || q.includes("email"))
       response = `<a href="mailto:${portfolioData.contact.email}" class="underline">${portfolioData.contact.email}</a>`;
-    else if (lowerQuery.includes("hello") || lowerQuery.includes("hi"))
+    else if (q.includes("hi") || q.includes("hello"))
       response = "Hello! How can I help you today?";
 
     setTimeout(() => addMessage("bot", response), 400);
   };
 
-  if (chatbotIcon && chatbot && chatBody) {
+  if (chatbotIcon && chatbot) {
     chatbotIcon.addEventListener("click", () => {
       chatbot.classList.toggle("hidden");
       if (!chatbot.classList.contains("hidden")) {
@@ -153,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (optionsBtn) {
+  if (optionsBtn && optionsMenu) {
     optionsBtn.addEventListener("click", () => {
       optionsMenu.classList.toggle("hidden");
     });
@@ -168,9 +178,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =====================================================
-     CONTACT FORMS (FOOTER + CONTACT PAGE)
+     CONTACT FORMS — FOOTER & CONTACT PAGE
   ===================================================== */
-
   const handleForm = (formEl, messageEl) => {
     if (!formEl || !messageEl) return;
 
@@ -178,13 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const formData = new FormData(formEl);
-      const accessKey = formData.get("access_key");
-
-      if (!accessKey || accessKey === "YOUR_ACCESS_KEY_HERE") {
-        messageEl.textContent = "Form access key is missing.";
-        messageEl.style.color = "#ff9f9f";
-        return;
-      }
 
       messageEl.textContent = "Sending...";
       messageEl.style.color = "#d9e4ff";
