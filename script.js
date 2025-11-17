@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /* =====================================================
-     QUERY SELECTORS (CHATBOT + MODAL)
-  ===================================================== */
+
+  /* ==========================
+        SELECTORS
+  ========================== */
   const chatbotIcon = document.getElementById("chatbot-icon");
   const chatbot = document.getElementById("chatbot");
   const chatBody = document.getElementById("chat-body");
@@ -14,97 +15,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalBody = document.getElementById("modalBody");
   const closeModalBtn = document.getElementById("closeModal");
 
-  /* =====================================================
-     GSAP ANIMATIONS (if loaded)
-  ===================================================== */
-  if (window.gsap) {
-    gsap.from("#typingName", {
-      duration: 1.1,
-      opacity: 0,
-      x: -25,
-      ease: "power2.out",
-    });
-
-    gsap.from("#navLinks li", {
-      duration: 0.9,
-      opacity: 0,
-      y: -15,
-      stagger: 0.08,
-      delay: 0.2,
-      ease: "power2.out",
-    });
-
-    gsap.from(".about-card, .content-card", {
-      duration: 1,
-      opacity: 0,
-      y: 30,
-      delay: 0.35,
-      ease: "power2.out",
-    });
-  }
-
-  /* =====================================================
-     MODAL — PROJECTS + CERTIFICATES (TEXT ONLY)
-  ===================================================== */
+  /* ==========================
+        MODAL SYSTEM
+  ========================== */
   window.openProjectModal = (projectId) => {
-    if (!modalOverlay || !modalBody || !window.projectDetails) return;
     const details = projectDetails[projectId];
     if (!details) return;
 
-    let pointsHTML = "";
-    if (details.points && details.points.length) {
-      pointsHTML =
-        "<ul class='modal-list'>" +
-        details.points.map((p) => `<li>${p}</li>`).join("") +
-        "</ul>";
-    }
-
     modalBody.innerHTML = `
       <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-      ${details.brief ? `<p class="text-base leading-relaxed mb-4">${details.brief}</p>` : ""}
-      ${pointsHTML}
-      <button class="btn-primary mt-4" onclick="closeModal()">Close</button>
+      <p class="text-base mb-3">${details.brief}</p>
+      <button class="btn-primary" onclick="closeModal()">Close</button>
     `;
 
     modalOverlay.classList.remove("hidden");
   };
 
   window.openCertModal = (certId) => {
-    if (!modalOverlay || !modalBody || !window.certDetails) return;
     const details = certDetails[certId];
     if (!details) return;
 
     modalBody.innerHTML = `
       <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-      <p class="text-base leading-relaxed mb-4">${details.brief || ""}</p>
-      <button class="btn-primary mt-4" onclick="closeModal()">Close</button>
+      <p class="text-base mb-3">${details.brief}</p>
+      <button class="btn-primary" onclick="closeModal()">Close</button>
     `;
 
     modalOverlay.classList.remove("hidden");
   };
 
   window.closeModal = () => {
-    if (!modalOverlay) return;
     modalOverlay.classList.add("hidden");
   };
 
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener("click", window.closeModal);
-  }
+  closeModalBtn?.addEventListener("click", closeModal);
 
-  if (modalOverlay) {
-    modalOverlay.addEventListener("click", (e) => {
-      if (e.target === modalOverlay) {
-        window.closeModal();
-      }
-    });
-  }
+  modalOverlay?.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) closeModal();
+  });
 
-  /* =====================================================
-     CHATBOT SYSTEM
-  ===================================================== */
+  /* ==========================
+        CHATBOT SYSTEM
+  ========================== */
   const addMessage = (sender, text) => {
-    if (!chatBody) return;
     const msg = document.createElement("div");
     msg.className = sender === "bot" ? "bot-msg" : "user-msg";
     msg.innerHTML = text;
@@ -113,117 +66,64 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const handleChatbotResponse = (query) => {
-    if (!window.portfolioData) return;
     const q = query.toLowerCase();
-    let response =
-      "I can answer questions about Mohammad Tayyab Khan. Try one of the quick options.";
+    let response = "I can answer questions about Mohammad Tayyab Khan.";
 
     if (q.includes("about")) response = portfolioData.summary;
     else if (q.includes("education")) response = portfolioData.education;
     else if (q.includes("skills")) response = portfolioData.skills.join(", ");
     else if (q.includes("experience")) response = portfolioData.experience;
-    else if (q.includes("projects"))
-      response = portfolioData.projects.join(", ");
-    else if (q.includes("cert"))
-      response = portfolioData.certificates.join(", ");
+    else if (q.includes("projects")) response = portfolioData.projects.join(", ");
+    else if (q.includes("cert")) response = portfolioData.certificates.join(", ");
     else if (q.includes("linkedin"))
-      response = `<a href="${portfolioData.contact.linkedin}" target="_blank" class="underline">LinkedIn Profile</a>`;
+      response = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn Profile</a>`;
     else if (q.includes("github"))
-      response = `<a href="${portfolioData.contact.github}" target="_blank" class="underline">GitHub Profile</a>`;
+      response = `<a href="${portfolioData.contact.github}" target="_blank">GitHub Profile</a>`;
     else if (q.includes("mail") || q.includes("email"))
-      response = `<a href="mailto:${portfolioData.contact.email}" class="underline">${portfolioData.contact.email}</a>`;
+      response = `<a href="mailto:${portfolioData.contact.email}">${portfolioData.contact.email}</a>`;
     else if (q.includes("hi") || q.includes("hello"))
       response = "Hello! How can I help you today?";
 
-    setTimeout(() => addMessage("bot", response), 400);
+    setTimeout(() => addMessage("bot", response), 300);
   };
 
-  if (chatbotIcon && chatbot) {
-    chatbotIcon.addEventListener("click", () => {
-      chatbot.classList.toggle("hidden");
-      if (!chatbot.classList.contains("hidden")) {
-        if (chatBody) chatBody.innerHTML = "";
-        addMessage("bot", "👋 Welcome to Tayyab’s AI Assistant!");
-        addMessage("bot", "Ask me anything about Mohammad Tayyab Khan.");
-      }
-    });
-  }
+  chatbotIcon.addEventListener("click", () => {
+    chatbot.classList.toggle("hidden");
 
-  if (sendBtn && userInput) {
-    sendBtn.addEventListener("click", () => {
-      const text = userInput.value.trim();
-      if (!text) return;
-      addMessage("user", text);
-      userInput.value = "";
-      handleChatbotResponse(text);
-    });
+    if (!chatbot.classList.contains("hidden")) {
+      chatBody.innerHTML = "";
+      addMessage("bot", "👋 Welcome to Tayyab’s AI Assistant!");
+      addMessage("bot", "Ask me anything about Mohammad Tayyab Khan.");
+    }
+  });
 
-    userInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        sendBtn.click();
-      }
-    });
-  }
+  sendBtn.addEventListener("click", () => {
+    const text = userInput.value.trim();
+    if (!text) return;
 
-  if (optionsBtn && optionsMenu) {
-    optionsBtn.addEventListener("click", () => {
-      optionsMenu.classList.toggle("hidden");
-    });
+    addMessage("user", text);
+    userInput.value = "";
+    handleChatbotResponse(text);
+  });
 
-    optionsMenu.addEventListener("click", (e) => {
-      if (e.target.classList.contains("option-item")) {
-        const text = e.target.textContent;
-        addMessage("user", text);
-        handleChatbotResponse(text);
-        optionsMenu.classList.add("hidden");
-      }
-    });
-  }
-
-  /* =====================================================
-     CONTACT FORMS — FOOTER & CONTACT PAGE
-  ===================================================== */
-  const handleForm = (formEl, messageEl) => {
-    if (!formEl || !messageEl) return;
-
-    formEl.addEventListener("submit", async (e) => {
+  userInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
       e.preventDefault();
-      const formData = new FormData(formEl);
+      sendBtn.click();
+    }
+  });
 
-      messageEl.textContent = "Sending...";
-      messageEl.style.color = "#d9e4ff";
+  optionsBtn.addEventListener("click", () => {
+    optionsMenu.classList.toggle("hidden");
+  });
 
-      try {
-        const res = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          body: formData,
-        });
+  optionsMenu.addEventListener("click", (e) => {
+    if (e.target.classList.contains("option-item")) {
+      const text = e.target.textContent;
+      addMessage("user", text);
+      handleChatbotResponse(text);
+      optionsMenu.classList.add("hidden");
+    }
+  });
 
-        const data = await res.json();
-
-        if (data.success) {
-          messageEl.textContent = "Message sent successfully!";
-          messageEl.style.color = "#bbf7d0";
-          formEl.reset();
-        } else {
-          messageEl.textContent = "Error: " + data.message;
-          messageEl.style.color = "#ff9f9f";
-        }
-      } catch (err) {
-        messageEl.textContent = "Something went wrong.";
-        messageEl.style.color = "#ff9f9f";
-      }
-    });
-  };
-
-  handleForm(
-    document.getElementById("footerContactForm"),
-    document.getElementById("footerFormMessage")
-  );
-
-  handleForm(
-    document.getElementById("contactForm"),
-    document.getElementById("contactFormMessage")
-  );
 });
