@@ -18,13 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ==========================
         MODAL SYSTEM
   ========================== */
+
   window.openProjectModal = (projectId) => {
     const details = projectDetails[projectId];
     if (!details) return;
 
     modalBody.innerHTML = `
       <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-      <p class="text-base mb-3">${details.brief}</p>
+      <p class="text-base leading-relaxed mb-4">${details.brief}</p>
       <button class="btn-primary" onclick="closeModal()">Close</button>
     `;
 
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modalBody.innerHTML = `
       <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-      <p class="text-base mb-3">${details.brief}</p>
+      <p class="text-base leading-relaxed mb-4">${details.brief}</p>
       <button class="btn-primary" onclick="closeModal()">Close</button>
     `;
 
@@ -48,8 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
     modalOverlay.classList.add("hidden");
   };
 
+  // Close with X button
   closeModalBtn?.addEventListener("click", closeModal);
 
+  // Close on background click
   modalOverlay?.addEventListener("click", (e) => {
     if (e.target === modalOverlay) closeModal();
   });
@@ -57,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ==========================
         CHATBOT SYSTEM
   ========================== */
+
   const addMessage = (sender, text) => {
     const msg = document.createElement("div");
     msg.className = sender === "bot" ? "bot-msg" : "user-msg";
@@ -126,4 +130,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-});
+});  // <--- Correct final bracket, script ends here
