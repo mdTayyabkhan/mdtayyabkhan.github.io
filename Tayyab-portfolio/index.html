@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Mohammad Tayyab Khan</title>
+
+  <!-- Tailwind (optional for some utilities) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="site-body">
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- HEADER / NAV -->
+  <header class="site-header">
+    <nav class="nav-container">
+      <div class="nav-left">
+        <h1 id="typingName" class="nav-name">Mohammad Tayyab Khan</h1>
+      </div>
+      <ul id="navLinks" class="nav-links">
+        <li><a href="index.html" class="active">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="certificates.html">Certificates</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="page-main">
+    <section class="card-section">
+      <div class="about-card">
+        <!-- Left: Image -->
+        <div class="about-card-left">
+          <div class="about-photo-wrap">
+            <img src="assets/profile.jpg" alt="Profile photo of Mohammad Tayyab Khan" class="about-photo" />
+          </div>
+        </div>
+
+        <!-- Right: Text -->
+        <div class="about-card-right">
+        <!--p class="about-eyebrow">Professional Portfolio</p-->
+          <h2 class="about-name-heading">Mohammad Tayyab Khan</h2>
+          <p class="about-role">Data Analyst</p>
+
+          <p class="about-bio">
+            Here, you'll find a curated selection of analytics projects that reflect my passion for
+            uncovering insights from data. With a strong belief in data-driven decision making, I
+            specialize in turning raw numbers into clear visual stories that help businesses act with confidence.
+          </p>
+          <p class="about-bio">
+            Skilled in Excel, SQL, Power BI, Tableau, and Python, I work across the full analytics
+            lifecycle—from cleaning and modeling data to crafting dashboards and presenting findings
+            to stakeholders in a simple, meaningful way.
+          </p>
+
+          <div class="about-cta-row">
+            <a href="projects.html" class="btn-primary">View Projects</a>
+            <a href="resume.html" class="btn-secondary">View Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONTACT FOOTER (shows on all pages except contact.html) -->
+  <footer class="contact-footer">
+    <div class="contact-footer-inner">
+      <div class="contact-footer-left">
+        <h3 class="footer-heading">Contact</h3>
+        <p class="footer-text">
+          Have a role, project, or collaboration in mind? Reach out using the form, or connect with me
+          directly via LinkedIn or GitHub.
+        </p>
+
+        <div class="footer-social-row">
+          <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-pill linkedin">
+            <i class="fa-brands fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/mdTayyabkhan" target="_blank" class="social-pill github">
+            <i class="fa-brands fa-github"></i>
+            <span>GitHub</span>
+          </a>
+        </div>
+
+        <div class="footer-email-row">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:mdtayyabkhan02@gmail.com">mdtayyabkhan02@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-footer-right">
+        <form id="footerContactForm" class="footer-form">
+          <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a42-b38b-7edb2acfa61a" />
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <textarea name="message" placeholder="Write a short message..." required></textarea>
+          <button type="submit" class="btn-primary w-full">Send Message</button>
+          <div id="footerFormMessage" class="footer-form-message"></div>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CHATBOT (AI Assistant) -->
+  <div class="chatbot-launcher">
+    <p class="ai-label">Tayyab AI Assistant</p>
+    <div id="chatbot-icon" class="chatbot-icon">🤖</div>
+  </div>
+
+  <div id="chatbot" class="chatbot hidden flex-col">
+    <div class="chat-header">Tayyab’s AI Assistant</div>
+    <div id="chat-body" class="chat-body">
+      <!-- messages injected by JS -->
+    </div>
+    <div class="chat-input">
+      <button id="optionsBtn" title="Quick options">⚙️</button>
+      <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
+      <button id="sendBtn">Send</button>
+    </div>
+    <div id="optionsMenu" class="options-menu hidden">
+      <button class="option-item">About</button>
+      <button class="option-item">Education</button>
+      <button class="option-item">Skills</button>
+      <button class="option-item">Experience</button>
+      <button class="option-item">Projects</button>
+      <button class="option-item">Certificates</button>
+      <button class="option-item">Mail ID</button>
+      <button class="option-item">LinkedIn ID</button>
+      <button class="option-item">Roles and Responsibilities</button>
+    </div>
+  </div>
+
+  <!-- Modal (used on some pages via shared JS – safe to keep here too) -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div id="modalContent" class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script src="particles.js"></script>
+</body>
+</html>
