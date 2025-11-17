@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact | Mohammad Tayyab Khan</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="site-body">
+  <canvas id="particleCanvas"></canvas>
+
+  <header class="site-header">
+    <nav class="nav-container">
+      <div class="nav-left">
+        <h1 id="typingName" class="nav-name">Mohammad Tayyab Khan</h1>
+      </div>
+      <ul id="navLinks" class="nav-links">
+        <li><a href="index.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="certificates.html">Certificates</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <section class="card-section">
+      <div class="content-card contact-card">
+        <h2 class="section-heading">Get in Touch</h2>
+        <p class="section-subtext">
+          Share a role, opportunity, or project idea and I’ll get back to you as soon as possible.
+        </p>
+
+        <div class="contact-card-grid">
+          <div class="contact-card-left">
+            <h3 class="contact-side-heading">Connect</h3>
+            <p class="footer-text">
+              I’m open to roles in data analytics, business intelligence and reporting. You can reach out via:
+            </p>
+
+            <div class="footer-social-row">
+              <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-pill linkedin">
+                <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/mdTayyabkhan" target="_blank" class="social-pill github">
+                <i class="fa-brands fa-github"></i><span>GitHub</span>
+              </a>
+            </div>
+
+            <div class="footer-email-row contact-email-row">
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:mdtayyabkhan02@gmail.com">mdtayyabkhan02@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-card-right">
+            <form id="contactForm" class="footer-form">
+              <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a42-b38b-7edb2acfa61a" />
+              <input type="text" name="name" placeholder="Your name" required />
+              <input type="email" name="email" placeholder="Your email" required />
+              <textarea name="message" placeholder="Write a short message..." required></textarea>
+              <button type="submit" class="btn-primary w-full">Send Message</button>
+              <div id="contactFormMessage" class="footer-form-message"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Note: NO contact-footer here (this whole page is the contact section) -->
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script src="particles.js"></script>
+</body>
+</html>
