@@ -636,11 +636,14 @@
 }
 
 /* ===== MODAL (POPUP) ===== */
+./* ============================
+   FIXED MODAL (Projects + Certificates)
+============================ */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
-  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.65); /* less transparent */
+  backdrop-filter: blur(3px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -649,29 +652,27 @@
 
 .modal-content {
   background: #ffffff;
-  width: 90%;
-  max-width: 480px;
-  padding: 24px;
+  color: #1C3D5A;
+  width: 95%;
+  max-width: 600px; /* increased width */
+  padding: 26px;
   border-radius: 14px;
   position: relative;
-  color: #1C3D5A;
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  box-shadow: 0 0 45px rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,0,0,0.15);
 }
 
 .close-modal-btn {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 10px;
+  right: 14px;
   background: transparent;
   border: none;
-  font-size: 28px;
+  font-size: 30px;
   cursor: pointer;
   color: #1C3D5A;
 }
 
-.hidden {
-  display: none;
-}
 
 /* =====================================================
    EXPERIENCE PAGE STYLING

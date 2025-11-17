@@ -50,39 +50,49 @@ document.addEventListener("DOMContentLoaded", () => {
   ===================================================== */
 
   // ⭐ PROJECT MODAL
-  window.openProjectModal = (projectId) => {
-    if (!modalOverlay || !modalBody) return;
+  /* =====================================================
+   FIXED MODAL — PROJECTS + CERTIFICATES
+===================================================== */
+window.openProjectModal = (projectId) => {
+  const details = projectDetails[projectId];
+  if (!details) return;
 
-    const details = projectDetails[projectId];
-    if (!details) return;
+  modalBody.innerHTML = `
+      <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
+      <p class="text-base leading-relaxed mb-4">${details.brief}</p>
 
-    const pointHTML = details.points
-      .map((p) => `<li style="margin-bottom:6px;">${p}</li>`)
-      .join("");
+      <button class="btn-primary w-full mt-3" onclick="closeModal()">Close</button>
+  `;
 
-    modalBody.innerHTML = `
-      <h3 class="text-2xl font-bold mb-3" style="color:#1C3D5A;">${details.title}</h3>
-      <ul style="color:#1C3D5A; line-height:1.6;">${pointHTML}</ul>
-    `;
+  modalOverlay.classList.remove("hidden");
+};
 
-    modalOverlay.classList.remove("hidden");
-  };
+window.openCertModal = (certId) => {
+  const details = certDetails[certId];
+  if (!details) return;
 
-  // ⭐ CERTIFICATE MODAL
-  window.openCertModal = (certId) => {
-    if (!modalOverlay || !modalBody) return;
+  modalBody.innerHTML = `
+      <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
+      <p class="text-base leading-relaxed mb-4">${details.brief}</p>
 
-    const cert = certDetails[certId];
-    if (!cert) return;
+      <button class="btn-primary w-full mt-3" onclick="closeModal()">Close</button>
+  `;
 
-    modalBody.innerHTML = `
-      <h3 class="text-2xl font-bold mb-3" style="color:#1C3D5A;">${cert.title}</h3>
-      <p style="color:#1C3D5A; margin-bottom:10px;">${cert.issuedBy}</p>
-      <p style="opacity:0.9; color:#1C3D5A;">This credential validates core skills related to data analytics and visualization.</p>
-    `;
+  modalOverlay.classList.remove("hidden");
+};
 
-    modalOverlay.classList.remove("hidden");
-  };
+// Close modal by clicking X
+closeModalBtn?.addEventListener("click", () => {
+  modalOverlay.classList.add("hidden");
+});
+
+// Close modal by clicking outside
+modalOverlay?.addEventListener("click", (e) => {
+  if (e.target === modalOverlay) modalOverlay.classList.add("hidden");
+});
+
+// Close function for button inside popup
+window.closeModal = () => modalOverlay.classList.add("hidden");
 
   // Close modal (button)
   if (closeModalBtn) {
