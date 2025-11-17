@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Experience | Mohammad Tayyab Khan</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body class="page-body">
+
+  <!-- HEADER / NAVBAR -->
+  <header class="main-header">
+    <h1 id="typingName" class="site-name">Mohammad Tayyab Khan</h1>
+
+    <ul id="navLinks" class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="certificates.html">Certificates</a></li>
+      <li><a href="experience.html" class="active">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </header>
+
+  <!-- ================= EXPERIENCE SECTION ================= -->
+  <section class="section-wrapper">
+    <h2 class="section-title">Experience</h2>
+
+    <div class="experience-container">
+
+      <!-- LEFT SIDE - Certificate Image -->
+      <div class="experience-left">
+        <img src="assets/certificates/internship.jpg" alt="Internship Certificate" class="experience-certificate">
+      </div>
+
+      <!-- RIGHT SIDE - Professional Explanation -->
+      <div class="experience-right">
+        <h3 class="exp-role">Data Analyst Intern (6 Months)</h3>
+        <h4 class="exp-company">AIvariant</h4>
+
+        <p class="exp-text">
+          During my internship at AIvariant, I contributed to data-driven decision-making by transforming raw datasets 
+          into meaningful insights that supported daily business operations.
+        </p>
+
+        <p class="exp-text">
+          <strong>Data Extraction & Preparation:</strong> Queried and extracted large, complex datasets using SQL. 
+          Performed rigorous data cleaning, validation, and transformation in Excel to ensure high-quality, 
+          analysis-ready data.
+        </p>
+
+        <p class="exp-text">
+          <strong>Business Intelligence & Reporting:</strong> Designed and maintained interactive Power BI dashboards 
+          used by cross-functional teams to track KPIs, identify performance trends, and support 
+          operational and strategic decision-making.
+        </p>
+
+        <p class="exp-text">
+          <strong>Dashboard Optimization & Maintenance:</strong> Managed scheduled refresh cycles, optimized data models, 
+          and ensured all dashboards consistently reflected the most up-to-date insights. Collaborated with stakeholders 
+          to improve dashboard usability and reporting accuracy.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER CONTACT (Shown on all but contact page) -->
+  <footer class="footer-contact">
+    <h2 class="footer-title">Contact Me</h2>
+
+    <form id="footerContactForm" class="footer-form">
+      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Write a short message..." required></textarea>
+      <button type="submit" class="btn-blue">Send Message</button>
+      <div id="footerFormMessage" class="footer-form-msg"></div>
+    </form>
+
+    <div class="footer-social">
+      <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-icon linkedin">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/mdTayyabkhan" target="_blank" class="social-icon github">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <div class="email-display">
+        <i class="fa-solid fa-envelope"></i>
+        <span>mdtayyabkhan02@gmail.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CHATBOT (Same on all pages) -->
+  <div class="chatbot-launcher">
+    <p class="ai-label">Tayyab AI Assistant</p>
+    <div id="chatbot-icon" class="chatbot-icon">🤖</div>
+  </div>
+
+  <div id="chatbot" class="chatbot hidden flex-col">
+    <div class="chat-header">Tayyab’s AI Assistant</div>
+    <div id="chat-body" class="chat-body"></div>
+    <div class="chat-input">
+      <button id="optionsBtn">⚙️</button>
+      <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
+      <button id="sendBtn">Send</button>
+    </div>
+    <div id="optionsMenu" class="options-menu hidden">
+      <button class="option-item">About</button>
+      <button class="option-item">Education</button>
+      <button class="option-item">Skills</button>
+      <button class="option-item">Experience</button>
+      <button class="option-item">Projects</button>
+      <button class="option-item">Certificates</button>
+      <button class="option-item">Mail ID</button>
+      <button class="option-item">LinkedIn ID</button>
+      <button class="option-item">Roles and Responsibilities</button>
+    </div>
+  </div>
+
+  <!-- MODAL (Project/Certificate Info) -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div id="modalContent" class="modal-content">
+      <button id="closeModal" class="close-modal-btn">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script src="particles.js"></script>
+
+</body>
+</html>

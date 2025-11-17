@@ -665,3 +665,234 @@
     padding: 1.7rem 1.6rem;
   }
 }
+
+/* ===== MODAL (POPUP) ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #ffffff;
+  width: 90%;
+  max-width: 480px;
+  padding: 24px;
+  border-radius: 14px;
+  position: relative;
+  color: #1C3D5A;
+  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #1C3D5A;
+}
+
+.hidden {
+  display: none;
+}
+
+/* =====================================================
+   EXPERIENCE PAGE STYLING
+   ===================================================== */
+
+/* Section wrapper (same spacing as other pages) */
+.section-wrapper {
+  padding: 70px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Main title */
+.section-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background: #ffffff;
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
+}
+
+/* EXPERIENCE TWO-COLUMN LAYOUT */
+.experience-container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* LEFT — CERTIFICATE IMAGE */
+.experience-left {
+  display: flex;
+  justify-content: center;
+}
+
+.experience-certificate {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 14px;
+  border: 2px solid rgba(255,255,255,0.35);
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  object-fit: cover;
+}
+
+/* RIGHT — DETAILS */
+.experience-right {
+  text-align: left;
+  padding: 10px;
+}
+
+.exp-role {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.exp-company {
+  font-size: 1.3rem;
+  color: #cfe2ff;
+  margin-bottom: 22px;
+  font-weight: 600;
+}
+
+.exp-text {
+  color: #e7ecf7;
+  font-size: 1rem;
+  line-height: 1.75rem;
+  margin-bottom: 16px;
+}
+
+/* FOOTER CONTACT SECTION */
+.footer-contact {
+  width: 100%;
+  padding: 60px 20px;
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  margin-top: 70px;
+  text-align: center;
+}
+
+.footer-title {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+/* Contact form layout */
+.footer-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.footer-form input,
+.footer-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: white;
+  font-size: 1rem;
+}
+
+.footer-form textarea {
+  height: 130px;
+}
+
+.footer-form input::placeholder,
+.footer-form textarea::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.footer-form-msg {
+  color: #d8e6ff;
+  margin-top: 8px;
+}
+
+/* Social icons in footer */
+.footer-social {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  align-items: center;
+}
+
+.social-icon i {
+  font-size: 28px;
+}
+
+.linkedin i {
+  color: #0A66C2 !important;
+}
+
+.github i {
+  color: #ffffff !important;
+}
+
+/* Email text */
+.email-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-size: 1rem;
+}
+
+.email-display i {
+  color: #ffffff;
+  font-size: 22px;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+   =============================== */
+@media (max-width: 900px) {
+  .experience-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .experience-right {
+    text-align: center;
+  }
+
+  .experience-certificate {
+    max-width: 350px;
+  }
+
+  .exp-role {
+    font-size: 1.6rem;
+  }
+}
