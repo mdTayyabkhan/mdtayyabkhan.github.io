@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const modalOverlay = document.getElementById("modalOverlay");
   const modalBody = document.getElementById("modalBody");
+  const closeModalBtn = document.getElementById("closeModal");
 
   /* =====================================================
      GSAP ANIMATIONS (if loaded)
@@ -45,47 +46,53 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =====================================================
      MODAL — PROJECTS + CERTIFICATES (TEXT ONLY)
   ===================================================== */
-  /* =====================================================
-   MODAL — PROJECTS + CERTIFICATES (Final Stable Version)
-===================================================== */
+  window.openProjectModal = (projectId) => {
+    if (!modalOverlay || !modalBody || !window.projectDetails) return;
+    const details = projectDetails[projectId];
+    if (!details) return;
 
-window.openProjectModal = (projectId) => {
-  const details = projectDetails[projectId];
-  if (!details) return;
+    let pointsHTML = "";
+    if (details.points && details.points.length) {
+      pointsHTML =
+        "<ul class='modal-list'>" +
+        details.points.map((p) => `<li>${p}</li>`).join("") +
+        "</ul>";
+    }
 
-  modalBody.innerHTML = `
-    <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-    <p class="text-base leading-relaxed mb-4">${details.brief}</p>
-    <button class="btn-primary" onclick="closeModal()">Close</button>
-  `;
+    modalBody.innerHTML = `
+      <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
+      ${details.brief ? `<p class="text-base leading-relaxed mb-4">${details.brief}</p>` : ""}
+      ${pointsHTML}
+      <button class="btn-primary mt-4" onclick="closeModal()">Close</button>
+    `;
 
-  modalOverlay.classList.remove("hidden");
-};
+    modalOverlay.classList.remove("hidden");
+  };
 
-window.openCertModal = (certId) => {
-  const details = certDetails[certId];
-  if (!details) return;
+  window.openCertModal = (certId) => {
+    if (!modalOverlay || !modalBody || !window.certDetails) return;
+    const details = certDetails[certId];
+    if (!details) return;
 
-  modalBody.innerHTML = `
-    <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-    <p class="text-base leading-relaxed mb-4">${details.brief}</p>
-    <button class="btn-primary" onclick="closeModal()">Close</button>
-  `;
+    modalBody.innerHTML = `
+      <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
+      <p class="text-base leading-relaxed mb-4">${details.brief || ""}</p>
+      <button class="btn-primary mt-4" onclick="closeModal()">Close</button>
+    `;
 
-  modalOverlay.classList.remove("hidden");
-};
+    modalOverlay.classList.remove("hidden");
+  };
 
-window.closeModal = () => {
-  modalOverlay.classList.add("hidden");
-};
+  window.closeModal = () => {
+    if (!modalOverlay) return;
+    modalOverlay.classList.add("hidden");
+  };
 
-closeModalBtn?.addEventListener("click", closeModal);
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", window.closeModal);
+  }
 
-modalOverlay?.addEventListener("click", (e) => {
-  if (e.target === modalOverlay) closeModal();
-});
-
-    // Click outside to close
+  if (modalOverlay) {
     modalOverlay.addEventListener("click", (e) => {
       if (e.target === modalOverlay) {
         window.closeModal();
@@ -106,15 +113,19 @@ modalOverlay?.addEventListener("click", (e) => {
   };
 
   const handleChatbotResponse = (query) => {
+    if (!window.portfolioData) return;
     const q = query.toLowerCase();
-    let response = "I can answer questions about Mohammad Tayyab Khan. Try one of the quick options.";
+    let response =
+      "I can answer questions about Mohammad Tayyab Khan. Try one of the quick options.";
 
     if (q.includes("about")) response = portfolioData.summary;
     else if (q.includes("education")) response = portfolioData.education;
     else if (q.includes("skills")) response = portfolioData.skills.join(", ");
     else if (q.includes("experience")) response = portfolioData.experience;
-    else if (q.includes("projects")) response = portfolioData.projects.join(", ");
-    else if (q.includes("cert")) response = portfolioData.certificates.join(", ");
+    else if (q.includes("projects"))
+      response = portfolioData.projects.join(", ");
+    else if (q.includes("cert"))
+      response = portfolioData.certificates.join(", ");
     else if (q.includes("linkedin"))
       response = `<a href="${portfolioData.contact.linkedin}" target="_blank" class="underline">LinkedIn Profile</a>`;
     else if (q.includes("github"))
@@ -131,7 +142,7 @@ modalOverlay?.addEventListener("click", (e) => {
     chatbotIcon.addEventListener("click", () => {
       chatbot.classList.toggle("hidden");
       if (!chatbot.classList.contains("hidden")) {
-        chatBody.innerHTML = "";
+        if (chatBody) chatBody.innerHTML = "";
         addMessage("bot", "👋 Welcome to Tayyab’s AI Assistant!");
         addMessage("bot", "Ask me anything about Mohammad Tayyab Khan.");
       }
@@ -162,8 +173,9 @@ modalOverlay?.addEventListener("click", (e) => {
 
     optionsMenu.addEventListener("click", (e) => {
       if (e.target.classList.contains("option-item")) {
-        addMessage("user", e.target.textContent);
-        handleChatbotResponse(e.target.textContent);
+        const text = e.target.textContent;
+        addMessage("user", text);
+        handleChatbotResponse(text);
         optionsMenu.classList.add("hidden");
       }
     });
