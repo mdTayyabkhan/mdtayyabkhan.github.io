@@ -1,11 +1,12 @@
 /* ===============================
-  data.js — Portfolio Data Context
-  =============================== */
+  portfolioData — Chatbot + Summary
+=============================== */
 
 const portfolioData = {
   name: "Mohammad Tayyab Khan",
   role: "Data Analyst",
   education: "B.Com (Computer Application), Telangana, India",
+
   skills: [
     "Excel",
     "SQL",
@@ -14,9 +15,10 @@ const portfolioData = {
     "Python",
     "Data Visualization"
   ],
+
   experience:
-    "During my 6+ months internship at AIvariant, I honed my practical data analysis skills in a professional setting. I was responsible for the end-to-end BI process, using SQL for data extraction, Excel for in-depth data cleaning, and Power BI to build new reports and update critical business dashboards.",
-  
+    "Data Analyst Intern at AIvariant (6+ months) — responsible for SQL-based data extraction, Excel-based data cleaning, and building/maintaining Power BI dashboards for daily business decision-making.",
+
   projects: [
     "Stock Market Analytics Dashboard",
     "Pizza Sales Analytics",
@@ -35,36 +37,66 @@ const portfolioData = {
   },
 
   summary:
-    "Data-driven analyst with 6+ months of hands-on internship experience at AIvariant, specializing in the end-to-end business intelligence lifecycle. I am proficient in using SQL for data extraction, Excel for cleaning and transformation, and Power BI to build insightful, interactive dashboards. My portfolio includes projects like the Flipkart Sales Analytics Dashboard, showcasing my ability to translate raw data into actionable insights. I hold a Data Analyst Certification from Excelr and a TATA certificate in data visualization."
+    "Data-driven analyst with hands-on experience in SQL, Excel, and Power BI. I specialize in transforming raw datasets into actionable insights and interactive dashboards."
 };
 
 /* ===============================
-  Modal Details
-  =============================== */
+  PROJECT MODAL CONTENT
+=============================== */
 
 const projectDetails = {
   project1: {
     title: "Stock Market Analytics Dashboard",
-    dashboardUrl: "project1.html",
-    datasetUrl: "#",
+    brief:
+      "A Power BI dashboard analyzing multi-year stock data, including volatility, trends, sector comparison, and return KPIs.",
     points: [
-      "Performed complete stock price analysis including volatility, trends, and return calculation.",
-      "Developed interactive visuals in Power BI to compare sector performance and stock movement.",
-      "Created advanced DAX measures to compute KPIs such as ROI, volatility, moving averages, and daily returns.",
-      "Built a clean analytical dashboard layout enabling investors to understand market patterns quickly."
+      "Performed complete stock movement analysis across sectors.",
+      "Built volatility, moving average, and ROI calculations using DAX.",
+      "Created interactive visuals for trend comparison.",
+      "Designed a clean layout enabling faster interpretation of market patterns."
     ]
   },
 
- "project2": {
-  title: "Pizza Sales Analytics",
-  dashboardUrl: "project2.html",
-  datasetUrl: "#",
-  points: [
-    "Utilized SQL to perform the complete ETL (Extract, Transform, Load) process, cleaning and preparing the backend sales data for analysis.",
-    "Developed a dynamic, multi-page dashboard in Power BI, including data modeling, to visualize complex business performance metrics.",
-    "Designed an executive Sales Analytics summary to track core KPIs like Total Revenue (₹8.17L), Total Orders (21.3K), and Average Order Value (₹38.31).",
-    "Created dedicated Best Sellers and Less Selling pages to automatically rank products by revenue, quantity, and orders, providing actionable insights for marketing and inventory.",
-    "Added interactive slicers for Date Range, Pizza Category, and Size for flexible deep-dive analysis."
-  ]
- },
+  project2: {
+    title: "Pizza Sales Analytics",
+    brief:
+      "A full BI solution with SQL ETL workflow and a multi-page Power BI report covering revenue, best sellers, and KPI insights.",
+    points: [
+      "Performed full SQL-based data extraction and transformation.",
+      "Built a multi-page Power BI dashboard with automated ranking.",
+      "Tracked key KPIs including revenue, orders, and AOV.",
+      "Designed dedicated Best Sellers and Low Sellers pages.",
+      "Added interactive slicers for Category, Size, and Date Range."
+    ]
+  },
+
+  project3: {
+    title: "Flipkart Sales Analytics Dashboard",
+    brief:
+      "End-to-end analytics project using SQL, Excel, and Power BI for revenue tracking, product analysis, and performance trends.",
+    points: [
+      "Cleaned and transformed e-commerce sales data.",
+      "Analyzed revenue, profit, and order KPIs.",
+      "Created DAX-based dynamic measures and time intelligence.",
+      "Designed interactive visual dashboards with product insights."
+    ]
+  }
+};
+
+/* ===============================
+  CERTIFICATE MODAL CONTENT
+=============================== */
+
+const certDetails = {
+  cert1: {
+    title: "Certified Data Analyst",
+    brief:
+      "Excelr certificate validating core competencies in SQL, Excel, Power BI, and analytical problem solving."
+  },
+
+  cert2: {
+    title: "Data Visualisation: Empowering Business with Effective Insights",
+    brief:
+      "TATA Data Visualization Certificate demonstrating strong understanding of insights communication and business storytelling."
+  }
 };
