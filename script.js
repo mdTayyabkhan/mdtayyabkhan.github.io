@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ==========================
-   FOOTER CONTACT FORM SUBMISSION
+   FOOTER CONTACT FORM SUBMISSION (with Web3Forms + Error Handling)
 ========================== */
 const footerForm = document.getElementById("footerContactForm");
 const footerFormMessage = document.getElementById("footerFormMessage");
@@ -270,10 +270,14 @@ const footerFormMessage = document.getElementById("footerFormMessage");
 if (footerForm) {
   footerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    footerFormMessage.textContent = "Sending...";
+
+    // Show feedback to user
+    footerFormMessage.textContent = "⏳ Sending...";
     footerFormMessage.style.color = "#fbbf24";
 
     const formData = new FormData(footerForm);
+
+    let result;
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -281,18 +285,20 @@ if (footerForm) {
         body: formData,
       });
 
-      const result = await response.json();
+      result = await response.json();
 
       if (result.success) {
         footerFormMessage.textContent = "✅ Message sent successfully!";
         footerFormMessage.style.color = "#22c55e";
         footerForm.reset();
       } else {
-        footerFormMessage.textContent = "❌ Failed to send message. Try again later.";
+        footerFormMessage.textContent =
+          "❌ Failed to send message. Please try again later.";
         footerFormMessage.style.color = "#ef4444";
       }
     } catch (error) {
-      footerFormMessage.textContent = "⚠️ Network error. Please try again.";
+      footerFormMessage.textContent =
+        "⚠️ Server temporarily unavailable. Please try again in a few minutes.";
       footerFormMessage.style.color = "#ef4444";
     }
   });
