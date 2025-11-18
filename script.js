@@ -16,46 +16,64 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModalBtn = document.getElementById("closeModal");
 
   /* ==========================
-        MODAL SYSTEM
-  ========================== */
+      MODAL SYSTEM — FIXED
+========================== */
 
-  window.openProjectModal = (projectId) => {
-    const details = projectDetails[projectId];
-    if (!details) return;
+window.openProjectModal = (projectId) => {
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalBody = document.getElementById("modalBody");
+  const details = projectDetails[projectId];
+  if (!details) return;
 
-    modalBody.innerHTML = `
-      <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-      <p class="text-base leading-relaxed mb-4">${details.brief}</p>
-      <button class="btn-primary" onclick="closeModal()">Close</button>
-    `;
+  modalBody.innerHTML = `
+    <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
+    <p class="text-base leading-relaxed mb-4">${details.brief}</p>
+    ${
+      details.points
+        ? `<ul class="list-disc ml-5 text-gray-700 text-sm mb-4">
+            ${details.points.map(pt => `<li>${pt}</li>`).join("")}
+          </ul>`
+        : ""
+    }
+    <button class="btn-primary" onclick="closeModal()">Close</button>
+  `;
 
-    modalOverlay.classList.remove("hidden");
-  };
+  modalOverlay.classList.remove("hidden");
+  modalOverlay.style.display = "flex";
+};
 
-  window.openCertModal = (certId) => {
-    const details = certDetails[certId];
-    if (!details) return;
+window.openCertModal = (certId) => {
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalBody = document.getElementById("modalBody");
+  const details = certDetails[certId];
+  if (!details) return;
 
-    modalBody.innerHTML = `
-      <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-      <p class="text-base leading-relaxed mb-4">${details.brief}</p>
-      <button class="btn-primary" onclick="closeModal()">Close</button>
-    `;
+  modalBody.innerHTML = `
+    <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
+    <p class="text-base leading-relaxed mb-4">${details.brief}</p>
+    <button class="btn-primary" onclick="closeModal()">Close</button>
+  `;
 
-    modalOverlay.classList.remove("hidden");
-  };
+  modalOverlay.classList.remove("hidden");
+  modalOverlay.style.display = "flex";
+};
 
-  window.closeModal = () => {
-    modalOverlay.classList.add("hidden");
-  };
+window.closeModal = () => {
+  const modalOverlay = document.getElementById("modalOverlay");
+  modalOverlay.classList.add("hidden");
+  modalOverlay.style.display = "none";
+};
 
-  // Close with X button
+// Allow closing with “X” or background click
+document.addEventListener("DOMContentLoaded", () => {
+  const modalOverlay = document.getElementById("modalOverlay");
+  const closeModalBtn = document.getElementById("closeModal");
+
   closeModalBtn?.addEventListener("click", closeModal);
-
-  // Close on background click
   modalOverlay?.addEventListener("click", (e) => {
     if (e.target === modalOverlay) closeModal();
   });
+});
 
   /* ==========================
         CHATBOT SYSTEM
