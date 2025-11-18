@@ -15,102 +15,150 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModalBtn = document.getElementById("closeModal");
 
   /* ==========================
-        MODAL SYSTEM — FINAL
+        MODAL SYSTEM (UPDATED)
   ========================== */
+
+  // ---------- PROJECT POPUPS ----------
   window.openProjectModal = (projectId) => {
-    const modalOverlay = document.getElementById("modalOverlay");
-    const modalBody = document.getElementById("modalBody");
-    const details = projectDetails[projectId];
-    if (!details) return;
+    const popup = window.open("", "_blank", "width=900,height=800,scrollbars=yes,resizable=yes");
 
-    let extraInfo = "";
+    popup.document.write(`
+      <html>
+        <head>
+          <title>Project Details</title>
+          <style>
+            body {
+              font-family: 'Poppins', sans-serif;
+              padding: 40px;
+              background: #f9fafb;
+              color: #1e293b;
+              line-height: 1.7;
+            }
+            h2 {
+              color: #1e40af;
+              margin-bottom: 10px;
+            }
+            h3 {
+              color: #334155;
+              margin-top: 30px;
+              margin-bottom: 8px;
+            }
+            ul {
+              margin-top: 10px;
+              padding-left: 22px;
+            }
+            li {
+              margin-bottom: 10px;
+            }
+            section {
+              margin-bottom: 40px;
+            }
+          </style>
+        </head>
+        <body>
+          <h2>🚀 Projects</h2>
+          <p>Here are a couple of projects I've built to apply my skills in data analysis and visualization.</p>
 
-    if (projectId === "project2") {
-      extraInfo = `
-        <ul style="margin-top:10px; padding-left:18px; line-height:1.6;">
-          <li>→ Utilized SQL to perform the complete ETL (Extract, Transform, Load) process, cleaning and preparing the backend sales data for analysis.</li><br>
-          <li>→ Developed a dynamic, multi-page dashboard in Power BI, including data modeling, to visualize complex business performance metrics.</li><br>
-          <li>→ Designed an executive "Sales Analytics" summary to track core KPIs like <strong>Total Revenue (₹8.17L)</strong>, <strong>Total Orders (21.3K)</strong>, and <strong>Average Order Value (₹38.31)</strong>.</li><br>
-          <li>→ Created dedicated "Best Sellers" and "Less Selling" pages to automatically rank products by revenue, quantity, and orders, providing actionable insights for marketing and inventory.</li><br>
-          <li>→ Implemented robust, interactive slicers for Date Range, Pizza Category, and Size, allowing any user to easily filter and drill down into the data for strategic decision-making.</li>
-        </ul>
-      `;
-    }
+          <section>
+            <h3>🍕 Pizza Sales Dashboard</h3>
+            <p>This project involved building a comprehensive dashboard to analyze sales performance for a pizza business. I handled the entire data workflow, from the backend database to the final interactive report, to provide actionable insights for growth.</p>
+            <ul>
+              <li>Handled the complete <strong>ETL (Extract, Transform, Load)</strong> process using <strong>SQL</strong> to clean, prepare, and model the backend sales data.</li>
+              <li>Built a dynamic, multi-page dashboard in <strong>Power BI</strong> to visualize complex performance metrics and business trends.</li>
+              <li>Designed a high-level executive dashboard to monitor core <strong>KPIs</strong> like <strong>Total Revenue (₹8.17L)</strong>, <strong>Total Orders (21.3K)</strong>, and <strong>Average Order Value (₹38.31)</strong>.</li>
+              <li>Created dedicated 'Best Sellers' and 'Less Selling' pages to <strong>automatically rank products</strong> by revenue, quantity, and orders, providing clear insights for marketing and inventory management.</li>
+              <li>Engineered the report with <strong>interactive slicers</strong> (for Date, Category, and Size) to allow any user to easily drill down and filter data for strategic decision-making.</li>
+            </ul>
+          </section>
 
-    if (projectId === "project3") {
-      extraInfo = `
-        <ul style="margin-top:10px; padding-left:18px; line-height:1.6;">
-          <li>→ Used SQL to process, clean, and aggregate complex backend sales and profitability data.</li><br>
-          <li>→ Built a comprehensive, multi-page Power BI report with a main executive dashboard to track high-level KPIs like <strong>Total Revenue ($160M)</strong> and <strong>Total Profit ($88M)</strong>.</li><br>
-          <li>→ Designed dedicated drill-down pages for Order, Customer, and Product Insights, analyzing metrics by demographics, location, and product category.</li><br>
-          <li>→ Implemented advanced analytical features, including a "Profit Insights and Forecast" page to model future performance.</li><br>
-          <li>→ Created interactive parameter sliders (for Price Increment & Discount %) to enable dynamic, prescriptive analysis of pricing strategies on profitability.</li><br>
-          <li>→ Developed a "Target Analysis" page using gauge charts to visually track sales and profit performance against set business goals.</li>
-        </ul>
-      `;
-    }
+          <section>
+            <h3>🛒 Flipkart Sales & Profitability Dashboard</h3>
+            <p>This was an advanced analytics project focused on dissecting Flipkart's sales and profitability. The goal was to move beyond historical reporting and create a predictive tool to help leadership model the real-world impact of business decisions.</p>
+            <ul>
+              <li>Managed the backend data pipeline, using <strong>SQL</strong> to process, clean, and aggregate complex sales and profitability data.</li>
+              <li>Developed a multi-page <strong>Power BI</strong> report featuring an executive dashboard to track high-level <strong>KPIs</strong> such as <strong>Total Revenue ($160M)</strong> and <strong>Total Profit ($88M)</strong>.</li>
+              <li>Designed detailed drill-down pages for <strong>Order, Customer, and Product Insights</strong>, enabling deep analysis of performance by demographics, location, and product category.</li>
+              <li>Engineered a <strong>'Profit Insights and Forecast'</strong> page to model future performance based on changing variables.</li>
+              <li>Added interactive <strong>'what-if' parameter sliders</strong> allowing leadership to instantly see modeled profitability changes, enabling true prescriptive analysis.</li>
+              <li>Included a <strong>'Target Analysis'</strong> page with gauge charts to visually track performance against business goals.</li>
+            </ul>
+          </section>
+        </body>
+      </html>
+    `);
 
-    modalBody.innerHTML = `
-      <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-      <p class="text-base leading-relaxed mb-4">${details.brief}</p>
-      ${extraInfo}
-      <button class="btn-primary" onclick="closeModal()">Close</button>
-    `;
-
-    modalOverlay.classList.remove("hidden");
-    modalOverlay.style.display = "flex";
+    popup.document.close();
   };
 
+  // ---------- CERTIFICATE POPUPS ----------
   window.openCertModal = (certId) => {
-    const modalOverlay = document.getElementById("modalOverlay");
-    const modalBody = document.getElementById("modalBody");
     const details = certDetails[certId];
     if (!details) return;
 
-    let extraInfo = "";
+    const popup = window.open("", "_blank", "width=900,height=800,scrollbars=yes,resizable=yes");
 
-    if (certId === "cert1") {
-      extraInfo = `
-        <p style="margin-top:10px;">As part of my <strong>Data Analyst Certification from Excelr</strong>, which I completed with distinction, I gained a comprehensive skill set in the complete data analytics lifecycle. The program focused on hands-on application and covered:</p>
-        <ul style="margin-top:10px; padding-left:18px; line-height:1.6;">
-          <li>• <strong>Database Management:</strong> Mastering SQL to query, join, aggregate, and extract complex datasets from relational databases.</li><br>
-          <li>• <strong>Data Visualization:</strong> Developing and deploying interactive, insightful dashboards from scratch using both Power BI and Tableau.</li><br>
-          <li>• <strong>Statistical Programming:</strong> Applying core Statistics principles and utilizing Python (with libraries like Pandas and Matplotlib) for data exploration and analysis.</li><br>
-          <li>• <strong>Business Intelligence:</strong> Leveraging advanced Excel functions, Pivot Tables, and data modeling for in-depth data manipulation and reporting.</li>
-        </ul>
-      `;
-    }
+    popup.document.write(`
+      <html>
+        <head>
+          <title>${details.title}</title>
+          <style>
+            body {
+              font-family: 'Poppins', sans-serif;
+              padding: 40px;
+              background: #f9fafb;
+              color: #1e293b;
+              line-height: 1.7;
+            }
+            h2 {
+              color: #1e40af;
+              margin-bottom: 10px;
+            }
+            h3 {
+              color: #334155;
+              margin-top: 30px;
+              margin-bottom: 8px;
+            }
+            ul {
+              margin-top: 10px;
+              padding-left: 22px;
+            }
+            li {
+              margin-bottom: 10px;
+            }
+            section {
+              margin-bottom: 40px;
+            }
+          </style>
+        </head>
+        <body>
+          <h2>🎓 Certifications & Training</h2>
 
-    if (certId === "cert2") {
-      extraInfo = `
-        <p style="margin-top:10px;">I completed the <strong>TATA "Data Visualisation: Empowering Business with Effective Insights"</strong> virtual experience program, a practical simulation of a real-world data analyst's workflow. This intensive program, developed by TATA and hosted on the Forage platform, involved a series of hands-on tasks.</p>
-        <p style="margin-top:10px;">I learned to move from a raw business problem to a final, actionable insight. The modules focused on framing the business scenario, choosing the right visuals for the data, and creating effective dashboards.</p>
-        <p style="margin-top:10px;">The program culminated in a capstone task focused on communicating analysis and key insights, solidifying my ability to translate complex data into a clear, compelling story for stakeholders.</p>
-      `;
-    }
+          <section>
+            <h3>Certified Data Analyst (Issued by Excelr)</h3>
+            <p>I completed Excelr's comprehensive Data Analyst Certification program, graduating with <strong>distinction</strong>. This intensive course provided me with a strong, hands-on foundation in the complete data analytics lifecycle, from data collection to visualization.</p>
+            <ul>
+              <li><strong>Database Management:</strong> Mastered SQL to query, join, aggregate, and extract data from complex relational databases.</li>
+              <li><strong>Data Visualization:</strong> Gained proficiency in building insightful, end-to-end dashboards from scratch using both Power BI and Tableau.</li>
+              <li><strong>Statistical Programming:</strong> Applied core Statistics principles and used Python (with libraries like Pandas and Matplotlib) for data exploration, cleaning, and analysis.</li>
+              <li><strong>Business Intelligence:</strong> Leveraged advanced Excel functions, Pivot Tables, and data modeling for in-depth data manipulation and ad-hoc reporting.</li>
+            </ul>
+          </section>
 
-    modalBody.innerHTML = `
-      <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-      <p class="text-base leading-relaxed mb-4">${details.brief}</p>
-      ${extraInfo}
-      <button class="btn-primary" onclick="closeModal()">Close</button>
-    `;
+          <section>
+            <h3>Data Visualisation: Empowering Business with Effective Insights (Issued by TATA / Forage)</h3>
+            <p>I successfully completed TATA's virtual experience program, a practical simulation that replicated the workflow of a real TATA data analyst. The focus was on turning business problems into actionable insights using visualization and storytelling.</p>
+            <ul>
+              <li>Worked through hands-on tasks to <strong>frame business scenarios</strong> and choose visuals that effectively communicate data insights.</li>
+              <li>Practiced the full workflow — from raw data to actionable dashboards and client-ready insights.</li>
+              <li>Focused on <strong>translating complex datasets</strong> into clear, compelling stories for stakeholders, bridging the gap between technical analysis and business strategy.</li>
+            </ul>
+          </section>
+        </body>
+      </html>
+    `);
 
-    modalOverlay.classList.remove("hidden");
-    modalOverlay.style.display = "flex";
+    popup.document.close();
   };
-
-  window.closeModal = () => {
-    const modalOverlay = document.getElementById("modalOverlay");
-    modalOverlay.classList.add("hidden");
-    modalOverlay.style.display = "none";
-  };
-
-  // Allow closing with “X” or background click
-  closeModalBtn?.addEventListener("click", closeModal);
-  modalOverlay?.addEventListener("click", (e) => {
-    if (e.target === modalOverlay) closeModal();
-  });
 
   /* ==========================
         CHATBOT SYSTEM
@@ -147,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   chatbotIcon.addEventListener("click", () => {
     chatbot.classList.toggle("hidden");
+
     if (!chatbot.classList.contains("hidden")) {
       chatBody.innerHTML = "";
       addMessage("bot", "👋 Welcome to Tayyab’s AI Assistant!");
@@ -157,6 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
   sendBtn.addEventListener("click", () => {
     const text = userInput.value.trim();
     if (!text) return;
+
     addMessage("user", text);
     userInput.value = "";
     handleChatbotResponse(text);
