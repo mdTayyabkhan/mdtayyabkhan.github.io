@@ -615,7 +615,7 @@
 /* ============================
    MODAL (FIXED FOR PROJECTS + CERTIFICATES)
 ============================ */
-modal-overlay {
+.modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.65);
