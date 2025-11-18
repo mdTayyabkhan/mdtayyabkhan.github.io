@@ -260,3 +260,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/* ==========================
+   FOOTER CONTACT FORM SUBMISSION
+========================== */
+const footerForm = document.getElementById("footerContactForm");
+const footerFormMessage = document.getElementById("footerFormMessage");
+
+if (footerForm) {
+  footerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    footerFormMessage.textContent = "Sending...";
+    footerFormMessage.style.color = "#fbbf24";
+
+    const formData = new FormData(footerForm);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        footerFormMessage.textContent = "✅ Message sent successfully!";
+        footerFormMessage.style.color = "#22c55e";
+        footerForm.reset();
+      } else {
+        footerFormMessage.textContent = "❌ Failed to send message. Try again later.";
+        footerFormMessage.style.color = "#ef4444";
+      }
+    } catch (error) {
+      footerFormMessage.textContent = "⚠️ Network error. Please try again.";
+      footerFormMessage.style.color = "#ef4444";
+    }
+  });
+}
