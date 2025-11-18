@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /* ==========================
         SELECTORS
   ========================== */
@@ -16,69 +15,106 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModalBtn = document.getElementById("closeModal");
 
   /* ==========================
-      MODAL SYSTEM — FIXED
-========================== */
+        MODAL SYSTEM — FINAL
+  ========================== */
+  window.openProjectModal = (projectId) => {
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalBody = document.getElementById("modalBody");
+    const details = projectDetails[projectId];
+    if (!details) return;
 
-window.openProjectModal = (projectId) => {
-  const modalOverlay = document.getElementById("modalOverlay");
-  const modalBody = document.getElementById("modalBody");
-  const details = projectDetails[projectId];
-  if (!details) return;
+    let extraInfo = "";
 
-  modalBody.innerHTML = `
-    <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-    <p class="text-base leading-relaxed mb-4">${details.brief}</p>
-    ${
-      details.points
-        ? `<ul class="list-disc ml-5 text-gray-700 text-sm mb-4">
-            ${details.points.map(pt => `<li>${pt}</li>`).join("")}
-          </ul>`
-        : ""
+    if (projectId === "project2") {
+      extraInfo = `
+        <ul style="margin-top:10px; padding-left:18px; line-height:1.6;">
+          <li>→ Utilized SQL to perform the complete ETL (Extract, Transform, Load) process, cleaning and preparing the backend sales data for analysis.</li><br>
+          <li>→ Developed a dynamic, multi-page dashboard in Power BI, including data modeling, to visualize complex business performance metrics.</li><br>
+          <li>→ Designed an executive "Sales Analytics" summary to track core KPIs like <strong>Total Revenue (₹8.17L)</strong>, <strong>Total Orders (21.3K)</strong>, and <strong>Average Order Value (₹38.31)</strong>.</li><br>
+          <li>→ Created dedicated "Best Sellers" and "Less Selling" pages to automatically rank products by revenue, quantity, and orders, providing actionable insights for marketing and inventory.</li><br>
+          <li>→ Implemented robust, interactive slicers for Date Range, Pizza Category, and Size, allowing any user to easily filter and drill down into the data for strategic decision-making.</li>
+        </ul>
+      `;
     }
-    <button class="btn-primary" onclick="closeModal()">Close</button>
-  `;
 
-  modalOverlay.classList.remove("hidden");
-  modalOverlay.style.display = "flex";
-};
+    if (projectId === "project3") {
+      extraInfo = `
+        <ul style="margin-top:10px; padding-left:18px; line-height:1.6;">
+          <li>→ Used SQL to process, clean, and aggregate complex backend sales and profitability data.</li><br>
+          <li>→ Built a comprehensive, multi-page Power BI report with a main executive dashboard to track high-level KPIs like <strong>Total Revenue ($160M)</strong> and <strong>Total Profit ($88M)</strong>.</li><br>
+          <li>→ Designed dedicated drill-down pages for Order, Customer, and Product Insights, analyzing metrics by demographics, location, and product category.</li><br>
+          <li>→ Implemented advanced analytical features, including a "Profit Insights and Forecast" page to model future performance.</li><br>
+          <li>→ Created interactive parameter sliders (for Price Increment & Discount %) to enable dynamic, prescriptive analysis of pricing strategies on profitability.</li><br>
+          <li>→ Developed a "Target Analysis" page using gauge charts to visually track sales and profit performance against set business goals.</li>
+        </ul>
+      `;
+    }
 
-window.openCertModal = (certId) => {
-  const modalOverlay = document.getElementById("modalOverlay");
-  const modalBody = document.getElementById("modalBody");
-  const details = certDetails[certId];
-  if (!details) return;
+    modalBody.innerHTML = `
+      <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
+      <p class="text-base leading-relaxed mb-4">${details.brief}</p>
+      ${extraInfo}
+      <button class="btn-primary" onclick="closeModal()">Close</button>
+    `;
 
-  modalBody.innerHTML = `
-    <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
-    <p class="text-base leading-relaxed mb-4">${details.brief}</p>
-    <button class="btn-primary" onclick="closeModal()">Close</button>
-  `;
+    modalOverlay.classList.remove("hidden");
+    modalOverlay.style.display = "flex";
+  };
 
-  modalOverlay.classList.remove("hidden");
-  modalOverlay.style.display = "flex";
-};
+  window.openCertModal = (certId) => {
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalBody = document.getElementById("modalBody");
+    const details = certDetails[certId];
+    if (!details) return;
 
-window.closeModal = () => {
-  const modalOverlay = document.getElementById("modalOverlay");
-  modalOverlay.classList.add("hidden");
-  modalOverlay.style.display = "none";
-};
+    let extraInfo = "";
 
-// Allow closing with “X” or background click
-document.addEventListener("DOMContentLoaded", () => {
-  const modalOverlay = document.getElementById("modalOverlay");
-  const closeModalBtn = document.getElementById("closeModal");
+    if (certId === "cert1") {
+      extraInfo = `
+        <p style="margin-top:10px;">As part of my <strong>Data Analyst Certification from Excelr</strong>, which I completed with distinction, I gained a comprehensive skill set in the complete data analytics lifecycle. The program focused on hands-on application and covered:</p>
+        <ul style="margin-top:10px; padding-left:18px; line-height:1.6;">
+          <li>• <strong>Database Management:</strong> Mastering SQL to query, join, aggregate, and extract complex datasets from relational databases.</li><br>
+          <li>• <strong>Data Visualization:</strong> Developing and deploying interactive, insightful dashboards from scratch using both Power BI and Tableau.</li><br>
+          <li>• <strong>Statistical Programming:</strong> Applying core Statistics principles and utilizing Python (with libraries like Pandas and Matplotlib) for data exploration and analysis.</li><br>
+          <li>• <strong>Business Intelligence:</strong> Leveraging advanced Excel functions, Pivot Tables, and data modeling for in-depth data manipulation and reporting.</li>
+        </ul>
+      `;
+    }
 
+    if (certId === "cert2") {
+      extraInfo = `
+        <p style="margin-top:10px;">I completed the <strong>TATA "Data Visualisation: Empowering Business with Effective Insights"</strong> virtual experience program, a practical simulation of a real-world data analyst's workflow. This intensive program, developed by TATA and hosted on the Forage platform, involved a series of hands-on tasks.</p>
+        <p style="margin-top:10px;">I learned to move from a raw business problem to a final, actionable insight. The modules focused on framing the business scenario, choosing the right visuals for the data, and creating effective dashboards.</p>
+        <p style="margin-top:10px;">The program culminated in a capstone task focused on communicating analysis and key insights, solidifying my ability to translate complex data into a clear, compelling story for stakeholders.</p>
+      `;
+    }
+
+    modalBody.innerHTML = `
+      <h3 class="text-2xl font-bold mb-3">${details.title}</h3>
+      <p class="text-base leading-relaxed mb-4">${details.brief}</p>
+      ${extraInfo}
+      <button class="btn-primary" onclick="closeModal()">Close</button>
+    `;
+
+    modalOverlay.classList.remove("hidden");
+    modalOverlay.style.display = "flex";
+  };
+
+  window.closeModal = () => {
+    const modalOverlay = document.getElementById("modalOverlay");
+    modalOverlay.classList.add("hidden");
+    modalOverlay.style.display = "none";
+  };
+
+  // Allow closing with “X” or background click
   closeModalBtn?.addEventListener("click", closeModal);
   modalOverlay?.addEventListener("click", (e) => {
     if (e.target === modalOverlay) closeModal();
   });
-});
 
   /* ==========================
         CHATBOT SYSTEM
   ========================== */
-
   const addMessage = (sender, text) => {
     const msg = document.createElement("div");
     msg.className = sender === "bot" ? "bot-msg" : "user-msg";
@@ -111,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   chatbotIcon.addEventListener("click", () => {
     chatbot.classList.toggle("hidden");
-
     if (!chatbot.classList.contains("hidden")) {
       chatBody.innerHTML = "";
       addMessage("bot", "👋 Welcome to Tayyab’s AI Assistant!");
@@ -122,7 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
   sendBtn.addEventListener("click", () => {
     const text = userInput.value.trim();
     if (!text) return;
-
     addMessage("user", text);
     userInput.value = "";
     handleChatbotResponse(text);
@@ -147,5 +181,4 @@ document.addEventListener("DOMContentLoaded", () => {
       optionsMenu.classList.add("hidden");
     }
   });
-
-});  // <--- Correct final bracket, script ends here
+});
