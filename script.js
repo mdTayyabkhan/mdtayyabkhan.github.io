@@ -10,102 +10,70 @@ document.addEventListener("DOMContentLoaded", () => {
   const optionsBtn = document.getElementById("optionsBtn");
   const optionsMenu = document.getElementById("optionsMenu");
 
-  /* ==========================
-        PROJECT POPUPS
-  ========================== */
-  window.openProjectModal = (projectId) => {
-    const popup = window.open("", "_blank", "width=900,height=800,scrollbars=yes,resizable=yes");
+ /* ==========================
+   MORE INFO MODAL (PROJECTS)
+========================== */
+window.openProjectInfoModal = (projectId) => {
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalBody = document.getElementById("modalBody");
+  const closeBtn = document.getElementById("closeModal");
 
-    const styles = `
-      <style>
-        body {
-          font-family: 'Poppins', sans-serif;
-          padding: 40px;
-          background: #f9fafb;
-          color: #1e293b;
-          line-height: 1.7;
-        }
-        h2 {
-          color: #1e40af;
-          margin-bottom: 10px;
-        }
-        h3 {
-          color: #334155;
-          margin-top: 20px;
-          margin-bottom: 8px;
-        }
-        ul {
-          margin-top: 10px;
-          padding-left: 22px;
-        }
-        li {
-          margin-bottom: 10px;
-        }
-        button {
-          margin-top: 25px;
-          background: #1e40af;
-          color: white;
-          border: none;
-          padding: 10px 18px;
-          border-radius: 8px;
-          cursor: pointer;
-          font-size: 15px;
-        }
-        button:hover {
-          background: #3749d8;
-        }
-      </style>
+  let content = "";
+
+  if (projectId === "project1") {
+    content = `
+      <h2>📊 Stock Market Analytics Dashboard</h2>
+      <p>
+        A comprehensive analytics dashboard built to analyze multi-year stock
+        market data with a focus on volatility, trends, and sector-wise insights.
+      </p>
+      <ul>
+        <li>Sector-wise stock performance analysis</li>
+        <li>Volatility & ROI calculations using DAX</li>
+        <li>Interactive filters and KPI cards</li>
+        <li>Clean executive-friendly layout</li>
+      </ul>
     `;
+  }
 
-    let content = "";
+  if (projectId === "project2") {
+    content = `
+      <h2>🍕 Pizza Sales Analytics</h2>
+      <p>
+        End-to-end BI solution using SQL for ETL and Power BI for visualization.
+      </p>
+      <ul>
+        <li>SQL-based data extraction & transformation</li>
+        <li>Revenue, Orders, AOV KPIs</li>
+        <li>Best & low-selling product analysis</li>
+        <li>Interactive slicers for business decisions</li>
+      </ul>
+    `;
+  }
 
-    if (projectId === "project2") {
-      content = `
-        <h2>🍕 Pizza Sales Dashboard</h2>
-        <p>This project involved building a comprehensive dashboard to analyze sales performance for a pizza business. I handled the entire data workflow, from the backend database to the final interactive report, to provide actionable insights for growth.</p>
-        <ul>
-          <li>Handled the complete <strong>ETL (Extract, Transform, Load)</strong> process using <strong>SQL</strong> to clean, prepare, and model the backend sales data.</li>
-          <li>Built a dynamic, multi-page dashboard in <strong>Power BI</strong> to visualize complex performance metrics and business trends.</li>
-          <li>Designed a high-level executive dashboard to monitor core <strong>KPIs</strong> like <strong>Total Revenue (₹8.17L)</strong>, <strong>Total Orders (21.3K)</strong>, and <strong>Average Order Value (₹38.31)</strong>.</li>
-          <li>Created dedicated 'Best Sellers' and 'Less Selling' pages to <strong>automatically rank products</strong> by revenue, quantity, and orders, providing clear insights for marketing and inventory management.</li>
-          <li>Engineered the report with <strong>interactive slicers</strong> (for Date, Category, and Size) to allow any user to easily drill down and filter data for strategic decision-making.</li>
-        </ul>
-      `;
-    } else if (projectId === "project3") {
-      content = `
-        <h2>🛒 Flipkart Sales & Profitability Dashboard</h2>
-        <p>This was an advanced analytics project focused on dissecting Flipkart's sales and profitability. The goal was to move beyond historical reporting and create a predictive tool to help leadership model the real-world impact of business decisions.</p>
-        <ul>
-          <li>Managed the backend data pipeline using <strong>SQL</strong> to process, clean, and aggregate complex sales and profitability data.</li>
-          <li>Developed a multi-page <strong>Power BI</strong> report featuring an executive dashboard to track high-level <strong>KPIs</strong> such as <strong>Total Revenue ($160M)</strong> and <strong>Total Profit ($88M)</strong>.</li>
-          <li>Designed detailed drill-down pages for <strong>Order, Customer, and Product Insights</strong>, enabling deep analysis of performance by demographics, location, and product category.</li>
-          <li>Engineered a <strong>'Profit Insights and Forecast'</strong> page to model future performance based on changing variables.</li>
-          <li>Added interactive <strong>'what-if' parameter sliders</strong> allowing leadership to instantly see modeled profitability changes, enabling true prescriptive analysis.</li>
-          <li>Included a <strong>'Target Analysis'</strong> page with gauge charts to visually track performance against business goals.</li>
-        </ul>
-      `;
-    } else if (projectId === "project1") {
-      content = `
-        <h2>📊 Stock Market Analytics Dashboard</h2>
-        <p>A Power BI dashboard analyzing multi-year stock data, including volatility, trends, sector comparison, and return KPIs.</p>
-        <ul>
-          <li>Performed complete stock movement analysis across sectors.</li>
-          <li>Built volatility, moving average, and ROI calculations using DAX.</li>
-          <li>Created interactive visuals for trend comparison.</li>
-          <li>Designed a clean layout enabling faster interpretation of market patterns.</li>
-        </ul>
-      `;
-    }
+  if (projectId === "project3") {
+    content = `
+      <h2>🛒 Flipkart Sales Analytics Dashboard</h2>
+      <p>
+        Advanced analytics project focused on revenue, profit, and forecasting.
+      </p>
+      <ul>
+        <li>Profitability & revenue KPIs</li>
+        <li>Product and customer-level insights</li>
+        <li>Forecasting & what-if analysis</li>
+        <li>Target vs achievement tracking</li>
+      </ul>
+    `;
+  }
 
-    popup.document.write(`
-      <html>
-        <head><title>Project Info</title>${styles}</head>
-        <body>${content}<br><button onclick="window.close()">Close Window</button></body>
-      </html>
-    `);
+  modalBody.innerHTML = content;
+  modalOverlay.classList.remove("hidden");
 
-    popup.document.close();
+  closeBtn.onclick = () => {
+    modalOverlay.classList.add("hidden");
+    modalBody.innerHTML = "";
   };
+};
 
   /* ==========================
         CERTIFICATE POPUPS
