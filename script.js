@@ -198,7 +198,7 @@ window.openDashboardModal = () => {
 
   modalBody.innerHTML = `
     <iframe
-      src="https://your-dashboard-frontend.netlify.app"
+      src="https://earnest-madeleine-db8a20.netlify.app/"
       style="width:100%; height:75vh; border:none; border-radius:12px;"
       loading="lazy"
     ></iframe>
@@ -206,6 +206,13 @@ window.openDashboardModal = () => {
 
   modalOverlay.classList.remove("hidden");
 };
+
+
+  document.getElementById("closeModal").addEventListener("click", () => {
+  document.getElementById("modalOverlay").classList.add("hidden");
+  document.getElementById("modalBody").innerHTML = "";
+});
+
 
   /* ==========================
         CHATBOT SYSTEM
