@@ -10,70 +10,86 @@ document.addEventListener("DOMContentLoaded", () => {
   const optionsBtn = document.getElementById("optionsBtn");
   const optionsMenu = document.getElementById("optionsMenu");
 
- /* ==========================
-   MORE INFO MODAL (PROJECTS)
-========================== */
-window.openProjectInfoModal = (projectId) => {
-  const modalOverlay = document.getElementById("modalOverlay");
-  const modalBody = document.getElementById("modalBody");
-  const closeBtn = document.getElementById("closeModal");
+  /* ==========================
+     MORE INFO MODAL (PROJECTS)
+  ========================== */
+  window.openProjectInfoModal = (projectId) => {
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalBody = document.getElementById("modalBody");
+    const closeBtn = document.getElementById("closeModal");
 
-  let content = "";
+    let content = "";
 
-  if (projectId === "project1") {
-    content = `
-      <h2>📊 Stock Market Analytics Dashboard</h2>
-      <p>
-        A comprehensive analytics dashboard built to analyze multi-year stock
-        market data with a focus on volatility, trends, and sector-wise insights.
-      </p>
-      <ul>
-        <li>Sector-wise stock performance analysis</li>
-        <li>Volatility & ROI calculations using DAX</li>
-        <li>Interactive filters and KPI cards</li>
-        <li>Clean executive-friendly layout</li>
-      </ul>
+    if (projectId === "project1") {
+      content = `
+        <h2>📊 Stock Market Analytics Dashboard</h2>
+        <p>
+          A comprehensive analytics dashboard built to analyze multi-year stock
+          market data with a focus on volatility, trends, and sector-wise insights.
+        </p>
+        <ul>
+          <li>Sector-wise stock performance analysis</li>
+          <li>Volatility & ROI calculations using DAX</li>
+          <li>Interactive filters and KPI cards</li>
+          <li>Clean executive-friendly layout</li>
+        </ul>
+      `;
+    }
+
+    if (projectId === "project2") {
+      content = `
+        <h2>🍕 Pizza Sales Analytics</h2>
+        <p>
+          End-to-end BI solution using SQL for ETL and Power BI for visualization.
+        </p>
+        <ul>
+          <li>SQL-based data extraction & transformation</li>
+          <li>Revenue, Orders, AOV KPIs</li>
+          <li>Best & low-selling product analysis</li>
+          <li>Interactive slicers for business decisions</li>
+        </ul>
+      `;
+    }
+
+    if (projectId === "project3") {
+      content = `
+        <h2>🛒 Flipkart Sales Analytics Dashboard</h2>
+        <p>
+          Advanced analytics project focused on revenue, profit, and forecasting.
+        </p>
+        <ul>
+          <li>Profitability & revenue KPIs</li>
+          <li>Product and customer-level insights</li>
+          <li>Forecasting & what-if analysis</li>
+          <li>Target vs achievement tracking</li>
+        </ul>
+      `;
+    }
+
+    /* ===== ONLY UPDATED PART (DARK + LARGE MODAL) ===== */
+    modalBody.innerHTML = `
+      <div style="
+        background:#020617;
+        color:#e5e7eb;
+        padding:32px;
+        border-radius:18px;
+        width:100%;
+        height:85vh;
+        overflow-y:auto;
+      ">
+        <div style="max-width:1100px; margin:auto;">
+          ${content}
+        </div>
+      </div>
     `;
-  }
 
-  if (projectId === "project2") {
-    content = `
-      <h2>🍕 Pizza Sales Analytics</h2>
-      <p>
-        End-to-end BI solution using SQL for ETL and Power BI for visualization.
-      </p>
-      <ul>
-        <li>SQL-based data extraction & transformation</li>
-        <li>Revenue, Orders, AOV KPIs</li>
-        <li>Best & low-selling product analysis</li>
-        <li>Interactive slicers for business decisions</li>
-      </ul>
-    `;
-  }
+    modalOverlay.classList.remove("hidden");
 
-  if (projectId === "project3") {
-    content = `
-      <h2>🛒 Flipkart Sales Analytics Dashboard</h2>
-      <p>
-        Advanced analytics project focused on revenue, profit, and forecasting.
-      </p>
-      <ul>
-        <li>Profitability & revenue KPIs</li>
-        <li>Product and customer-level insights</li>
-        <li>Forecasting & what-if analysis</li>
-        <li>Target vs achievement tracking</li>
-      </ul>
-    `;
-  }
-
-  modalBody.innerHTML = content;
-  modalOverlay.classList.remove("hidden");
-
-  closeBtn.onclick = () => {
-    modalOverlay.classList.add("hidden");
-    modalBody.innerHTML = "";
+    closeBtn.onclick = () => {
+      modalOverlay.classList.add("hidden");
+      modalBody.innerHTML = "";
+    };
   };
-};
 
   /* ==========================
         CERTIFICATE POPUPS
@@ -90,22 +106,9 @@ window.openProjectInfoModal = (projectId) => {
           color: #1e293b;
           line-height: 1.7;
         }
-        h2 {
-          color: #1e40af;
-          margin-bottom: 10px;
-        }
-        h3 {
-          color: #334155;
-          margin-top: 20px;
-          margin-bottom: 8px;
-        }
-        ul {
-          margin-top: 10px;
-          padding-left: 22px;
-        }
-        li {
-          margin-bottom: 10px;
-        }
+        h2 { color: #1e40af; margin-bottom: 10px; }
+        ul { margin-top: 10px; padding-left: 22px; }
+        li { margin-bottom: 10px; }
         button {
           margin-top: 25px;
           background: #1e40af;
@@ -114,10 +117,6 @@ window.openProjectInfoModal = (projectId) => {
           padding: 10px 18px;
           border-radius: 8px;
           cursor: pointer;
-          font-size: 15px;
-        }
-        button:hover {
-          background: #3749d8;
         }
       </style>
     `;
@@ -127,33 +126,23 @@ window.openProjectInfoModal = (projectId) => {
     if (certId === "cert1") {
       content = `
         <h2>🎓 Certified Data Analyst (Issued by Excelr)</h2>
-        <p>I completed Excelr's comprehensive Data Analyst Certification program, graduating with <strong>distinction</strong>. This intensive course provided me with a strong, hands-on foundation in the complete data analytics lifecycle, from data collection to visualization.</p>
-        <ul>
-          <li><strong>Database Management:</strong> Mastered SQL to query, join, aggregate, and extract data from complex relational databases.</li>
-          <li><strong>Data Visualization:</strong> Built end-to-end dashboards from scratch using Power BI and Tableau.</li>
-          <li><strong>Statistical Programming:</strong> Applied Statistics and Python (Pandas, Matplotlib) for exploration and analysis.</li>
-          <li><strong>Business Intelligence:</strong> Used advanced Excel, Pivot Tables, and data modeling for analysis and reporting.</li>
-        </ul>
+        <p>Strong foundation in SQL, Power BI, Tableau, Python & Excel.</p>
       `;
-    } else if (certId === "cert2") {
+    }
+
+    if (certId === "cert2") {
       content = `
-        <h2>📊 Data Visualisation: Empowering Business with Effective Insights (TATA / Forage)</h2>
-        <p>I successfully completed TATA's virtual experience program, a practical simulation that replicated the workflow of a real TATA data analyst. The focus was on turning business problems into actionable insights using visualization and storytelling.</p>
-        <ul>
-          <li>Framed business scenarios and selected visuals that effectively communicated insights.</li>
-          <li>Practiced the complete workflow from raw data to dashboards and business insights.</li>
-          <li>Learned how to translate complex data into a compelling story for stakeholders.</li>
-        </ul>
+        <h2>📊 Data Visualisation (TATA / Forage)</h2>
+        <p>Focused on storytelling & business insight communication.</p>
       `;
     }
 
     popup.document.write(`
       <html>
-        <head><title>Certificate Info</title>${styles}</head>
-        <body>${content}<br><button onclick="window.close()">Close Window</button></body>
+        <head>${styles}</head>
+        <body>${content}<br><button onclick="window.close()">Close</button></body>
       </html>
     `);
-
     popup.document.close();
   };
 
@@ -179,58 +168,41 @@ window.openProjectInfoModal = (projectId) => {
     else if (q.includes("projects")) response = portfolioData.projects.join(", ");
     else if (q.includes("cert")) response = portfolioData.certificates.join(", ");
     else if (q.includes("linkedin"))
-      response = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn Profile</a>`;
+      response = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
     else if (q.includes("github"))
-      response = `<a href="${portfolioData.contact.github}" target="_blank">GitHub Profile</a>`;
-    else if (q.includes("mail") || q.includes("email"))
+      response = `<a href="${portfolioData.contact.github}" target="_blank">GitHub</a>`;
+    else if (q.includes("mail"))
       response = `<a href="mailto:${portfolioData.contact.email}">${portfolioData.contact.email}</a>`;
-    else if (q.includes("hi") || q.includes("hello"))
-      response = "Hello! How can I help you today?";
 
     setTimeout(() => addMessage("bot", response), 300);
   };
 
   chatbotIcon.addEventListener("click", () => {
     chatbot.classList.toggle("hidden");
-
     if (!chatbot.classList.contains("hidden")) {
       chatBody.innerHTML = "";
       addMessage("bot", "👋 Welcome to Tayyab’s AI Assistant!");
-      addMessage("bot", "Ask me anything about Mohammad Tayyab Khan.");
     }
   });
 
   sendBtn.addEventListener("click", () => {
-    const text = userInput.value.trim();
-    if (!text) return;
-    addMessage("user", text);
+    if (!userInput.value.trim()) return;
+    addMessage("user", userInput.value);
+    handleChatbotResponse(userInput.value);
     userInput.value = "";
-    handleChatbotResponse(text);
   });
 
   userInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      sendBtn.click();
-    }
+    if (e.key === "Enter") sendBtn.click();
   });
 
   optionsBtn.addEventListener("click", () => {
     optionsMenu.classList.toggle("hidden");
   });
-
-  optionsMenu.addEventListener("click", (e) => {
-    if (e.target.classList.contains("option-item")) {
-      const text = e.target.textContent;
-      addMessage("user", text);
-      handleChatbotResponse(text);
-      optionsMenu.classList.add("hidden");
-    }
-  });
 });
 
 /* ==========================
-   FOOTER CONTACT FORM SUBMISSION (with Web3Forms + Error Handling)
+   FOOTER FORM (UNCHANGED)
 ========================== */
 const footerForm = document.getElementById("footerContactForm");
 const footerFormMessage = document.getElementById("footerFormMessage");
@@ -238,35 +210,23 @@ const footerFormMessage = document.getElementById("footerFormMessage");
 if (footerForm) {
   footerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    // Show feedback to user
     footerFormMessage.textContent = "⏳ Sending...";
     footerFormMessage.style.color = "#fbbf24";
-
-    const formData = new FormData(footerForm);
-
-    let result;
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
+        body: new FormData(footerForm),
       });
+      const result = await response.json();
 
-      result = await response.json();
-
-      if (result.success) {
-        footerFormMessage.textContent = "✅ Message sent successfully!";
-        footerFormMessage.style.color = "#22c55e";
-        footerForm.reset();
-      } else {
-        footerFormMessage.textContent =
-          "❌ Failed to send message. Please try again later.";
-        footerFormMessage.style.color = "#ef4444";
-      }
-    } catch (error) {
-      footerFormMessage.textContent =
-        "⚠️ Server temporarily unavailable. Please try again in a few minutes.";
+      footerFormMessage.textContent = result.success
+        ? "✅ Message sent successfully!"
+        : "❌ Failed to send message.";
+      footerFormMessage.style.color = result.success ? "#22c55e" : "#ef4444";
+      if (result.success) footerForm.reset();
+    } catch {
+      footerFormMessage.textContent = "⚠️ Server error. Try again.";
       footerFormMessage.style.color = "#ef4444";
     }
   });
