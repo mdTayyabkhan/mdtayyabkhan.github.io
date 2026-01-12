@@ -25,10 +25,17 @@ document.addEventListener("DOMContentLoaded", () => {
           color: #1e293b;
           line-height: 1.7;
         }
-        h2 { color: #1e40af; margin-bottom: 10px; }
-        h3 { color: #334155; margin-top: 20px; margin-bottom: 8px; }
-        ul { margin-top: 10px; padding-left: 22px; }
-        li { margin-bottom: 10px; }
+        h2 {
+          color: #1e40af;
+          margin-bottom: 10px;
+        }
+        ul {
+          margin-top: 10px;
+          padding-left: 22px;
+        }
+        li {
+          margin-bottom: 10px;
+        }
         button {
           margin-top: 25px;
           background: #1e40af;
@@ -37,9 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
           padding: 10px 18px;
           border-radius: 8px;
           cursor: pointer;
-          font-size: 15px;
         }
-        button:hover { background: #3749d8; }
       </style>
     `;
 
@@ -48,19 +53,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (projectId === "project1") {
       content = `
         <h2>📊 Stock Market Analytics Dashboard</h2>
-        <p>A Power BI dashboard analyzing multi-year stock data.</p>
+        <p>A Power BI dashboard analyzing multi-year stock data, including volatility, trends, sector comparison, and return KPIs.</p>
         <ul>
-          <li>Sector-wise movement analysis</li>
-          <li>Volatility & ROI using DAX</li>
-          <li>Interactive trend visuals</li>
+          <li>Performed complete stock movement analysis across sectors.</li>
+          <li>Built volatility, moving average, and ROI calculations using DAX.</li>
+          <li>Created interactive visuals for trend comparison.</li>
+          <li>Designed a clean layout enabling faster interpretation.</li>
         </ul>
       `;
     }
 
     popup.document.write(`
       <html>
-        <head><title>Project Info</title>${styles}</head>
-        <body>${content}<br><button onclick="window.close()">Close Window</button></body>
+        <head>${styles}</head>
+        <body>${content}<br><button onclick="window.close()">Close</button></body>
       </html>
     `);
 
@@ -72,7 +78,37 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================== */
   window.openCertModal = (certId) => {
     const popup = window.open("", "_blank", "width=900,height=800,scrollbars=yes,resizable=yes");
-    popup.document.write("<h2>Certificate Info</h2>");
+
+    const styles = `
+      <style>
+        body {
+          font-family: 'Poppins', sans-serif;
+          padding: 40px;
+          background: #f9fafb;
+          color: #1e293b;
+        }
+        h2 {
+          color: #1e40af;
+        }
+      </style>
+    `;
+
+    let content = "";
+
+    if (certId === "cert1") {
+      content = `
+        <h2>🎓 Certified Data Analyst</h2>
+        <p>Excelr certification covering SQL, Excel, Power BI and analytics.</p>
+      `;
+    }
+
+    popup.document.write(`
+      <html>
+        <head>${styles}</head>
+        <body>${content}<br><button onclick="window.close()">Close</button></body>
+      </html>
+    `);
+
     popup.document.close();
   };
 
@@ -82,26 +118,23 @@ document.addEventListener("DOMContentLoaded", () => {
   window.openDashboardModal = () => {
     const modalOverlay = document.getElementById("modalOverlay");
     const modalBody = document.getElementById("modalBody");
+    const closeBtn = document.getElementById("closeModal");
 
     modalBody.innerHTML = `
       <iframe
         src="https://earnest-madeleine-db8a20.netlify.app/"
         style="width:100%; height:75vh; border:none; border-radius:12px;"
-        loading="lazy"
-      ></iframe>
+        loading="lazy">
+      </iframe>
     `;
 
     modalOverlay.classList.remove("hidden");
-  };
 
-  /* ✅ FIX: SAFE CLOSE BUTTON HANDLER */
-  const closeBtn = document.getElementById("closeModal");
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      document.getElementById("modalOverlay").classList.add("hidden");
-      document.getElementById("modalBody").innerHTML = "";
-    });
-  }
+    closeBtn.onclick = () => {
+      modalOverlay.classList.add("hidden");
+      modalBody.innerHTML = "";
+    };
+  };
 
   /* ==========================
         CHATBOT SYSTEM
@@ -120,6 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (q.includes("about")) response = portfolioData.summary;
     else if (q.includes("skills")) response = portfolioData.skills.join(", ");
+    else if (q.includes("experience")) response = portfolioData.experience;
+    else if (q.includes("projects")) response = portfolioData.projects.join(", ");
 
     setTimeout(() => addMessage("bot", response), 300);
   };
@@ -139,10 +174,21 @@ document.addEventListener("DOMContentLoaded", () => {
     userInput.value = "";
     handleChatbotResponse(text);
   });
+
+  userInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendBtn.click();
+    }
+  });
+
+  optionsBtn.addEventListener("click", () => {
+    optionsMenu.classList.toggle("hidden");
+  });
 });
 
 /* ==========================
-   FOOTER FORM (UNCHANGED)
+   FOOTER CONTACT FORM
 ========================== */
 const footerForm = document.getElementById("footerContactForm");
 const footerFormMessage = document.getElementById("footerFormMessage");
@@ -164,6 +210,9 @@ if (footerForm) {
         footerFormMessage.textContent = "✅ Message sent successfully!";
         footerFormMessage.style.color = "#22c55e";
         footerForm.reset();
+      } else {
+        footerFormMessage.textContent = "❌ Failed to send message.";
+        footerFormMessage.style.color = "#ef4444";
       }
     } catch {
       footerFormMessage.textContent = "⚠️ Server unavailable.";
