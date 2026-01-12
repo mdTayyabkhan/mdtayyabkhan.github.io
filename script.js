@@ -190,6 +190,24 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* ==========================
+   DASHBOARD MODAL (PROJECT 1)
+========================== */
+window.openDashboardModal = () => {
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalBody = document.getElementById("modalBody");
+
+  modalBody.innerHTML = `
+    <iframe
+      src="https://your-dashboard-frontend.netlify.app"
+      style="width:100%; height:75vh; border:none; border-radius:12px;"
+      loading="lazy"
+    ></iframe>
+  `;
+
+  modalOverlay.classList.remove("hidden");
+};
+
+  /* ==========================
         CHATBOT SYSTEM
   ========================== */
   const addMessage = (sender, text) => {
