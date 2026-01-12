@@ -628,11 +628,10 @@
 
 .modal-content {
   background: #ffffff;
-  width: 96vw;
-  max-width: 1200px;
-  height: 90vh;/* Option A */
-  padding: 16px;
-  border-radius: 16px;
+  width: 95%;
+  max-width: 600px; /* Option A */
+  padding: 26px;
+  border-radius: 14px;
   position: relative;
   color: #1C3D5A;
   box-shadow: 0 0 45px rgba(0, 0, 0, 0.4);
