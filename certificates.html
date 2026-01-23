@@ -33,49 +33,76 @@
     </nav>
   </header>
 
-  <!-- ================= MAIN CONTENT ================= -->
+  <!-- ================= CERTIFICATES ================= -->
   <main class="page-main">
     <section class="card-section">
       <div class="content-card">
 
-        <h2 class="section-heading">Certifications & Training</h2>
+        <h2 class="section-heading">Certifications</h2>
         <p class="section-subtext">
-          Certifications supporting my practical skills in data analytics, MIS reporting, and business-focused data visualization.
+          These certifications validate the skills and tools I actively apply in my analytics projects and internship work.
         </p>
 
         <div class="cert-grid">
-          
+
           <!-- CERTIFICATE 1 -->
           <article class="cert-item">
-            <img src="assets/Certificates/cert1.jpg" 
-                 alt="Certified Data Analyst" 
-                 class="cert-img" />
+            <img
+              src="assets/Certificates/cert1.jpg"
+              alt="Certified Data Analyst – Excelr"
+              class="cert-img"
+            />
+
             <h3 class="cert-title">Certified Data Analyst</h3>
-            <button class="btn-secondary" onclick="openCertModal('cert1')">View Details</button>
+
+            <p class="project-desc">
+              Validates practical skills in Excel, SQL, Power BI, and analytical problem-solving applied to real-world business scenarios.
+            </p>
+
+            <button class="btn-secondary" onclick="openCertModal('cert1')">
+              View Certificate Details
+            </button>
           </article>
 
           <!-- CERTIFICATE 2 -->
           <article class="cert-item">
-            <img src="assets/Certificates/cert2.jpg" 
-                 alt="Data Visualisation: Empowering Business with Effective Insights" 
-                 class="cert-img" />
-            <h3 class="cert-title">Data Visualisation: Empowering Business with Effective Insights</h3>
-            <button class="btn-secondary" onclick="openCertModal('cert2')">View Details</button>
+            <img
+              src="assets/Certificates/cert2.jpg"
+              alt="Data Visualisation: Empowering Business with Effective Insights – TATA"
+              class="cert-img"
+            />
+
+            <h3 class="cert-title">
+              Data Visualisation: Empowering Business with Effective Insights
+            </h3>
+
+            <p class="project-desc">
+              Demonstrates the ability to communicate insights clearly through data storytelling and business-focused visualization.
+            </p>
+
+            <button class="btn-secondary" onclick="openCertModal('cert2')">
+              View Certificate Details
+            </button>
           </article>
 
         </div>
+
+        <p class="section-subtext" style="margin-top:1.8rem;">
+          These certifications complement my hands-on experience and reinforce my ability to work with real business data.
+        </p>
+
       </div>
     </section>
   </main>
 
-  <!-- ================= CONTACT FOOTER ================= -->
+  <!-- ================= FOOTER ================= -->
   <footer class="contact-footer">
     <div class="contact-footer-inner">
 
       <div class="contact-footer-left">
         <h3 class="footer-heading">Contact</h3>
         <p class="footer-text">
-          Interested in my certifications or my journey into data analytics and reporting? Feel free to reach out.
+          If you’d like to verify credentials or discuss how these skills translate into real-world analytics work, feel free to connect.
         </p>
 
         <div class="footer-social-row">
@@ -113,7 +140,7 @@
     </div>
   </footer>
 
-  <!-- ================= MODAL (Only one, shared across pages) ================= -->
+  <!-- ================= MODAL ================= -->
   <div id="modalOverlay" class="modal-overlay hidden">
     <div id="modalContent" class="modal-content">
       <button id="closeModal" class="modal-close">&times;</button>
@@ -129,11 +156,10 @@
 
   <div id="chatbot" class="chatbot hidden flex-col">
     <div class="chat-header">Tayyab’s AI Assistant</div>
-
     <div id="chat-body" class="chat-body"></div>
 
     <div class="chat-input">
-      <button id="optionsBtn" title="Quick options">⚙️</button>
+      <button id="optionsBtn">⚙️</button>
       <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
       <button id="sendBtn">Send</button>
     </div>
@@ -149,7 +175,6 @@
       <button class="option-item">LinkedIn ID</button>
       <button class="option-item">Roles and Responsibilities</button>
     </div>
-
   </div>
 
   <!-- ================= SCRIPTS ================= -->
