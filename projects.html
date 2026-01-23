@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Projects | Mohammad Tayyab Khan</title>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -30,28 +31,35 @@
     </nav>
   </header>
 
-  <!-- ================= PROJECTS SECTION ================= -->
+  <!-- ================= PROJECTS ================= -->
   <main class="page-main">
     <section class="card-section">
       <div class="content-card">
 
         <h2 class="section-heading">Business Analytics Projects</h2>
         <p class="section-subtext">
-          Selected analytics projects focused on business reporting, KPI tracking, and decision-support dashboards using SQL, Power BI, and Excel.
+          Real-world style analytics projects focused on business reporting, KPI tracking, and decision-support dashboards using SQL, Power BI, and Excel.
         </p>
 
         <div class="projects-grid">
 
-          <!-- Project 1 -->
+          <!-- ================= PROJECT 1 ================= -->
           <article class="project-item">
             <img src="assets/projects/project1.jpg"
                  alt="Stock Market Performance & Risk Analysis Dashboard"
                  class="project-thumb" />
 
             <h3 class="project-title">Stock Market Performance & Risk Analysis Dashboard</h3>
-            
+
             <p class="project-desc">
-              A Web dashboard built to analyze stock performance, sector-wise trends, volatility, and return-based KPIs across multi-year market data.
+              <strong>Business Problem:</strong> Understanding market performance, sector trends, and risk exposure across multiple years of stock data.
+            </p>
+
+            <p class="project-desc">
+              <strong>What this dashboard helps answer:</strong>
+              • Which sectors are outperforming the market  
+              • How volatility and returns vary over time  
+              • Risk vs return patterns for informed investment analysis
             </p>
 
             <div class="project-actions">
@@ -66,7 +74,7 @@
             </div>
           </article>
 
-          <!-- Project 2 -->
+          <!-- ================= PROJECT 2 ================= -->
           <article class="project-item">
             <img src="assets/projects/project2.jpg"
                  alt="Pizza Sales Performance & KPI Analysis"
@@ -75,7 +83,14 @@
             <h3 class="project-title">Pizza Sales Performance & KPI Analysis</h3>
 
             <p class="project-desc">
-              An end-to-end BI project using SQL for data preparation and Power BI for multi-page reporting to analyze sales performance, KPIs, and product-level insights.
+              <strong>Business Problem:</strong> Tracking sales performance and operational KPIs to identify high-performing products and revenue drivers.
+            </p>
+
+            <p class="project-desc">
+              <strong>What this dashboard helps answer:</strong>
+              • Which pizzas generate the highest revenue  
+              • Daily and monthly sales trends  
+              • Key KPIs such as average order value and total sales
             </p>
 
             <div class="project-actions">
@@ -90,7 +105,7 @@
             </div>
           </article>
 
-          <!-- Project 3 -->
+          <!-- ================= PROJECT 3 ================= -->
           <article class="project-item">
             <img src="assets/projects/project3.jpg"
                  alt="Flipkart Sales & Revenue Analytics Dashboard"
@@ -99,7 +114,14 @@
             <h3 class="project-title">Flipkart Sales & Revenue Analytics Dashboard</h3>
 
             <p class="project-desc">
-              A business-focused analytics dashboard developed using SQL, Excel, and Power BI to track revenue, profitability, order trends, and product performance.
+              <strong>Business Problem:</strong> Monitoring revenue, profitability, and order trends to support e-commerce performance analysis.
+            </p>
+
+            <p class="project-desc">
+              <strong>What this dashboard helps answer:</strong>
+              • Revenue and profit trends over time  
+              • Product-level performance insights  
+              • Order volume and category contribution
             </p>
 
             <div class="project-actions">
@@ -119,7 +141,7 @@
     </section>
   </main>
 
-  <!-- ================= FOOTER CONTACT SECTION ================= -->
+  <!-- ================= FOOTER ================= -->
   <footer class="contact-footer">
     <div class="contact-footer-inner">
 
@@ -160,6 +182,7 @@
           <div id="footerFormMessage" class="footer-form-message"></div>
         </form>
       </div>
+
     </div>
   </footer>
 
@@ -171,7 +194,7 @@
     </div>
   </div>
 
-  <!-- ================= AI CHATBOT ================= -->
+  <!-- ================= CHATBOT ================= -->
   <div class="chatbot-launcher">
     <p class="ai-label">Tayyab AI Assistant</p>
     <div id="chatbot-icon" class="chatbot-icon">🤖</div>
@@ -182,7 +205,7 @@
     <div id="chat-body" class="chat-body"></div>
 
     <div class="chat-input">
-      <button id="optionsBtn" title="Quick options">⚙️</button>
+      <button id="optionsBtn">⚙️</button>
       <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
       <button id="sendBtn">Send</button>
     </div>
