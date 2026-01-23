@@ -11,62 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const optionsMenu = document.getElementById("optionsMenu");
 
   /* ==========================
-     MORE INFO MODAL (PROJECTS)
+     PROJECT INFO MODAL (DATA-DRIVEN)
   ========================== */
   window.openProjectInfoModal = (projectId) => {
     const modalOverlay = document.getElementById("modalOverlay");
     const modalBody = document.getElementById("modalBody");
     const closeBtn = document.getElementById("closeModal");
 
-    let content = "";
+    const project = projectDetails[projectId];
+    if (!project) return;
 
-    if (projectId === "project1") {
-      content = `
-        <h2>📊 Stock Market Analytics Dashboard</h2>
-        <p>
-          A comprehensive analytics dashboard built to analyze multi-year stock
-          market data with a focus on volatility, trends, and sector-wise insights.
-        </p>
-        <ul>
-          <li>Sector-wise stock performance analysis</li>
-          <li>Volatility & ROI calculations using DAX</li>
-          <li>Interactive filters and KPI cards</li>
-          <li>Clean executive-friendly layout</li>
-        </ul>
-      `;
-    }
-
-    if (projectId === "project2") {
-      content = `
-        <h2>🍕 Pizza Sales Analytics</h2>
-        <p>
-          End-to-end BI solution using SQL for ETL and Power BI for visualization.
-        </p>
-        <ul>
-          <li>SQL-based data extraction & transformation</li>
-          <li>Revenue, Orders, AOV KPIs</li>
-          <li>Best & low-selling product analysis</li>
-          <li>Interactive slicers for business decisions</li>
-        </ul>
-      `;
-    }
-
-    if (projectId === "project3") {
-      content = `
-        <h2>🛒 Flipkart Sales Analytics Dashboard</h2>
-        <p>
-          Advanced analytics project focused on revenue, profit, and forecasting.
-        </p>
-        <ul>
-          <li>Profitability & revenue KPIs</li>
-          <li>Product and customer-level insights</li>
-          <li>Forecasting & what-if analysis</li>
-          <li>Target vs achievement tracking</li>
-        </ul>
-      `;
-    }
-
-    /* ===== ONLY UPDATED PART (DARK + LARGE MODAL) ===== */
     modalBody.innerHTML = `
       <div style="
         background:#020617;
@@ -77,8 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
         height:85vh;
         overflow-y:auto;
       ">
-        <div style="max-width:1100px; margin:auto;">
-          ${content}
+        <div style="max-width:1000px; margin:auto;">
+          <h2 style="font-size:1.9rem; margin-bottom:10px;">
+            ${project.title}
+          </h2>
+
+          <p style="opacity:0.9; margin-bottom:18px;">
+            ${project.brief}
+          </p>
+
+          <h3 style="margin-bottom:8px; font-weight:600;">
+            Key Insights & Business Focus
+          </h3>
+
+          <ul style="padding-left:20px; line-height:1.7;">
+            ${project.points.map(point => `<li>${point}</li>`).join("")}
+          </ul>
         </div>
       </div>
     `;
@@ -92,62 +60,54 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* ==========================
-        CERTIFICATE POPUPS
+        CERTIFICATE POPUPS (UNCHANGED UX)
   ========================== */
   window.openCertModal = (certId) => {
-    const popup = window.open("", "_blank", "width=900,height=800,scrollbars=yes,resizable=yes");
+    const cert = certDetails[certId];
+    if (!cert) return;
 
-    const styles = `
-      <style>
-        body {
-          font-family: 'Poppins', sans-serif;
-          padding: 40px;
-          background: #f9fafb;
-          color: #1e293b;
-          line-height: 1.7;
-        }
-        h2 { color: #1e40af; margin-bottom: 10px; }
-        ul { margin-top: 10px; padding-left: 22px; }
-        li { margin-bottom: 10px; }
-        button {
-          margin-top: 25px;
-          background: #1e40af;
-          color: white;
-          border: none;
-          padding: 10px 18px;
-          border-radius: 8px;
-          cursor: pointer;
-        }
-      </style>
-    `;
-
-    let content = "";
-
-    if (certId === "cert1") {
-      content = `
-        <h2>🎓 Certified Data Analyst (Issued by Excelr)</h2>
-        <p>Strong foundation in SQL, Power BI, Tableau, Python & Excel.</p>
-      `;
-    }
-
-    if (certId === "cert2") {
-      content = `
-        <h2>📊 Data Visualisation (TATA / Forage)</h2>
-        <p>Focused on storytelling & business insight communication.</p>
-      `;
-    }
+    const popup = window.open(
+      "",
+      "_blank",
+      "width=900,height=800,scrollbars=yes,resizable=yes"
+    );
 
     popup.document.write(`
       <html>
-        <head>${styles}</head>
-        <body>${content}<br><button onclick="window.close()">Close</button></body>
+        <head>
+          <style>
+            body {
+              font-family: 'Poppins', sans-serif;
+              padding: 40px;
+              background: #f9fafb;
+              color: #1e293b;
+              line-height: 1.7;
+            }
+            h2 { color: #1e40af; margin-bottom: 10px; }
+            button {
+              margin-top: 25px;
+              background: #1e40af;
+              color: white;
+              border: none;
+              padding: 10px 18px;
+              border-radius: 8px;
+              cursor: pointer;
+            }
+          </style>
+        </head>
+        <body>
+          <h2>${cert.title}</h2>
+          <p>${cert.brief}</p>
+          <button onclick="window.close()">Close</button>
+        </body>
       </html>
     `);
+
     popup.document.close();
   };
 
   /* ==========================
-        CHATBOT SYSTEM
+        CHATBOT SYSTEM (RECRUITER-GRADE)
   ========================== */
   const addMessage = (sender, text) => {
     const msg = document.createElement("div");
@@ -157,21 +117,43 @@ document.addEventListener("DOMContentLoaded", () => {
     chatBody.scrollTop = chatBody.scrollHeight;
   };
 
+  const formatList = (title, items) => `
+    <strong>${title}</strong>
+    <ul style="margin-top:6px; padding-left:18px;">
+      ${items.map(i => `<li>${i}</li>`).join("")}
+    </ul>
+  `;
+
   const handleChatbotResponse = (query) => {
     const q = query.toLowerCase();
-    let response = "I can answer questions about Mohammad Tayyab Khan.";
+    let response =
+      "I can help with information about Tayyab’s background, skills, experience, and projects.";
 
-    if (q.includes("about")) response = portfolioData.summary;
-    else if (q.includes("education")) response = portfolioData.education;
-    else if (q.includes("skills")) response = portfolioData.skills.join(", ");
-    else if (q.includes("experience")) response = portfolioData.experience;
-    else if (q.includes("projects")) response = portfolioData.projects.join(", ");
-    else if (q.includes("cert")) response = portfolioData.certificates.join(", ");
+    if (q.includes("about") || q.includes("summary"))
+      response = portfolioData.summary;
+
+    else if (q.includes("education"))
+      response = portfolioData.education;
+
+    else if (q.includes("skills"))
+      response = formatList("Key Skills", portfolioData.skills);
+
+    else if (q.includes("experience"))
+      response = portfolioData.experience;
+
+    else if (q.includes("projects"))
+      response = formatList("Projects", portfolioData.projects);
+
+    else if (q.includes("cert"))
+      response = formatList("Certifications", portfolioData.certificates);
+
     else if (q.includes("linkedin"))
-      response = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
+      response = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn Profile</a>`;
+
     else if (q.includes("github"))
-      response = `<a href="${portfolioData.contact.github}" target="_blank">GitHub</a>`;
-    else if (q.includes("mail"))
+      response = `<a href="${portfolioData.contact.github}" target="_blank">GitHub Profile</a>`;
+
+    else if (q.includes("mail") || q.includes("email"))
       response = `<a href="mailto:${portfolioData.contact.email}">${portfolioData.contact.email}</a>`;
 
     setTimeout(() => addMessage("bot", response), 300);
@@ -179,9 +161,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   chatbotIcon.addEventListener("click", () => {
     chatbot.classList.toggle("hidden");
-    if (!chatbot.classList.contains("hidden")) {
-      chatBody.innerHTML = "";
-      addMessage("bot", "👋 Welcome to Tayyab’s AI Assistant!");
+
+    if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
+      addMessage("bot", "👋 Hi! I can answer questions about Tayyab’s profile and projects.");
     }
   });
 
@@ -224,6 +206,7 @@ if (footerForm) {
         ? "✅ Message sent successfully!"
         : "❌ Failed to send message.";
       footerFormMessage.style.color = result.success ? "#22c55e" : "#ef4444";
+
       if (result.success) footerForm.reset();
     } catch {
       footerFormMessage.textContent = "⚠️ Server error. Try again.";
