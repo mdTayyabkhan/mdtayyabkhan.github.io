@@ -1,356 +1,112 @@
-/* ============================
-   GLOBAL RESET
-============================ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ============================
-   BACKGROUND & BASE TYPOGRAPHY
-============================ */
-.site-body,
-.page-body {
-  font-family: "Poppins", sans-serif;
-  color: #ffffff;
-  min-height: 100vh;
-  overflow-x: hidden;
-  background: radial-gradient(circle at top left, #2a63ad 0, #1a467e 40%, #102341 100%);
-}
-
-/* keep particles behind everything */
-#particleCanvas {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-
-/* ============================
-   HEADER / NAV
-============================ */
-.site-header,
-.main-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 20;
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 18, 40, 0.9),
-    rgba(10, 18, 40, 0.75)
-  );
-  backdrop-filter: blur(10px); /* reduced for performance */
-}
-
-/* nav container */
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0.9rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-name {
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  color: #ffffff;
-  font-size: 0.95rem;
-  position: relative;
-  padding-bottom: 3px;
-  transition: opacity 0.2s ease;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 2px;
-  background: #fbbf24;
-  transition: width 0.2s ease;
-}
-
-.nav-links a:hover {
-  opacity: 0.8;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
-}
-
-/* ============================
-   MAIN LAYOUT
-============================ */
-.page-main {
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
-  padding: 120px 1.5rem 140px;
-}
-
-.card-section {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ============================
-   HERO SECTION (RECRUITER FIRST)
-============================ */
-.hero-section {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto 3rem;
-  text-align: center;
-}
-
-.hero-role {
-  font-size: 2.4rem;
-  font-weight: 700;
-  line-height: 1.25;
-  margin-bottom: 0.6rem;
-}
-
-.hero-value {
-  font-size: 1.15rem;
-  opacity: 0.9;
-  max-width: 720px;
-  margin: 0 auto 1.4rem;
-}
-
-.hero-cta {
-  display: flex;
-  justify-content: center;
-  gap: 0.9rem;
-  flex-wrap: wrap;
-}
-
-/* ============================
-   ABOUT CARD
-============================ */
-.about-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
-  gap: 2.4rem;
-  align-items: center;
-  background: #1b345c;
-  border-radius: 24px;
-  padding: 2.2rem 2.4rem;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
-}
-
-/* photo */
-.about-photo-wrap {
-  max-width: 360px;
-  margin: 0 auto;
-  border-radius: 50%;
-  padding: 12px;
-  background: radial-gradient(circle at top, #2a63ad, #1b2f50);
-}
-
-.about-photo {
-  width: 100%;
-  border-radius: 999px;
-  object-fit: cover;
-}
-
-/* about text */
-.about-name-heading {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 0.8rem;
-}
-
-/* scan-friendly bullets */
-.about-points {
-  list-style: none;
-  padding-left: 0;
-}
-
-.about-points li {
-  font-size: 0.98rem;
-  line-height: 1.6;
-  margin-bottom: 0.6rem;
-  position: relative;
-  padding-left: 1.1rem;
-  opacity: 0.92;
-}
-
-.about-points li::before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-  color: #fbbf24;
-}
-
-/* ============================
-   BUTTONS
-============================ */
-.btn-primary,
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.65rem 1.3rem;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-.btn-primary {
-  background: #fbbf24;
-  color: #1a1a1a;
-  box-shadow: 0 10px 25px rgba(251, 191, 36, 0.45);
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 32px rgba(251, 191, 36, 0.65);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: #e5e7eb;
-  border: 1px solid rgba(229, 231, 235, 0.45);
-}
-
-.btn-secondary:hover {
-  background: rgba(15, 23, 42, 0.5);
-}
-
-/* ============================
-   CHATBOT (REDUCED DOMINANCE)
-============================ */
-.chatbot-launcher {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 30;
-  opacity: 0.85;
-  transform: scale(0.9);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.chatbot-launcher:hover {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.ai-label {
-  font-size: 0.75rem;
-  opacity: 0.8;
-  margin-bottom: 4px;
-}
-
-.chatbot-icon {
-  background: #fbbf24;
-  color: #111827;
-  border-radius: 999px;
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  cursor: pointer;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-}
-
-/* ============================
-   UTILITIES
-============================ */
-.hidden {
-  display: none;
-}
-
-/* ============================
-   RESPONSIVE
-============================ */
-@media (max-width: 900px) {
-  .nav-links {
-    gap: 0.8rem;
-    font-size: 0.85rem;
-  }
-
-  .about-card {
-    grid-template-columns: 1fr;
-    padding: 1.7rem 1.6rem;
-  }
-
-  .hero-role {
-    font-size: 1.9rem;
-  }
-
-  .hero-value {
-    font-size: 1.05rem;
-  }
-
-  .page-main {
-    padding: 110px 1rem 140px;
-  }
-}
-
-
-/* ============================
-   FIX: PROJECT / EXPERIENCE / CERTIFICATE IMAGE SIZES
-   (NO STRUCTURE OR DESIGN CHANGE)
-============================ */
-
-/* Project thumbnails */
+/* =========================
+   IMAGE CONTROL
+========================= */
 .project-thumb {
   width: 100%;
-  max-width: 100%;
   height: 220px;
   object-fit: cover;
   border-radius: 16px;
-  display: block;
 }
 
-/* Experience section images (if any) */
-.experience-thumb,
-.experience-item img {
-  width: 100%;
-  max-width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 16px;
+.project-item {
+  max-width: 360px;
+  margin: auto;
 }
 
-/* Certificate images */
-.certificate-thumb,
-.certificate-item img {
+.cert-img,
+.experience-img {
   width: 100%;
-  max-width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: contain;
   background: #0f172a;
   padding: 12px;
+  border-radius: 14px;
+}
+
+/* =========================
+   RESUME PREVIEW
+========================= */
+.resume-preview iframe,
+.resume-preview embed {
+  width: 100%;
+  height: 85vh;
   border-radius: 16px;
 }
 
-/* Mobile optimization */
+/* =========================
+   SOCIAL VISIBILITY
+========================= */
+.social-pill span {
+  color: #f8fafc !important;
+  font-weight: 600;
+}
+
+/* =========================
+   CHATBOT UI
+========================= */
+.chatbot {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  width: 340px;
+  max-height: 520px;
+  background: #020617;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  z-index: 40;
+}
+
+.bot-msg {
+  background: #1e293b;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+.user-msg {
+  background: #fbbf24;
+  color: #111827;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+/* =========================
+   CONTACT PAGE (NO REDESIGN)
+========================= */
+.contact-card {
+  padding: 2rem;
+}
+
+.contact-card textarea {
+  border: 1.8px solid rgba(255,255,255,0.8);
+}
+
+/* =========================
+   MOBILE SUPPORT
+========================= */
 @media (max-width: 768px) {
+  .projects-grid,
+  .cert-grid,
+  .contact-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .chatbot {
+    width: 92%;
+    right: 4%;
+    bottom: 90px;
+  }
+
   .project-thumb,
-  .experience-thumb,
-  .certificate-thumb {
-    height: 180px;
+  .cert-img {
+    height: 160px;
+  }
+
+  .resume-preview iframe {
+    height: 70vh;
   }
 }
