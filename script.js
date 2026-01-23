@@ -1,46 +1,49 @@
 /* ==================================================
-   GLOBAL LOAD CHECK
+   GLOBAL SAFETY CHECK
 ================================================== */
-console.log("✅ script.js loaded successfully");
+console.log("✅ script.js loaded");
 
 /* ==================================================
-   MODAL SYSTEM (PROJECTS + CERTIFICATES)
+   PROJECT MODAL (NO DOMContentLoaded)
 ================================================== */
-window.openProjectInfoModal = function (id) {
-  const overlay = document.getElementById("modalOverlay");
-  const body = document.getElementById("modalBody");
-  const closeBtn = document.getElementById("closeModal");
+window.openProjectInfoModal = function (projectId) {
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalBody = document.getElementById("modalBody");
 
-  if (!overlay || !body) return;
-
-  body.innerHTML = "";
-
-  if (typeof projectDetails !== "undefined" && projectDetails[id]) {
-    const d = projectDetails[id];
-    body.innerHTML = `
-      <div style="padding:24px;color:#e5e7eb">
-        <h2 style="margin-bottom:12px">${d.title}</h2>
-        <p>${d.brief}</p>
-        <ul>${d.points.map(p => `<li>${p}</li>`).join("")}</ul>
-      </div>
-    `;
-  } else {
-    body.innerHTML = "<p style='color:white'>Details not available.</p>";
+  if (!modalOverlay || !modalBody) {
+    alert("Modal HTML missing");
+    return;
   }
 
-  overlay.classList.remove("hidden");
+  if (typeof projectDetails === "undefined") {
+    modalBody.innerHTML = "<p style='color:white'>Project data not loaded.</p>";
+  } else {
+    const p = projectDetails[projectId];
+    modalBody.innerHTML = `
+      <div style="background:#020617;color:#e5e7eb;padding:28px;border-radius:16px;height:80vh;overflow:auto">
+        <h2>${p.title}</h2>
+        <p>${p.brief}</p>
+        <ul>${p.points.map(pt => `<li>${pt}</li>`).join("")}</ul>
+      </div>
+    `;
+  }
 
-  const close = () => {
-    overlay.classList.add("hidden");
-    body.innerHTML = "";
+  modalOverlay.classList.remove("hidden");
+
+  modalOverlay.onclick = (e) => {
+    if (
+      e.target === modalOverlay ||
+      e.target.classList.contains("modal-close") ||
+      e.target.classList.contains("close-modal-btn")
+    ) {
+      modalOverlay.classList.add("hidden");
+      modalBody.innerHTML = "";
+    }
   };
-
-  overlay.onclick = e => e.target === overlay && close();
-  closeBtn && (closeBtn.onclick = close);
 };
 
 /* ==================================================
-   CHATBOT SYSTEM — SINGLE SOURCE OF TRUTH
+   CHATBOT SYSTEM (ROBUST)
 ================================================== */
 const chatbotIcon = document.getElementById("chatbot-icon");
 const chatbot = document.getElementById("chatbot");
@@ -50,76 +53,63 @@ const userInput = document.getElementById("userInput");
 const optionsBtn = document.getElementById("optionsBtn");
 const optionsMenu = document.getElementById("optionsMenu");
 
-if (chatbotIcon && chatbot && chatBody) {
-
-  const addMessage = (sender, text) => {
-    const div = document.createElement("div");
-    div.className = sender === "bot" ? "bot-msg" : "user-msg";
-    div.innerHTML = text;
-    chatBody.appendChild(div);
-    chatBody.scrollTop = chatBody.scrollHeight;
-  };
-
-  const respond = (query) => {
-    if (typeof portfolioData === "undefined") {
-      addMessage("bot", "Data not available.");
-      return;
-    }
-
-    const q = query.toLowerCase();
-    let res = portfolioData.summary;
-
-    if (q.includes("skills")) res = portfolioData.skills.join("<br>");
-    else if (q.includes("experience")) res = portfolioData.experience;
-    else if (q.includes("projects")) res = portfolioData.projects.join("<br>");
-    else if (q.includes("cert")) res = portfolioData.certificates.join("<br>");
-    else if (q.includes("linkedin")) res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
-    else if (q.includes("github")) res = `<a href="${portfolioData.contact.github}" target="_blank">GitHub</a>`;
-    else if (q.includes("mail")) res = portfolioData.contact.email;
-
-    setTimeout(() => addMessage("bot", res), 200);
-  };
-
-  chatbotIcon.addEventListener("click", e => {
-    e.stopPropagation();
-    chatbot.classList.toggle("hidden");
-
-    if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
-      addMessage(
-        "bot",
-        "👋 Hi, this is <b>Tayyab’s AI Assistant</b>.<br>What would you like to know?"
-      );
-    }
-  });
-
-  sendBtn && sendBtn.addEventListener("click", () => {
-    if (!userInput.value.trim()) return;
-    addMessage("user", userInput.value);
-    respond(userInput.value);
-    userInput.value = "";
-  });
-
-  userInput && userInput.addEventListener("keydown", e => {
-    if (e.key === "Enter") sendBtn.click();
-  });
-
-  optionsBtn && optionsBtn.addEventListener("click", e => {
-    e.stopPropagation();
-    optionsMenu.classList.toggle("hidden");
-  });
-
-  optionsMenu && optionsMenu.addEventListener("click", e => {
-    if (e.target.classList.contains("option-item")) {
-      addMessage("user", e.target.innerText);
-      respond(e.target.innerText);
-      optionsMenu.classList.add("hidden");
-    }
-  });
-
-  document.addEventListener("click", e => {
-    if (!chatbot.contains(e.target) && !chatbotIcon.contains(e.target)) {
-      chatbot.classList.add("hidden");
-      optionsMenu && optionsMenu.classList.add("hidden");
-    }
-  });
+function addMessage(sender, text) {
+  const div = document.createElement("div");
+  div.className = sender === "bot" ? "bot-msg" : "user-msg";
+  div.innerHTML = text;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
 }
+
+function respond(query) {
+  if (typeof portfolioData === "undefined") {
+    addMessage("bot", "Data not loaded yet.");
+    return;
+  }
+
+  const q = query.toLowerCase();
+  let res = portfolioData.summary;
+
+  if (q.includes("skills")) res = portfolioData.skills.join("<br>");
+  else if (q.includes("experience")) res = portfolioData.experience;
+  else if (q.includes("projects")) res = portfolioData.projects.join("<br>");
+  else if (q.includes("cert")) res = portfolioData.certificates.join("<br>");
+  else if (q.includes("linkedin")) res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
+  else if (q.includes("github")) res = `<a href="${portfolioData.contact.github}" target="_blank">GitHub</a>`;
+  else if (q.includes("mail")) res = portfolioData.contact.email;
+
+  setTimeout(() => addMessage("bot", res), 200);
+}
+
+chatbotIcon.onclick = () => {
+  chatbot.classList.toggle("hidden");
+  if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
+    addMessage("bot", "👋 Hi! Ask me about Tayyab.");
+  }
+};
+
+sendBtn.onclick = () => {
+  if (!userInput.value.trim()) return;
+  addMessage("user", userInput.value);
+  respond(userInput.value);
+  userInput.value = "";
+};
+
+userInput.onkeydown = (e) => {
+  if (e.key === "Enter") sendBtn.click();
+};
+
+/* ==================================================
+   CHATBOT OPTIONS — EVENT DELEGATION FIX
+================================================== */
+optionsBtn.onclick = () => {
+  optionsMenu.classList.toggle("hidden");
+};
+
+optionsMenu.onclick = (e) => {
+  if (e.target.classList.contains("option-item")) {
+    addMessage("user", e.target.innerText);
+    respond(e.target.innerText);
+    optionsMenu.classList.add("hidden");
+  }
+};
