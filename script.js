@@ -1,55 +1,46 @@
 /* ==================================================
-   GLOBAL SAFETY CHECK
+   GLOBAL LOAD CHECK
 ================================================== */
-console.log("✅ script.js loaded");
+console.log("✅ script.js loaded successfully");
 
 /* ==================================================
-   PROJECT / CERTIFICATE MODAL (SAFE)
+   MODAL SYSTEM (PROJECTS + CERTIFICATES)
 ================================================== */
-window.openProjectInfoModal = function (projectId) {
-  const modalOverlay = document.getElementById("modalOverlay");
-  const modalBody = document.getElementById("modalBody");
+window.openProjectInfoModal = function (id) {
+  const overlay = document.getElementById("modalOverlay");
+  const body = document.getElementById("modalBody");
   const closeBtn = document.getElementById("closeModal");
 
-  if (!modalOverlay || !modalBody) return;
+  if (!overlay || !body) return;
 
-  if (typeof projectDetails === "undefined") {
-    modalBody.innerHTML = "<p style='color:white'>Project data not loaded.</p>";
+  body.innerHTML = "";
+
+  if (typeof projectDetails !== "undefined" && projectDetails[id]) {
+    const d = projectDetails[id];
+    body.innerHTML = `
+      <div style="padding:24px;color:#e5e7eb">
+        <h2 style="margin-bottom:12px">${d.title}</h2>
+        <p>${d.brief}</p>
+        <ul>${d.points.map(p => `<li>${p}</li>`).join("")}</ul>
+      </div>
+    `;
   } else {
-    const p = projectDetails[projectId];
-    if (!p) {
-      modalBody.innerHTML = "<p style='color:white'>Details not found.</p>";
-    } else {
-      modalBody.innerHTML = `
-        <div style="background:#020617;color:#e5e7eb;padding:28px;border-radius:16px;height:80vh;overflow:auto">
-          <h2>${p.title}</h2>
-          <p>${p.brief}</p>
-          <ul>${p.points.map(pt => `<li>${pt}</li>`).join("")}</ul>
-        </div>
-      `;
-    }
+    body.innerHTML = "<p style='color:white'>Details not available.</p>";
   }
 
-  modalOverlay.classList.remove("hidden");
+  overlay.classList.remove("hidden");
 
-  // Close by clicking overlay
-  modalOverlay.onclick = (e) => {
-    if (e.target === modalOverlay) closeModal();
+  const close = () => {
+    overlay.classList.add("hidden");
+    body.innerHTML = "";
   };
 
-  // Close button
-  if (closeBtn) {
-    closeBtn.onclick = closeModal;
-  }
-
-  function closeModal() {
-    modalOverlay.classList.add("hidden");
-    modalBody.innerHTML = "";
-  }
+  overlay.onclick = e => e.target === overlay && close();
+  closeBtn && (closeBtn.onclick = close);
 };
 
 /* ==================================================
-   CHATBOT SYSTEM (SAFE GUARDS ADDED)
+   CHATBOT SYSTEM — SINGLE SOURCE OF TRUTH
 ================================================== */
 const chatbotIcon = document.getElementById("chatbot-icon");
 const chatbot = document.getElementById("chatbot");
@@ -59,19 +50,19 @@ const userInput = document.getElementById("userInput");
 const optionsBtn = document.getElementById("optionsBtn");
 const optionsMenu = document.getElementById("optionsMenu");
 
-if (chatbotIcon && chatbot && chatBody && sendBtn && userInput) {
+if (chatbotIcon && chatbot && chatBody) {
 
-  function addMessage(sender, text) {
+  const addMessage = (sender, text) => {
     const div = document.createElement("div");
     div.className = sender === "bot" ? "bot-msg" : "user-msg";
     div.innerHTML = text;
     chatBody.appendChild(div);
     chatBody.scrollTop = chatBody.scrollHeight;
-  }
+  };
 
-  function respond(query) {
+  const respond = (query) => {
     if (typeof portfolioData === "undefined") {
-      addMessage("bot", "Data not loaded yet.");
+      addMessage("bot", "Data not available.");
       return;
     }
 
@@ -82,48 +73,53 @@ if (chatbotIcon && chatbot && chatBody && sendBtn && userInput) {
     else if (q.includes("experience")) res = portfolioData.experience;
     else if (q.includes("projects")) res = portfolioData.projects.join("<br>");
     else if (q.includes("cert")) res = portfolioData.certificates.join("<br>");
-    else if (q.includes("linkedin"))
-      res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
-    else if (q.includes("github"))
-      res = `<a href="${portfolioData.contact.github}" target="_blank">GitHub</a>`;
-    else if (q.includes("mail"))
-      res = portfolioData.contact.email;
+    else if (q.includes("linkedin")) res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
+    else if (q.includes("github")) res = `<a href="${portfolioData.contact.github}" target="_blank">GitHub</a>`;
+    else if (q.includes("mail")) res = portfolioData.contact.email;
 
     setTimeout(() => addMessage("bot", res), 200);
-  }
-
-  chatbotIcon.onclick = () => {
-    chatbot.classList.toggle("hidden");
-    if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
-      addMessage("bot", "👋 Hi! Ask me about Tayyab.");
-    }
   };
 
-  sendBtn.onclick = () => {
+  chatbotIcon.addEventListener("click", e => {
+    e.stopPropagation();
+    chatbot.classList.toggle("hidden");
+
+    if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
+      addMessage(
+        "bot",
+        "👋 Hi, this is <b>Tayyab’s AI Assistant</b>.<br>What would you like to know?"
+      );
+    }
+  });
+
+  sendBtn && sendBtn.addEventListener("click", () => {
     if (!userInput.value.trim()) return;
     addMessage("user", userInput.value);
     respond(userInput.value);
     userInput.value = "";
-  };
+  });
 
-  userInput.onkeydown = (e) => {
+  userInput && userInput.addEventListener("keydown", e => {
     if (e.key === "Enter") sendBtn.click();
-  };
+  });
 
-  /* ==================================================
-     CHATBOT OPTIONS (SAFE)
-  ================================================== */
-  if (optionsBtn && optionsMenu) {
-    optionsBtn.onclick = () => {
-      optionsMenu.classList.toggle("hidden");
-    };
+  optionsBtn && optionsBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    optionsMenu.classList.toggle("hidden");
+  });
 
-    optionsMenu.onclick = (e) => {
-      if (e.target.classList.contains("option-item")) {
-        addMessage("user", e.target.innerText);
-        respond(e.target.innerText);
-        optionsMenu.classList.add("hidden");
-      }
-    };
-  }
+  optionsMenu && optionsMenu.addEventListener("click", e => {
+    if (e.target.classList.contains("option-item")) {
+      addMessage("user", e.target.innerText);
+      respond(e.target.innerText);
+      optionsMenu.classList.add("hidden");
+    }
+  });
+
+  document.addEventListener("click", e => {
+    if (!chatbot.contains(e.target) && !chatbotIcon.contains(e.target)) {
+      chatbot.classList.add("hidden");
+      optionsMenu && optionsMenu.classList.add("hidden");
+    }
+  });
 }
