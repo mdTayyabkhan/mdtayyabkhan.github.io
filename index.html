@@ -83,9 +83,29 @@
     </section>
   </main>
 
-  <!-- ================= FOOTER (UNCHANGED) ================= -->
-  <!-- Keeping footer, contact form, chatbot & scripts as-is -->
+  <!-- ================= CHATBOT (ADDED – REQUIRED) ================= -->
+  <!-- Structure matches existing script.js logic -->
+  <div id="chatbot-icon">
+    <i class="fas fa-robot"></i>
+  </div>
 
+  <div id="chatbot" class="chatbot hidden">
+    <div class="chatbot-header">
+      <span>AI Assistant</span>
+      <button id="closeChatbot">✖</button>
+    </div>
+
+    <div id="chat-body" class="chatbot-body"></div>
+
+    <div class="chatbot-input">
+      <input type="text" id="userInput" placeholder="Ask about my skills, projects..." />
+      <button id="sendBtn">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= SCRIPTS ================= -->
   <script src="data.js"></script>
   <script src="script.js"></script>
   <script src="particles.js"></script>
