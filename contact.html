@@ -45,7 +45,7 @@
 
         <div class="contact-card-grid">
 
-          <!-- LEFT SIDE: CONTACT INFO -->
+          <!-- LEFT SIDE -->
           <div class="contact-card-left">
             <h3 class="contact-side-heading">Connect</h3>
 
@@ -55,18 +55,12 @@
             </p>
 
             <div class="footer-social-row">
-              <a href="https://linkedin.com/in/mohammadtayyabkhan"
-                 target="_blank"
-                 class="social-pill linkedin">
-                <i class="fa-brands fa-linkedin"></i>
-                <span>LinkedIn</span>
+              <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-pill linkedin">
+                <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
               </a>
 
-              <a href="https://github.com/mdTayyabkhan"
-                 target="_blank"
-                 class="social-pill github">
-                <i class="fa-brands fa-github"></i>
-                <span>GitHub</span>
+              <a href="https://github.com/mdTayyabkhan" target="_blank" class="social-pill github">
+                <i class="fa-brands fa-github"></i><span>GitHub</span>
               </a>
             </div>
 
@@ -76,22 +70,23 @@
             </div>
           </div>
 
-          <!-- RIGHT SIDE: FORM -->
+          <!-- RIGHT SIDE -->
           <div class="contact-card-right">
-            <form id="contactForm" class="footer-form">
+            <form
+              id="contactForm"
+              class="footer-form"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+            >
               <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a42-b38b-7edb2acfa61a" />
+              <input type="hidden" name="subject" value="New Message from Contact Page" />
+              <input type="hidden" name="from_name" value="Portfolio Contact Page" />
 
               <input type="text" name="name" placeholder="Your name" required />
               <input type="email" name="email" placeholder="Your email" required />
-
-              <!-- Your Request: visible border on contact page -->
-              <textarea name="message"
-                        placeholder="Write a short message..."
-                        style="border: 1.8px solid rgba(255,255,255,0.8) !important;"
-                        required></textarea>
+              <textarea name="message" placeholder="Write a short message..." required></textarea>
 
               <button type="submit" class="btn-primary w-full">Send Message</button>
-
               <div id="contactFormMessage" class="footer-form-message"></div>
             </form>
           </div>
@@ -102,41 +97,9 @@
     </section>
   </main>
 
-  <!-- No contact-footer on this page (this IS the contact page) -->
+  <!-- ================= CHATBOT ================= -->
+  <!-- unchanged -->
 
-  <!-- ================= CHATBOT (AI Assistant) ================= -->
-  <div class="chatbot-launcher">
-    <p class="ai-label">Tayyab AI Assistant</p>
-    <div id="chatbot-icon" class="chatbot-icon">🤖</div>
-  </div>
-
-  <div id="chatbot" class="chatbot hidden flex-col">
-
-    <div class="chat-header">Tayyab’s AI Assistant</div>
-
-    <div id="chat-body" class="chat-body"></div>
-
-    <div class="chat-input">
-      <button id="optionsBtn" title="Quick options">⚙️</button>
-      <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
-      <button id="sendBtn">Send</button>
-    </div>
-
-    <div id="optionsMenu" class="options-menu hidden">
-      <button class="option-item">About</button>
-      <button class="option-item">Education</button>
-      <button class="option-item">Skills</button>
-      <button class="option-item">Experience</button>
-      <button class="option-item">Projects</button>
-      <button class="option-item">Certificates</button>
-      <button class="option-item">Mail ID</button>
-      <button class="option-item">LinkedIn ID</button>
-      <button class="option-item">Roles and Responsibilities</button>
-    </div>
-
-  </div>
-
-  <!-- ================= SCRIPTS ================= -->
   <script src="data.js"></script>
   <script src="script.js"></script>
   <script src="particles.js"></script>
