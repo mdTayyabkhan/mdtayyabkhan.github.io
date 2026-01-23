@@ -33,25 +33,37 @@
     </nav>
   </header>
 
-  <!-- ================= RESUME SECTION ================= -->
+  <!-- ================= RESUME ================= -->
   <main class="page-main">
     <section class="card-section">
       <div class="content-card">
 
         <h2 class="section-heading">Resume</h2>
         <p class="section-subtext">
-          A detailed overview of my education, skills, certifications, and professional experience.
+          A concise, ATS-friendly resume aligned with entry-level Data Analyst and MIS roles, highlighting hands-on analytics experience and business reporting skills.
         </p>
 
+        <!-- QUICK HIGHLIGHTS FOR RECRUITERS -->
+        <ul class="project-desc" style="margin-bottom:1.4rem;">
+          <li>6-month Data Analyst internship with real MIS reporting and dashboard work</li>
+          <li>Strong foundation in Excel, SQL, Power BI, and KPI analysis</li>
+          <li>Business-focused analytics projects supporting decision-making</li>
+        </ul>
+
         <div class="resume-actions">
-          <a href="assets/resume.pdf" download class="btn-primary">Download Resume</a>
-          <a href="assets/resume.pdf" target="_blank" class="btn-secondary">Open in New Tab</a>
+          <a href="assets/resume.pdf" download class="btn-primary">
+            Download Resume (PDF)
+          </a>
+          <a href="assets/resume.pdf" target="_blank" class="btn-secondary">
+            Open Resume in New Tab
+          </a>
         </div>
 
         <div class="resume-frame-wrap">
           <iframe
             src="assets/resume.pdf#view=FitH&navpanes=0"
-            class="resume-frame">
+            class="resume-frame"
+            title="Mohammad Tayyab Khan Resume">
           </iframe>
         </div>
 
@@ -59,14 +71,14 @@
     </section>
   </main>
 
-  <!-- ================= CONTACT FOOTER ================= -->
+  <!-- ================= FOOTER ================= -->
   <footer class="contact-footer">
     <div class="contact-footer-inner">
 
       <div class="contact-footer-left">
         <h3 class="footer-heading">Contact</h3>
         <p class="footer-text">
-          If my experience aligns with your needs, feel free to reach out. I'd be glad to discuss how I can contribute to your team.
+          If my resume aligns with your requirements, I’d be happy to discuss how my skills can support your team.
         </p>
 
         <div class="footer-social-row">
@@ -88,16 +100,14 @@
         <form id="footerContactForm" class="footer-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a42-b38b-7edb2acfa61a" />
           <input type="hidden" name="subject" value="New Message from Portfolio Website" />
-<input type="hidden" name="from_name" value="Portfolio Contact Form" />
-<input type="hidden" name="redirect" value="https://your-website.com/thank-you.html" />
-
+          <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+          <input type="hidden" name="redirect" value="https://your-website.com/thank-you.html" />
 
           <input type="text" name="name" placeholder="Your name" required />
           <input type="email" name="email" placeholder="Your email" required />
           <textarea name="message" placeholder="Write a short message..." required></textarea>
 
           <button type="submit" class="btn-primary w-full">Send Message</button>
-
           <div id="footerFormMessage" class="footer-form-message"></div>
         </form>
       </div>
@@ -112,13 +122,11 @@
   </div>
 
   <div id="chatbot" class="chatbot hidden flex-col">
-
     <div class="chat-header">Tayyab’s AI Assistant</div>
-
     <div id="chat-body" class="chat-body"></div>
 
     <div class="chat-input">
-      <button id="optionsBtn" title="Quick options">⚙️</button>
+      <button id="optionsBtn">⚙️</button>
       <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
       <button id="sendBtn">Send</button>
     </div>
@@ -134,7 +142,6 @@
       <button class="option-item">LinkedIn ID</button>
       <button class="option-item">Roles and Responsibilities</button>
     </div>
-
   </div>
 
   <!-- ================= SCRIPTS ================= -->
