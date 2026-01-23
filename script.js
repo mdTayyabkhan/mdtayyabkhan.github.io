@@ -1,3 +1,5 @@
+alert("script.js loaded");
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ==========================
