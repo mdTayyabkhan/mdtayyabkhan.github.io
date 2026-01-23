@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Experience | Mohammad Tayyab Khan</title>
 
   <link rel="stylesheet" href="style.css" />
@@ -18,7 +17,6 @@
   <!-- ================= HEADER / NAV ================= -->
   <header class="site-header">
     <nav class="nav-container">
-
       <div class="nav-left">
         <h1 id="typingName" class="nav-name">Mohammad Tayyab Khan</h1>
       </div>
@@ -31,57 +29,67 @@
         <li><a href="certificates.html">Certificates</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-
     </nav>
   </header>
 
-  <!-- ================= EXPERIENCE SECTION ================= -->
+  <!-- ================= EXPERIENCE ================= -->
   <main class="page-main">
     <section class="card-section">
       <div class="content-card">
 
-        <h2 class="section-heading">Experience</h2>
+        <h2 class="section-heading">Professional Experience</h2>
         <p class="section-subtext">
-          Hands-on experience in data analysis, MIS reporting, and business intelligence dashboard development.
+          Hands-on experience supporting business reporting, KPI analysis, and decision-making through data analytics.
         </p>
 
         <div class="experience-container">
 
-          <!-- LEFT SIDE — INTERNSHIP CERTIFICATE -->
+          <!-- LEFT: CERTIFICATE (SUPPORTING) -->
           <div class="experience-left">
-            <img src="assets/Certificates/internship.jpg"
-                 alt="Internship Certificate"
-                 class="experience-certificate" />
+            <img
+              src="assets/Certificates/internship.jpg"
+              alt="Data Analyst Internship Certificate"
+              class="experience-certificate"
+            />
           </div>
 
-          <!-- RIGHT SIDE — INTERNSHIP DESCRIPTION -->
+          <!-- RIGHT: EXPERIENCE DETAILS -->
           <div class="experience-right">
 
-            <h3 class="exp-role">Data Analyst Intern (6 Months)</h3>
-            <h4 class="exp-company">AIvariant</h4>
+            <h3 class="exp-role">Data Analyst Intern</h3>
+            <h4 class="exp-company">AIvariant · 6 Months</h4>
 
             <p class="exp-text">
-              During my internship at AIvariant, I supported business teams by working on data analysis,
-              reporting, and dashboard development tasks aligned with real business requirements.
+              Worked as a Data Analyst Intern supporting business and operations teams with data preparation,
+              MIS reporting, and dashboard development aligned to real business requirements.
             </p>
 
-            <p class="exp-text">
-              <strong>Data Extraction & Preparation:</strong><br>
-              Extracted and validated datasets using SQL. Cleaned, transformed, and structured data in Excel
-              to ensure accuracy and consistency for reporting and analysis.
-            </p>
+            <h4 class="exp-company">Key Contributions</h4>
+
+            <ul class="exp-text">
+              <li>
+                Extracted and validated business datasets using SQL, ensuring data accuracy and consistency
+                for reporting and analysis.
+              </li>
+              <li>
+                Cleaned, transformed, and structured data in Excel to prepare analysis-ready datasets for dashboards.
+              </li>
+              <li>
+                Designed and maintained Power BI dashboards to track KPIs, monitor operational performance,
+                and support management reporting.
+              </li>
+              <li>
+                Enabled stakeholders to identify performance trends and gaps through clear visual reporting.
+              </li>
+              <li>
+                Managed scheduled data refreshes and optimized dashboards based on stakeholder feedback
+                to improve usability and clarity.
+              </li>
+            </ul>
 
             <p class="exp-text">
-              <strong>Business Intelligence & MIS Reporting:</strong><br>
-              Designed and maintained Power BI dashboards to track KPIs, monitor operational performance,
-              and support management reporting. These dashboards enabled stakeholders to identify trends
-              and performance gaps.
-            </p>
-
-            <p class="exp-text">
-              <strong>Dashboard Maintenance & Stakeholder Support:</strong><br>
-              Managed scheduled data refreshes, optimized dashboard performance, and incorporated stakeholder
-              feedback to improve usability, clarity, and reporting accuracy.
+              This role strengthened my ability to translate business questions into structured analysis
+              and present insights in a clear, decision-support format.
             </p>
 
           </div>
@@ -92,14 +100,14 @@
     </section>
   </main>
 
-  <!-- ================= CONTACT FOOTER (Visible on all except contact page) ================= -->
+  <!-- ================= FOOTER ================= -->
   <footer class="contact-footer">
     <div class="contact-footer-inner">
 
       <div class="contact-footer-left">
         <h3 class="footer-heading">Contact</h3>
         <p class="footer-text">
-          Feel free to reach out if you'd like to discuss opportunities, projects, or collaborations.
+          Feel free to reach out to discuss opportunities, projects, or collaborations.
         </p>
 
         <div class="footer-social-row">
@@ -120,7 +128,6 @@
       <div class="contact-footer-right">
         <form id="footerContactForm" class="footer-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a42-b38b-7edb2acfa61a" />
-
           <input type="hidden" name="subject" value="New Message from Portfolio Website" />
           <input type="hidden" name="from_name" value="Portfolio Contact Form" />
           <input type="hidden" name="redirect" value="https://your-website.com/thank-you.html" />
@@ -130,7 +137,6 @@
           <textarea name="message" placeholder="Write a short message..." required></textarea>
 
           <button type="submit" class="btn-primary w-full">Send Message</button>
-
           <div id="footerFormMessage" class="footer-form-message"></div>
         </form>
       </div>
@@ -145,9 +151,7 @@
   </div>
 
   <div id="chatbot" class="chatbot hidden flex-col">
-
     <div class="chat-header">Tayyab’s AI Assistant</div>
-
     <div id="chat-body" class="chat-body"></div>
 
     <div class="chat-input">
@@ -167,13 +171,12 @@
       <button class="option-item">LinkedIn ID</button>
       <button class="option-item">Roles and Responsibilities</button>
     </div>
-
   </div>
 
-  <!-- ================= MODAL (Shared Across Pages) ================= -->
+  <!-- ================= MODAL ================= -->
   <div id="modalOverlay" class="modal-overlay hidden">
     <div id="modalContent" class="modal-content">
-      <button id="closeModal" class="close-modal-btn">&times;</button>
+      <button id="closeModal" class="modal-close">&times;</button>
       <div id="modalBody"></div>
     </div>
   </div>
