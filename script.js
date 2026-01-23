@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   /* ==========================
-        SELECTORS
+     SAFE SELECTORS
   ========================== */
   const chatbotIcon = document.getElementById("chatbot-icon");
   const chatbot = document.getElementById("chatbot");
@@ -9,216 +10,107 @@ document.addEventListener("DOMContentLoaded", () => {
   const userInput = document.getElementById("userInput");
   const optionsBtn = document.getElementById("optionsBtn");
   const optionsMenu = document.getElementById("optionsMenu");
-  const optionItems = document.querySelectorAll(".option-item");
 
   /* ==========================
-     PROJECT INFO MODAL (FIXED)
+     PROJECT MODAL — HARD FIX
   ========================== */
-  window.openProjectInfoModal = (projectId) => {
+  window.openProjectInfoModal = function (projectId) {
     const modalOverlay = document.getElementById("modalOverlay");
     const modalBody = document.getElementById("modalBody");
-    const closeBtn = document.getElementById("closeModal");
 
-    if (!modalOverlay || !modalBody || !projectDetails?.[projectId]) {
-      console.error("Modal or project data missing");
+    if (!modalOverlay || !modalBody) {
+      alert("Modal structure missing");
       return;
     }
 
-    const project = projectDetails[projectId];
-
-    modalBody.innerHTML = `
-      <div style="
-        background:#020617;
-        color:#e5e7eb;
-        padding:32px;
-        border-radius:18px;
-        width:100%;
-        height:85vh;
-        overflow-y:auto;
-      ">
-        <div style="max-width:1000px; margin:auto;">
-          <h2 style="font-size:1.9rem; margin-bottom:10px;">
-            ${project.title}
-          </h2>
-
-          <p style="opacity:0.9; margin-bottom:18px;">
-            ${project.brief}
-          </p>
-
-          <h3 style="margin-bottom:8px; font-weight:600;">
-            Key Insights & Business Focus
-          </h3>
-
-          <ul style="padding-left:20px; line-height:1.7;">
-            ${project.points.map(p => `<li>${p}</li>`).join("")}
-          </ul>
+    if (!window.projectDetails || !projectDetails[projectId]) {
+      modalBody.innerHTML = "<p>Project details unavailable.</p>";
+    } else {
+      const p = projectDetails[projectId];
+      modalBody.innerHTML = `
+        <div style="background:#020617;color:#e5e7eb;padding:30px;border-radius:16px;height:80vh;overflow:auto">
+          <h2>${p.title}</h2>
+          <p>${p.brief}</p>
+          <ul>${p.points.map(pt => `<li>${pt}</li>`).join("")}</ul>
         </div>
-      </div>
-    `;
+      `;
+    }
 
     modalOverlay.classList.remove("hidden");
 
-    closeBtn.onclick = () => {
-      modalOverlay.classList.add("hidden");
-      modalBody.innerHTML = "";
-    };
+    /* CLOSE — SUPPORT ID + CLASS */
+    modalOverlay.addEventListener("click", (e) => {
+      if (
+        e.target.id === "modalOverlay" ||
+        e.target.classList.contains("modal-close") ||
+        e.target.classList.contains("close-modal-btn")
+      ) {
+        modalOverlay.classList.add("hidden");
+        modalBody.innerHTML = "";
+      }
+    });
   };
 
   /* ==========================
-        CERTIFICATE POPUPS
+     CHATBOT CORE
   ========================== */
-  window.openCertModal = (certId) => {
-    if (!certDetails?.[certId]) return;
-
-    const cert = certDetails[certId];
-    const popup = window.open(
-      "",
-      "_blank",
-      "width=900,height=800,scrollbars=yes,resizable=yes"
-    );
-
-    popup.document.write(`
-      <html>
-        <head>
-          <style>
-            body {
-              font-family: 'Poppins', sans-serif;
-              padding: 40px;
-              background: #f9fafb;
-              color: #1e293b;
-              line-height: 1.7;
-            }
-            h2 { color: #1e40af; margin-bottom: 10px; }
-            button {
-              margin-top: 25px;
-              background: #1e40af;
-              color: white;
-              border: none;
-              padding: 10px 18px;
-              border-radius: 8px;
-              cursor: pointer;
-            }
-          </style>
-        </head>
-        <body>
-          <h2>${cert.title}</h2>
-          <p>${cert.brief}</p>
-          <button onclick="window.close()">Close</button>
-        </body>
-      </html>
-    `);
-
-    popup.document.close();
-  };
-
-  /* ==========================
-        CHATBOT SYSTEM (FIXED)
-  ========================== */
-  const addMessage = (sender, text) => {
-    const msg = document.createElement("div");
-    msg.className = sender === "bot" ? "bot-msg" : "user-msg";
-    msg.innerHTML = text;
-    chatBody.appendChild(msg);
+  function addMessage(sender, text) {
+    const div = document.createElement("div");
+    div.className = sender === "bot" ? "bot-msg" : "user-msg";
+    div.innerHTML = text;
+    chatBody.appendChild(div);
     chatBody.scrollTop = chatBody.scrollHeight;
-  };
+  }
 
-  const formatList = (title, items) => `
-    <strong>${title}</strong>
-    <ul style="margin-top:6px; padding-left:18px;">
-      ${items.map(i => `<li>${i}</li>`).join("")}
-    </ul>
-  `;
-
-  const handleChatbotResponse = (query) => {
+  function respond(query) {
     const q = query.toLowerCase();
-    let response =
-      "I can help with information about Tayyab’s background, skills, experience, and projects.";
+    let res = "I can help with Tayyab’s profile, skills, projects, or experience.";
 
-    if (q.includes("about") || q.includes("summary"))
-      response = portfolioData.summary;
-    else if (q.includes("education"))
-      response = portfolioData.education;
-    else if (q.includes("skills"))
-      response = formatList("Key Skills", portfolioData.skills);
-    else if (q.includes("experience"))
-      response = portfolioData.experience;
-    else if (q.includes("projects"))
-      response = formatList("Projects", portfolioData.projects);
-    else if (q.includes("cert"))
-      response = formatList("Certifications", portfolioData.certificates);
-    else if (q.includes("linkedin"))
-      response = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn Profile</a>`;
-    else if (q.includes("github"))
-      response = `<a href="${portfolioData.contact.github}" target="_blank">GitHub Profile</a>`;
-    else if (q.includes("mail") || q.includes("email"))
-      response = `<a href="mailto:${portfolioData.contact.email}">${portfolioData.contact.email}</a>`;
+    if (q.includes("about")) res = portfolioData.summary;
+    else if (q.includes("education")) res = portfolioData.education;
+    else if (q.includes("skills")) res = portfolioData.skills.join("<br>");
+    else if (q.includes("experience")) res = portfolioData.experience;
+    else if (q.includes("projects")) res = portfolioData.projects.join("<br>");
+    else if (q.includes("cert")) res = portfolioData.certificates.join("<br>");
+    else if (q.includes("linkedin")) res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
+    else if (q.includes("github")) res = `<a href="${portfolioData.contact.github}" target="_blank">GitHub</a>`;
+    else if (q.includes("mail")) res = portfolioData.contact.email;
 
-    setTimeout(() => addMessage("bot", response), 250);
-  };
+    setTimeout(() => addMessage("bot", res), 200);
+  }
 
-  chatbotIcon.addEventListener("click", () => {
+  chatbotIcon?.addEventListener("click", () => {
     chatbot.classList.toggle("hidden");
     if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
-      addMessage("bot", "👋 Hi! You can ask about Tayyab’s profile, skills, or projects.");
+      addMessage("bot", "👋 Hi! Ask me about Tayyab’s profile.");
     }
   });
 
-  sendBtn.addEventListener("click", () => {
+  sendBtn?.addEventListener("click", () => {
     if (!userInput.value.trim()) return;
     addMessage("user", userInput.value);
-    handleChatbotResponse(userInput.value);
+    respond(userInput.value);
     userInput.value = "";
   });
 
-  userInput.addEventListener("keypress", (e) => {
+  userInput?.addEventListener("keydown", e => {
     if (e.key === "Enter") sendBtn.click();
   });
 
-  optionsBtn.addEventListener("click", () => {
+  /* ==========================
+     CHATBOT OPTIONS — REAL FIX
+  ========================== */
+  optionsBtn?.addEventListener("click", () => {
     optionsMenu.classList.toggle("hidden");
   });
 
-  /* ==========================
-     CHATBOT OPTIONS (FIXED)
-  ========================== */
-  optionItems.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const text = btn.innerText;
+  optionsMenu?.addEventListener("click", (e) => {
+    if (e.target.classList.contains("option-item")) {
+      const text = e.target.innerText;
       addMessage("user", text);
-      handleChatbotResponse(text);
+      respond(text);
       optionsMenu.classList.add("hidden");
-    });
-  });
-});
-
-/* ==========================
-   FOOTER FORM (UNCHANGED)
-========================== */
-const footerForm = document.getElementById("footerContactForm");
-const footerFormMessage = document.getElementById("footerFormMessage");
-
-if (footerForm) {
-  footerForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    footerFormMessage.textContent = "⏳ Sending...";
-    footerFormMessage.style.color = "#fbbf24";
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: new FormData(footerForm),
-      });
-      const result = await response.json();
-
-      footerFormMessage.textContent = result.success
-        ? "✅ Message sent successfully!"
-        : "❌ Failed to send message.";
-      footerFormMessage.style.color = result.success ? "#22c55e" : "#ef4444";
-
-      if (result.success) footerForm.reset();
-    } catch {
-      footerFormMessage.textContent = "⚠️ Server error. Try again.";
-      footerFormMessage.style.color = "#ef4444";
     }
   });
-}
+
+});
