@@ -9,17 +9,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const userInput = document.getElementById("userInput");
   const optionsBtn = document.getElementById("optionsBtn");
   const optionsMenu = document.getElementById("optionsMenu");
+  const optionItems = document.querySelectorAll(".option-item");
 
   /* ==========================
-     PROJECT INFO MODAL (DATA-DRIVEN)
+     PROJECT INFO MODAL (FIXED)
   ========================== */
   window.openProjectInfoModal = (projectId) => {
     const modalOverlay = document.getElementById("modalOverlay");
     const modalBody = document.getElementById("modalBody");
     const closeBtn = document.getElementById("closeModal");
 
+    if (!modalOverlay || !modalBody || !projectDetails?.[projectId]) {
+      console.error("Modal or project data missing");
+      return;
+    }
+
     const project = projectDetails[projectId];
-    if (!project) return;
 
     modalBody.innerHTML = `
       <div style="
@@ -45,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </h3>
 
           <ul style="padding-left:20px; line-height:1.7;">
-            ${project.points.map(point => `<li>${point}</li>`).join("")}
+            ${project.points.map(p => `<li>${p}</li>`).join("")}
           </ul>
         </div>
       </div>
@@ -60,12 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* ==========================
-        CERTIFICATE POPUPS (UNCHANGED UX)
+        CERTIFICATE POPUPS
   ========================== */
   window.openCertModal = (certId) => {
-    const cert = certDetails[certId];
-    if (!cert) return;
+    if (!certDetails?.[certId]) return;
 
+    const cert = certDetails[certId];
     const popup = window.open(
       "",
       "_blank",
@@ -107,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* ==========================
-        CHATBOT SYSTEM (RECRUITER-GRADE)
+        CHATBOT SYSTEM (FIXED)
   ========================== */
   const addMessage = (sender, text) => {
     const msg = document.createElement("div");
@@ -131,39 +136,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (q.includes("about") || q.includes("summary"))
       response = portfolioData.summary;
-
     else if (q.includes("education"))
       response = portfolioData.education;
-
     else if (q.includes("skills"))
       response = formatList("Key Skills", portfolioData.skills);
-
     else if (q.includes("experience"))
       response = portfolioData.experience;
-
     else if (q.includes("projects"))
       response = formatList("Projects", portfolioData.projects);
-
     else if (q.includes("cert"))
       response = formatList("Certifications", portfolioData.certificates);
-
     else if (q.includes("linkedin"))
       response = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn Profile</a>`;
-
     else if (q.includes("github"))
       response = `<a href="${portfolioData.contact.github}" target="_blank">GitHub Profile</a>`;
-
     else if (q.includes("mail") || q.includes("email"))
       response = `<a href="mailto:${portfolioData.contact.email}">${portfolioData.contact.email}</a>`;
 
-    setTimeout(() => addMessage("bot", response), 300);
+    setTimeout(() => addMessage("bot", response), 250);
   };
 
   chatbotIcon.addEventListener("click", () => {
     chatbot.classList.toggle("hidden");
-
     if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
-      addMessage("bot", "👋 Hi! I can answer questions about Tayyab’s profile and projects.");
+      addMessage("bot", "👋 Hi! You can ask about Tayyab’s profile, skills, or projects.");
     }
   });
 
@@ -180,6 +176,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   optionsBtn.addEventListener("click", () => {
     optionsMenu.classList.toggle("hidden");
+  });
+
+  /* ==========================
+     CHATBOT OPTIONS (FIXED)
+  ========================== */
+  optionItems.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const text = btn.innerText;
+      addMessage("user", text);
+      handleChatbotResponse(text);
+      optionsMenu.classList.add("hidden");
+    });
   });
 });
 
