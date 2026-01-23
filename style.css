@@ -307,3 +307,50 @@
     padding: 110px 1rem 140px;
   }
 }
+
+
+/* ============================
+   FIX: PROJECT / EXPERIENCE / CERTIFICATE IMAGE SIZES
+   (NO STRUCTURE OR DESIGN CHANGE)
+============================ */
+
+/* Project thumbnails */
+.project-thumb {
+  width: 100%;
+  max-width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+/* Experience section images (if any) */
+.experience-thumb,
+.experience-item img {
+  width: 100%;
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Certificate images */
+.certificate-thumb,
+.certificate-item img {
+  width: 100%;
+  max-width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: #0f172a;
+  padding: 12px;
+  border-radius: 16px;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .project-thumb,
+  .experience-thumb,
+  .certificate-thumb {
+    height: 180px;
+  }
+}
