@@ -7,6 +7,32 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- ONLY REQUIRED FIXES -->
+  <style>
+    /* 1. Project image size – match old version */
+    .project-thumb {
+      max-height: 180px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    /* 2. Mobile professionalism */
+    @media (max-width: 768px) {
+      .projects-grid {
+        gap: 1.5rem;
+      }
+      .project-item {
+        padding: 1rem;
+      }
+    }
+
+    /* 5. LinkedIn & GitHub visibility */
+    .social-pill.linkedin span,
+    .social-pill.github span {
+      color: #ffffff;
+    }
+  </style>
 </head>
 
 <body class="site-body">
@@ -54,8 +80,12 @@
             </p>
 
             <div class="project-actions">
-              <a href="https://earnest-madeleine-db8a20.netlify.app/" target="_blank" class="btn-primary">Explore Dashboard</a>
-              <button class="btn-secondary" onclick="openProjectInfoModal('project1')">More Info</button>
+              <a href="https://earnest-madeleine-db8a20.netlify.app/" target="_blank" class="btn-primary">
+                Explore Dashboard
+              </a>
+              <button class="btn-secondary" onclick="openProjectInfoModal('project1')">
+                More Info
+              </button>
             </div>
           </article>
 
@@ -66,8 +96,12 @@
 
             <div class="project-actions">
               <a href="https://app.powerbi.com/view?r=eyJrIjoiMmQxNjZmZDctOWNkOS00NzRmLThlYTItMDBhNzQ2OTliY2RjIiwidCI6ImY0YzA3OTlhLTlmNmItNGRiMi1iZTVmLWQwODA5NjlhMTkxMyJ9"
-                 target="_blank" class="btn-primary">Explore Dashboard</a>
-              <button class="btn-secondary" onclick="openProjectInfoModal('project2')">More Info</button>
+                 target="_blank" class="btn-primary">
+                Explore Dashboard
+              </a>
+              <button class="btn-secondary" onclick="openProjectInfoModal('project2')">
+                More Info
+              </button>
             </div>
           </article>
 
@@ -78,8 +112,12 @@
 
             <div class="project-actions">
               <a href="https://app.powerbi.com/view?r=eyJrIjoiZGJkODhiNDQtMGM1Ni00YmExLWIzYTUtNzI2ZDBiNTc4NDkzIiwidCI6ImY0YzA3OTlhLTlmNmItNGRiMi1iZTVmLWQwODA5NjlhMTkxMyJ9"
-                 target="_blank" class="btn-primary">Explore Dashboard</a>
-              <button class="btn-secondary" onclick="openProjectInfoModal('project3')">More Info</button>
+                 target="_blank" class="btn-primary">
+                Explore Dashboard
+              </a>
+              <button class="btn-secondary" onclick="openProjectInfoModal('project3')">
+                More Info
+              </button>
             </div>
           </article>
 
@@ -88,17 +126,90 @@
     </section>
   </main>
 
-  <!-- ================= MODAL (FIXED) ================= -->
+  <!-- ================= FOOTER (FROM OLD CODE – UNCHANGED) ================= -->
+  <footer class="contact-footer">
+    <div class="contact-footer-inner">
+
+      <div class="contact-footer-left">
+        <h3 class="footer-heading">Contact</h3>
+        <p class="footer-text">
+          Interested in discussing these projects or exploring data analytics opportunities? Feel free to connect.
+        </p>
+
+        <div class="footer-social-row">
+          <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-pill linkedin">
+            <i class="fa-brands fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+
+          <a href="https://github.com/mdTayyabkhan" target="_blank" class="social-pill github">
+            <i class="fa-brands fa-github"></i>
+            <span>GitHub</span>
+          </a>
+        </div>
+
+        <div class="footer-email-row">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:mdtayyabkhan02@gmail.com">mdtayyabkhan02@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-footer-right">
+        <form id="footerContactForm" class="footer-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a02-b38b-7edb2acfa61a" />
+          <input type="hidden" name="subject" value="New Message from Portfolio Website" />
+          <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+          <input type="hidden" name="redirect" value="https://your-website.com/thank-you.html" />
+
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <textarea name="message" placeholder="Write a short message..." required></textarea>
+
+          <button type="submit" class="btn-primary w-full">Send Message</button>
+          <div id="footerFormMessage" class="footer-form-message"></div>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= CHATBOT (FROM OLD CODE – UNCHANGED) ================= -->
+  <div class="chatbot-launcher">
+    <p class="ai-label">Tayyab AI Assistant</p>
+    <div id="chatbot-icon" class="chatbot-icon">🤖</div>
+  </div>
+
+  <div id="chatbot" class="chatbot hidden flex-col">
+    <div class="chat-header">Tayyab’s AI Assistant</div>
+    <div id="chat-body" class="chat-body"></div>
+
+    <div class="chat-input">
+      <button id="optionsBtn">⚙️</button>
+      <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
+      <button id="sendBtn">Send</button>
+    </div>
+
+    <div id="optionsMenu" class="options-menu hidden">
+      <button class="option-item">About</button>
+      <button class="option-item">Education</button>
+      <button class="option-item">Skills</button>
+      <button class="option-item">Experience</button>
+      <button class="option-item">Projects</button>
+      <button class="option-item">Certificates</button>
+      <button class="option-item">Mail ID</button>
+      <button class="option-item">LinkedIn ID</button>
+      <button class="option-item">Roles and Responsibilities</button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL (WORKING) ================= -->
   <div id="modalOverlay" class="modal-overlay hidden">
-    <div class="modal-content">
+    <div id="modalContent" class="modal-content">
       <button id="closeModal" class="modal-close">&times;</button>
       <div id="modalBody"></div>
     </div>
   </div>
 
-  <!-- ================= CHATBOT ================= -->
-  <!-- unchanged -->
-
+  <!-- ================= SCRIPTS ================= -->
   <script src="data.js"></script>
   <script src="script.js"></script>
   <script src="particles.js"></script>
