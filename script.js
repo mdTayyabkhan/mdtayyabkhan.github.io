@@ -166,3 +166,35 @@ document.addEventListener("click", (e) => {
     optionsMenu.classList.add("hidden");
   }
 });
+
+
+/* ==================================================
+   CHATBOT BEHAVIOR PATCH (NO UI CHANGE)
+================================================== */
+(function () {
+  const chatbot = document.getElementById("chatbot");
+  const chatbotIcon = document.getElementById("chatbot-icon");
+  const chatBody = document.getElementById("chat-body");
+
+  if (!chatbot || !chatbotIcon || !chatBody) return;
+
+  chatbotIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    chatbot.classList.toggle("hidden");
+
+    if (!chatbot.classList.contains("hidden") && chatBody.children.length === 0) {
+      const msg = document.createElement("div");
+      msg.className = "bot-msg";
+      msg.innerHTML =
+        "👋 Hi, this is <b>Tayyab’s AI Assistant</b>.<br>What would you like to know about him?";
+      chatBody.appendChild(msg);
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!chatbot.contains(e.target) && !chatbotIcon.contains(e.target)) {
+      chatbot.classList.add("hidden");
+    }
+  });
+})();
+
