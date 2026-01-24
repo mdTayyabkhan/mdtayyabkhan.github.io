@@ -8,6 +8,33 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- ONLY REQUIRED FIXES -->
+  <style>
+    /* 1. Internship certificate image size (match old version) */
+    .experience-certificate {
+      max-width: 320px;
+      width: 100%;
+      height: auto;
+    }
+
+    /* 2. Mobile professionalism only */
+    @media (max-width: 768px) {
+      .experience-container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .experience-left {
+        text-align: center;
+      }
+
+      .experience-certificate {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+    }
+  </style>
 </head>
 
 <body class="site-body">
@@ -44,7 +71,7 @@
 
         <div class="experience-container">
 
-          <!-- LEFT: CERTIFICATE (SUPPORTING) -->
+          <!-- LEFT: CERTIFICATE -->
           <div class="experience-left">
             <img
               src="assets/Certificates/internship.jpg"
@@ -67,29 +94,16 @@
             <h4 class="exp-company">Key Contributions</h4>
 
             <ul class="exp-text">
-              <li>
-                Extracted and validated business datasets using SQL, ensuring data accuracy and consistency
-                for reporting and analysis.
-              </li>
-              <li>
-                Cleaned, transformed, and structured data in Excel to prepare analysis-ready datasets for dashboards.
-              </li>
-              <li>
-                Designed and maintained Power BI dashboards to track KPIs, monitor operational performance,
-                and support management reporting.
-              </li>
-              <li>
-                Enabled stakeholders to identify performance trends and gaps through clear visual reporting.
-              </li>
-              <li>
-                Managed scheduled data refreshes and optimized dashboards based on stakeholder feedback
-                to improve usability and clarity.
-              </li>
+              <li>Extracted and validated business datasets using SQL.</li>
+              <li>Cleaned and transformed data in Excel for analysis-ready datasets.</li>
+              <li>Designed and maintained Power BI dashboards to track KPIs.</li>
+              <li>Enabled stakeholders to identify trends and performance gaps.</li>
+              <li>Optimized dashboards based on stakeholder feedback.</li>
             </ul>
 
             <p class="exp-text">
               This role strengthened my ability to translate business questions into structured analysis
-              and present insights in a clear, decision-support format.
+              and present insights in a decision-support format.
             </p>
 
           </div>
