@@ -82,9 +82,9 @@ window.openCertModal = function (certId) {
 };
 
 /* ==================================================
-   CHATBOT SYSTEM (MULTI-PAGE SAFE)
+   CHATBOT FINAL STABLE LOGIC (ALL PAGES)
 ================================================== */
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
   const chatbot = document.getElementById("chatbot");
   const chatBody = document.getElementById("chat-body");
   const sendBtn = document.getElementById("sendBtn");
@@ -92,7 +92,7 @@ window.openCertModal = function (certId) {
   const optionsBtn = document.getElementById("optionsBtn");
   const optionsMenu = document.getElementById("optionsMenu");
 
-  const chatbotIcons = document.querySelectorAll("#chatbot-icon");
+  const chatbotIcons = document.querySelectorAll(".chatbot-icon");
 
   if (!chatbot || chatbotIcons.length === 0) return;
 
@@ -106,22 +106,22 @@ window.openCertModal = function (certId) {
 
   function respond(query) {
     if (typeof portfolioData === "undefined") {
-      addMessage("bot", "Data not available.");
+      addMessage("bot", "Information is loading, please try again.");
       return;
     }
 
     const q = query.toLowerCase();
     let res = portfolioData.summary;
 
-    if (q.includes("skills")) res = portfolioData.skills.join("<br>");
+    if (q.includes("skill")) res = portfolioData.skills.join("<br>");
     else if (q.includes("experience")) res = portfolioData.experience;
-    else if (q.includes("projects")) res = portfolioData.projects.join("<br>");
-    else if (q.includes("cert")) res = portfolioData.certificates.join("<br>");
+    else if (q.includes("project")) res = portfolioData.projects.join("<br>");
+    else if (q.includes("certificate")) res = portfolioData.certificates.join("<br>");
     else if (q.includes("linkedin"))
-      res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
+      res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn Profile</a>`;
     else if (q.includes("github"))
-      res = `<a href="${portfolioData.contact.github}" target="_blank">GitHub</a>`;
-    else if (q.includes("mail"))
+      res = `<a href="${portfolioData.contact.github}" target="_blank">GitHub Profile</a>`;
+    else if (q.includes("mail") || q.includes("email"))
       res = portfolioData.contact.email;
 
     setTimeout(() => addMessage("bot", res), 200);
@@ -132,10 +132,10 @@ window.openCertModal = function (certId) {
       e.stopPropagation();
       chatbot.classList.toggle("hidden");
 
-      if (!chatbot.classList.contains("hidden") && chatBody.innerHTML.trim() === "") {
+      if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
         addMessage(
           "bot",
-          "👋 Hi! This is <b>Tayyab’s AI Assistant</b>.<br>What would you like to know about him?"
+          "👋 Hi! I’m <b>Tayyab’s AI Assistant</b>.<br>Ask me about his skills, experience, projects, or certifications."
         );
       }
     });
@@ -171,64 +171,4 @@ window.openCertModal = function (certId) {
       optionsMenu?.classList.add("hidden");
     }
   });
-})();
-/* ==================================================
-   CHATBOT OPTIONS (UNCHANGED)
-================================================== */
-optionsBtn.onclick = () => {
-  optionsMenu.classList.toggle("hidden");
-};
-
-optionsMenu.onclick = (e) => {
-  if (e.target.classList.contains("option-item")) {
-    addMessage("user", e.target.innerText);
-    respond(e.target.innerText);
-    optionsMenu.classList.add("hidden");
-  }
-};
-
-/* ==================================================
-   CHATBOT CLOSE ON OUTSIDE CLICK (NEW – REQUIRED)
-================================================== */
-document.addEventListener("click", (e) => {
-  if (
-    chatbot &&
-    !chatbot.contains(e.target) &&
-    !chatbotIcon.contains(e.target)
-  ) {
-    chatbot.classList.add("hidden");
-    optionsMenu.classList.add("hidden");
-  }
 });
-
-
-/* ==================================================
-   CHATBOT BEHAVIOR PATCH (NO UI CHANGE)
-================================================== */
-(function () {
-  const chatbot = document.getElementById("chatbot");
-  const chatbotIcon = document.getElementById("chatbot-icon");
-  const chatBody = document.getElementById("chat-body");
-
-  if (!chatbot || !chatbotIcon || !chatBody) return;
-
-  chatbotIcon.addEventListener("click", (e) => {
-    e.stopPropagation();
-    chatbot.classList.toggle("hidden");
-
-    if (!chatbot.classList.contains("hidden") && chatBody.children.length === 0) {
-      const msg = document.createElement("div");
-      msg.className = "bot-msg";
-      msg.innerHTML =
-        "👋 Hi, this is <b>Tayyab’s AI Assistant</b>.<br>What would you like to know about him?";
-      chatBody.appendChild(msg);
-    }
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!chatbot.contains(e.target) && !chatbotIcon.contains(e.target)) {
-      chatbot.classList.add("hidden");
-    }
-  });
-})();
-
