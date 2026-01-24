@@ -7,28 +7,6 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-  <!-- ONLY REQUIRED FIXES -->
-  <style>
-    /* 1. Certificate image size – match old code */
-    .cert-img {
-      max-height: 200px;
-      width: 100%;
-      object-fit: contain;
-    }
-
-    /* 2. Mobile professionalism */
-    @media (max-width: 768px) {
-      .cert-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .cert-item {
-        padding: 1rem;
-      }
-    }
-  </style>
 </head>
 
 <body class="site-body">
@@ -55,84 +33,57 @@
     </nav>
   </header>
 
-  <!-- ================= CERTIFICATES ================= -->
+  <!-- ================= MAIN CONTENT ================= -->
   <main class="page-main">
     <section class="card-section">
       <div class="content-card">
 
-        <h2 class="section-heading">Certifications</h2>
+        <h2 class="section-heading">Certificates</h2>
         <p class="section-subtext">
-          These certifications validate the skills and tools I actively apply in my analytics projects and internship work.
+          Industry-recognized credentials validating my skills in data analytics, business intelligence, and visualization.
         </p>
 
         <div class="cert-grid">
-
+          
           <!-- CERTIFICATE 1 -->
           <article class="cert-item">
-            <img src="assets/Certificates/cert1.jpg"
-                 alt="Certified Data Analyst – Excelr"
+            <img src="assets/Certificates/cert1.jpg" 
+                 alt="Certified Data Analyst" 
                  class="cert-img" />
-
             <h3 class="cert-title">Certified Data Analyst</h3>
-
-            <p class="project-desc">
-              Validates practical skills in Excel, SQL, Power BI, and analytical problem-solving applied to real-world business scenarios.
-            </p>
-
-            <!-- 3. FIXED BUTTON -->
-            <button class="btn-secondary" onclick="openCertModal('cert1')">
-              View Certificate Details
-            </button>
+            <button class="btn-secondary" onclick="openCertModal('cert1')">View Details</button>
           </article>
 
           <!-- CERTIFICATE 2 -->
           <article class="cert-item">
-            <img src="assets/Certificates/cert2.jpg"
-                 alt="TATA Data Visualisation Certificate"
+            <img src="assets/Certificates/cert2.jpg" 
+                 alt="Data Visualisation: Empowering Business with Effective Insights" 
                  class="cert-img" />
-
-            <h3 class="cert-title">
-              Data Visualisation: Empowering Business with Effective Insights
-            </h3>
-
-            <p class="project-desc">
-              Demonstrates the ability to communicate insights clearly through data storytelling and business-focused visualization.
-            </p>
-
-            <!-- 3. FIXED BUTTON -->
-            <button class="btn-secondary" onclick="openCertModal('cert2')">
-              View Certificate Details
-            </button>
+            <h3 class="cert-title">Data Visualisation: Empowering Business with Effective Insights</h3>
+            <button class="btn-secondary" onclick="openCertModal('cert2')">View Details</button>
           </article>
 
         </div>
-
-        <p class="section-subtext" style="margin-top:1.8rem;">
-          These certifications complement my hands-on experience and reinforce my ability to work with real business data.
-        </p>
-
       </div>
     </section>
   </main>
 
-  <!-- ================= CONTACT FOOTER (FROM OLD CODE) ================= -->
+  <!-- ================= CONTACT FOOTER ================= -->
   <footer class="contact-footer">
     <div class="contact-footer-inner">
 
       <div class="contact-footer-left">
         <h3 class="footer-heading">Contact</h3>
         <p class="footer-text">
-          Interested in my certifications or my journey into data analytics and reporting? Feel free to reach out.
+          Want to discuss my certifications or my data analytics journey? Feel free to reach out anytime.
         </p>
 
         <div class="footer-social-row">
           <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-pill linkedin">
-            <i class="fa-brands fa-linkedin"></i>
-            <span>LinkedIn</span>
+            <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
           </a>
           <a href="https://github.com/mdTayyabkhan" target="_blank" class="social-pill github">
-            <i class="fa-brands fa-github"></i>
-            <span>GitHub</span>
+            <i class="fa-brands fa-github"></i><span>GitHub</span>
           </a>
         </div>
 
@@ -145,9 +96,11 @@
       <div class="contact-footer-right">
         <form id="footerContactForm" class="footer-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a42-b38b-7edb2acfa61a" />
+
           <input type="hidden" name="subject" value="New Message from Portfolio Website" />
-          <input type="hidden" name="from_name" value="Portfolio Contact Form" />
-          <input type="hidden" name="redirect" value="https://your-website.com/thank-you.html" />
+<input type="hidden" name="from_name" value="Portfolio Contact Form" />
+<input type="hidden" name="redirect" value="https://your-website.com/thank-you.html" />
+
 
           <input type="text" name="name" placeholder="Your name" required />
           <input type="email" name="email" placeholder="Your email" required />
@@ -161,7 +114,15 @@
     </div>
   </footer>
 
-  <!-- ================= CHATBOT (FROM OLD CODE) ================= -->
+  <!-- ================= MODAL (Only one, shared across pages) ================= -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+  <div id="modalContent" class="modal-content">
+    <button id="closeModal" class="modal-close">&times;</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+  <!-- ================= CHATBOT ================= -->
   <div class="chatbot-launcher">
     <p class="ai-label">Tayyab AI Assistant</p>
     <div id="chatbot-icon" class="chatbot-icon">🤖</div>
@@ -173,7 +134,7 @@
     <div id="chat-body" class="chat-body"></div>
 
     <div class="chat-input">
-      <button id="optionsBtn">⚙️</button>
+      <button id="optionsBtn" title="Quick options">⚙️</button>
       <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
       <button id="sendBtn">Send</button>
     </div>
@@ -189,14 +150,7 @@
       <button class="option-item">LinkedIn ID</button>
       <button class="option-item">Roles and Responsibilities</button>
     </div>
-  </div>
 
-  <!-- ================= MODAL (WORKING) ================= -->
-  <div id="modalOverlay" class="modal-overlay hidden">
-    <div id="modalContent" class="modal-content">
-      <button id="closeModal" class="modal-close">&times;</button>
-      <div id="modalBody"></div>
-    </div>
   </div>
 
   <!-- ================= SCRIPTS ================= -->
