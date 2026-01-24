@@ -82,62 +82,96 @@ window.openCertModal = function (certId) {
 };
 
 /* ==================================================
-   CHATBOT SYSTEM (UNCHANGED)
+   CHATBOT SYSTEM (MULTI-PAGE SAFE)
 ================================================== */
-const chatbotIcon = document.getElementById("chatbot-icon");
-const chatbot = document.getElementById("chatbot");
-const chatBody = document.getElementById("chat-body");
-const sendBtn = document.getElementById("sendBtn");
-const userInput = document.getElementById("userInput");
-const optionsBtn = document.getElementById("optionsBtn");
-const optionsMenu = document.getElementById("optionsMenu");
+(function () {
+  const chatbot = document.getElementById("chatbot");
+  const chatBody = document.getElementById("chat-body");
+  const sendBtn = document.getElementById("sendBtn");
+  const userInput = document.getElementById("userInput");
+  const optionsBtn = document.getElementById("optionsBtn");
+  const optionsMenu = document.getElementById("optionsMenu");
 
-function addMessage(sender, text) {
-  const div = document.createElement("div");
-  div.className = sender === "bot" ? "bot-msg" : "user-msg";
-  div.innerHTML = text;
-  chatBody.appendChild(div);
-  chatBody.scrollTop = chatBody.scrollHeight;
-}
+  const chatbotIcons = document.querySelectorAll("#chatbot-icon");
 
-function respond(query) {
-  if (typeof portfolioData === "undefined") {
-    addMessage("bot", "Data not loaded yet.");
-    return;
+  if (!chatbot || chatbotIcons.length === 0) return;
+
+  function addMessage(sender, text) {
+    const div = document.createElement("div");
+    div.className = sender === "bot" ? "bot-msg" : "user-msg";
+    div.innerHTML = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
   }
 
-  const q = query.toLowerCase();
-  let res = portfolioData.summary;
+  function respond(query) {
+    if (typeof portfolioData === "undefined") {
+      addMessage("bot", "Data not available.");
+      return;
+    }
 
-  if (q.includes("skills")) res = portfolioData.skills.join("<br>");
-  else if (q.includes("experience")) res = portfolioData.experience;
-  else if (q.includes("projects")) res = portfolioData.projects.join("<br>");
-  else if (q.includes("cert")) res = portfolioData.certificates.join("<br>");
-  else if (q.includes("linkedin")) res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
-  else if (q.includes("github")) res = `<a href="${portfolioData.contact.github}" target="_blank">GitHub</a>`;
-  else if (q.includes("mail")) res = portfolioData.contact.email;
+    const q = query.toLowerCase();
+    let res = portfolioData.summary;
 
-  setTimeout(() => addMessage("bot", res), 200);
-}
+    if (q.includes("skills")) res = portfolioData.skills.join("<br>");
+    else if (q.includes("experience")) res = portfolioData.experience;
+    else if (q.includes("projects")) res = portfolioData.projects.join("<br>");
+    else if (q.includes("cert")) res = portfolioData.certificates.join("<br>");
+    else if (q.includes("linkedin"))
+      res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
+    else if (q.includes("github"))
+      res = `<a href="${portfolioData.contact.github}" target="_blank">GitHub</a>`;
+    else if (q.includes("mail"))
+      res = portfolioData.contact.email;
 
-chatbotIcon.onclick = () => {
-  chatbot.classList.toggle("hidden");
-  if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
-    addMessage("bot", "👋 Hi! Ask me about Tayyab.");
+    setTimeout(() => addMessage("bot", res), 200);
   }
-};
 
-sendBtn.onclick = () => {
-  if (!userInput.value.trim()) return;
-  addMessage("user", userInput.value);
-  respond(userInput.value);
-  userInput.value = "";
-};
+  chatbotIcons.forEach(icon => {
+    icon.addEventListener("click", (e) => {
+      e.stopPropagation();
+      chatbot.classList.toggle("hidden");
 
-userInput.onkeydown = (e) => {
-  if (e.key === "Enter") sendBtn.click();
-};
+      if (!chatbot.classList.contains("hidden") && chatBody.innerHTML.trim() === "") {
+        addMessage(
+          "bot",
+          "👋 Hi! This is <b>Tayyab’s AI Assistant</b>.<br>What would you like to know about him?"
+        );
+      }
+    });
+  });
 
+  sendBtn?.addEventListener("click", () => {
+    if (!userInput.value.trim()) return;
+    addMessage("user", userInput.value);
+    respond(userInput.value);
+    userInput.value = "";
+  });
+
+  userInput?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendBtn.click();
+  });
+
+  optionsBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    optionsMenu.classList.toggle("hidden");
+  });
+
+  optionsMenu?.addEventListener("click", (e) => {
+    if (e.target.classList.contains("option-item")) {
+      addMessage("user", e.target.innerText);
+      respond(e.target.innerText);
+      optionsMenu.classList.add("hidden");
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!chatbot.contains(e.target)) {
+      chatbot.classList.add("hidden");
+      optionsMenu?.classList.add("hidden");
+    }
+  });
+})();
 /* ==================================================
    CHATBOT OPTIONS (UNCHANGED)
 ================================================== */
