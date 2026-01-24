@@ -9,6 +9,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- ONLY REQUIRED FIXES -->
+  <style>
+    /* 1. Fix LinkedIn & GitHub text visibility */
+    .social-pill.linkedin span,
+    .social-pill.github span {
+      color: #ffffff;
+    }
+
+    /* 3. Hero spacing – mobile only */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+    }
+  </style>
 </head>
 
 <body class="site-body">
@@ -71,7 +88,7 @@
     </section>
   </main>
 
-  <!-- ================= CONTACT FOOTER (OLD VERSION – UNCHANGED) ================= -->
+  <!-- ================= CONTACT FOOTER (RESTORED FROM OLD VERSION) ================= -->
   <footer class="contact-footer">
     <div class="contact-footer-inner">
 
@@ -84,11 +101,13 @@
 
         <div class="footer-social-row">
           <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-pill linkedin">
-            <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
+            <i class="fa-brands fa-linkedin"></i>
+            <span>LinkedIn</span>
           </a>
 
           <a href="https://github.com/mdTayyabkhan" target="_blank" class="social-pill github">
-            <i class="fa-brands fa-github"></i><span>GitHub</span>
+            <i class="fa-brands fa-github"></i>
+            <span>GitHub</span>
           </a>
         </div>
 
@@ -113,10 +132,11 @@
           <div id="footerFormMessage" class="footer-form-message"></div>
         </form>
       </div>
+
     </div>
   </footer>
 
-  <!-- ================= CHATBOT (OLD VERSION – UNCHANGED) ================= -->
+  <!-- ================= CHATBOT ================= -->
   <div class="chatbot-launcher">
     <p class="ai-label">Tayyab AI Assistant</p>
     <div id="chatbot-icon" class="chatbot-icon">🤖</div>
@@ -127,7 +147,7 @@
     <div id="chat-body" class="chat-body"></div>
 
     <div class="chat-input">
-      <button id="optionsBtn" title="Quick options">⚙️</button>
+      <button id="optionsBtn">⚙️</button>
       <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
       <button id="sendBtn">Send</button>
     </div>
@@ -149,6 +169,18 @@
   <script src="data.js"></script>
   <script src="script.js?v=INDEXFINAL"></script>
   <script src="particles.js"></script>
+
+  <!-- 2. Chatbot close on outside click (NO existing logic altered) -->
+  <script>
+    document.addEventListener("click", function (e) {
+      const chatbot = document.getElementById("chatbot");
+      const icon = document.getElementById("chatbot-icon");
+
+      if (!chatbot.contains(e.target) && !icon.contains(e.target)) {
+        chatbot.classList.add("hidden");
+      }
+    });
+  </script>
 
 </body>
 </html>
