@@ -7,6 +7,23 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- ONLY REQUIRED FIXES -->
+  <style>
+    /* 1. Resume preview height – match old code usability */
+    .resume-frame {
+      width: 100%;
+      height: 820px;
+      border: none;
+    }
+
+    /* 2. Mobile professionalism */
+    @media (max-width: 768px) {
+      .resume-frame {
+        height: 560px;
+      }
+    }
+  </style>
 </head>
 
 <body class="site-body">
@@ -43,7 +60,6 @@
           A concise, ATS-friendly resume aligned with entry-level Data Analyst and MIS roles, highlighting hands-on analytics experience and business reporting skills.
         </p>
 
-        <!-- QUICK HIGHLIGHTS FOR RECRUITERS -->
         <ul class="project-desc" style="margin-bottom:1.4rem;">
           <li>6-month Data Analyst internship with real MIS reporting and dashboard work</li>
           <li>Strong foundation in Excel, SQL, Power BI, and KPI analysis</li>
