@@ -307,3 +307,57 @@
     padding: 110px 1rem 140px;
   }
 }
+
+/* ===== Contact section clarity (NO redesign) ===== */
+.contact-card {
+  padding: 2.2rem;
+}
+
+.contact-card input,
+.contact-card textarea {
+  background: rgba(2, 6, 23, 0.7);
+}
+
+.social-pill span {
+  color: #e5e7eb;
+}
+
+
+/* ===== Image overflow guard ===== */
+.project-thumb,
+.cert-img,
+.experience-img {
+  max-height: 220px;
+  width: 100%;
+  object-fit: contain;
+}
+
+
+/* ===== Project card width guard ===== */
+.project-item {
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ===== Resume preview readability ===== */
+.resume-preview iframe,
+.resume-preview embed {
+  min-height: 80vh;
+}
+
+
+@media (max-width: 768px) {
+  .projects-grid,
+  .cert-grid,
+  .contact-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chatbot {
+    width: 92%;
+    right: 4%;
+  }
+}
+
