@@ -4,7 +4,7 @@
 console.log("✅ script.js loaded");
 
 /* ==================================================
-   PROJECT MODAL (NO DOMContentLoaded)
+   PROJECT MODAL
 ================================================== */
 window.openProjectInfoModal = function (projectId) {
   const modalOverlay = document.getElementById("modalOverlay");
@@ -43,7 +43,46 @@ window.openProjectInfoModal = function (projectId) {
 };
 
 /* ==================================================
-   CHATBOT SYSTEM (ROBUST)
+   CERTIFICATE MODAL (NEW – REQUIRED)
+================================================== */
+window.openCertModal = function (certId) {
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalBody = document.getElementById("modalBody");
+
+  if (!modalOverlay || !modalBody) {
+    alert("Modal HTML missing");
+    return;
+  }
+
+  if (typeof certificateDetails === "undefined") {
+    modalBody.innerHTML = "<p style='color:white'>Certificate data not loaded.</p>";
+  } else {
+    const c = certificateDetails[certId];
+    modalBody.innerHTML = `
+      <div style="background:#020617;color:#e5e7eb;padding:28px;border-radius:16px;height:80vh;overflow:auto">
+        <h2>${c.title}</h2>
+        <p>${c.description}</p>
+        ${c.link ? `<a href="${c.link}" target="_blank">View Certificate</a>` : ""}
+      </div>
+    `;
+  }
+
+  modalOverlay.classList.remove("hidden");
+
+  modalOverlay.onclick = (e) => {
+    if (
+      e.target === modalOverlay ||
+      e.target.classList.contains("modal-close") ||
+      e.target.classList.contains("close-modal-btn")
+    ) {
+      modalOverlay.classList.add("hidden");
+      modalBody.innerHTML = "";
+    }
+  };
+};
+
+/* ==================================================
+   CHATBOT SYSTEM (UNCHANGED)
 ================================================== */
 const chatbotIcon = document.getElementById("chatbot-icon");
 const chatbot = document.getElementById("chatbot");
@@ -100,7 +139,7 @@ userInput.onkeydown = (e) => {
 };
 
 /* ==================================================
-   CHATBOT OPTIONS — EVENT DELEGATION FIX
+   CHATBOT OPTIONS (UNCHANGED)
 ================================================== */
 optionsBtn.onclick = () => {
   optionsMenu.classList.toggle("hidden");
@@ -113,3 +152,17 @@ optionsMenu.onclick = (e) => {
     optionsMenu.classList.add("hidden");
   }
 };
+
+/* ==================================================
+   CHATBOT CLOSE ON OUTSIDE CLICK (NEW – REQUIRED)
+================================================== */
+document.addEventListener("click", (e) => {
+  if (
+    chatbot &&
+    !chatbot.contains(e.target) &&
+    !chatbotIcon.contains(e.target)
+  ) {
+    chatbot.classList.add("hidden");
+    optionsMenu.classList.add("hidden");
+  }
+});
