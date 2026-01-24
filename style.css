@@ -272,7 +272,11 @@
   font-size: 1.6rem;
   cursor: pointer;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+
+  position: relative;
+  z-index: 9999; /* 🔴 CRITICAL */
 }
+
 
 /* ============================
    UTILITIES
@@ -359,5 +363,45 @@
     width: 92%;
     right: 4%;
   }
+}
+
+
+/* ===============================
+   CONTACT FORM INPUT FIX
+   (Preserves original UI)
+=============================== */
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(2, 6, 23, 0.55);
+  color: #f8fafc;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.contact-card input::placeholder,
+.contact-card textarea::placeholder {
+  color: rgba(248, 250, 252, 0.55);
+}
+
+
+.social-pill {
+  color: #e5e7eb;
+}
+
+.social-pill span {
+  color: #e5e7eb;
+}
+
+
+.chatbot {
+  display: flex;
+}
+
+.chatbot.hidden {
+  display: none;
 }
 
