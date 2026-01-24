@@ -405,3 +405,29 @@
   display: none;
 }
 
+/* =====================================
+   CONTACT SPACING FIX (NO UI CHANGE)
+===================================== */
+.contact-card {
+  padding: 2.6rem;
+}
+
+.contact-card-grid {
+  row-gap: 1.6rem;
+}
+
+.contact-card input,
+.contact-card textarea {
+  max-width: 560px;  /* reduces width slightly */
+}
+
+.contact-card-right {
+  padding-top: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .contact-card input,
+  .contact-card textarea {
+    max-width: 100%;
+  }
+}
