@@ -83,31 +83,72 @@
     </section>
   </main>
 
-  <!-- ================= CHATBOT (ADDED – REQUIRED) ================= -->
-  <!-- Structure matches existing script.js logic -->
-  <div id="chatbot-icon">
-    <i class="fas fa-robot"></i>
+  <!-- ================= CONTACT SECTION (ADDED) ================= -->
+  <footer class="contact-footer">
+    <div class="contact-footer-inner">
+
+      <div class="contact-footer-left">
+        <h3 class="footer-heading">Contact</h3>
+        <p class="footer-text">
+          Interested in data analytics roles, projects, or collaboration?  
+          Feel free to reach out.
+        </p>
+
+        <div class="footer-social-row">
+          <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-pill linkedin">
+            <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
+          </a>
+
+          <a href="https://github.com/mdTayyabkhan" target="_blank" class="social-pill github">
+            <i class="fa-brands fa-github"></i><span>GitHub</span>
+          </a>
+        </div>
+
+        <div class="footer-email-row">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:mdtayyabkhan02@gmail.com">mdtayyabkhan02@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-footer-right">
+        <form id="footerContactForm" class="footer-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="6ad4ce0e-d304-4a42-b38b-7edb2acfa61a" />
+          <input type="hidden" name="subject" value="New Message from Portfolio Website" />
+          <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+          <input type="hidden" name="redirect" value="https://your-website.com/thank-you.html" />
+
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <textarea name="message" placeholder="Write a short message..." required></textarea>
+
+          <button type="submit" class="btn-primary w-full">Send Message</button>
+          <div id="footerFormMessage" class="footer-form-message"></div>
+        </form>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= CHATBOT (WORKING & SIMPLE) ================= -->
+  <div class="chatbot-launcher">
+    <p class="ai-label">AI Assistant</p>
+    <div id="chatbot-icon" class="chatbot-icon">🤖</div>
   </div>
 
-  <div id="chatbot" class="chatbot hidden">
-    <div class="chatbot-header">
-      <span>AI Assistant</span>
-      <button id="closeChatbot">✖</button>
-    </div>
+  <div id="chatbot" class="chatbot hidden flex-col">
+    <div class="chat-header">Tayyab’s AI Assistant</div>
 
-    <div id="chat-body" class="chatbot-body"></div>
+    <div id="chat-body" class="chat-body"></div>
 
-    <div class="chatbot-input">
-      <input type="text" id="userInput" placeholder="Ask about my skills, projects..." />
-      <button id="sendBtn">
-        <i class="fas fa-paper-plane"></i>
-      </button>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ask about skills, projects, experience..." />
+      <button id="sendBtn">Send</button>
     </div>
   </div>
 
   <!-- ================= SCRIPTS ================= -->
   <script src="data.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=INDEXFIX"></script>
   <script src="particles.js"></script>
 
 </body>
