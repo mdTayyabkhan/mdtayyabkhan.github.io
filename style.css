@@ -431,3 +431,58 @@
     max-width: 100%;
   }
 }
+
+/* ===== Contact social spacing & email visibility ===== */
+
+/* Add space after description text */
+.contact-card-left .footer-text {
+  margin-bottom: 1rem;
+}
+
+/* Space between LinkedIn & GitHub pills */
+.footer-social-row {
+  display: flex;
+  gap: 0.75rem; /* slight clean gap */
+  margin-bottom: 0.9rem;
+}
+
+/* Email row visibility */
+.footer-email-row a {
+  color: #f8fafc;          /* clear white */
+  font-weight: 500;
+}
+
+.footer-email-row i {
+  color: #fbbf24;          /* icon highlight */
+}
+
+/* ===== Center contact section content ===== */
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-card-grid {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.contact-card-left,
+.contact-card-right {
+  text-align: center;
+}
+
+/* Center social pills */
+.footer-social-row {
+  justify-content: center;
+}
+
+/* Center email row */
+.footer-email-row {
+  justify-content: center;
+}
+
