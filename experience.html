@@ -11,18 +11,34 @@
 
   <!-- ONLY REQUIRED FIXES -->
   <style>
-    /* 1. Internship certificate image size (match old version) */
-    .experience-certificate {
-      max-width: 320px;
-      width: 100%;
-      height: auto;
+    /* Experience layout spacing */
+    .experience-container {
+      display: flex;
+      gap: 2.2rem; /* 👈 added space between image & content */
+      align-items: center;
     }
 
-    /* 2. Mobile professionalism only */
+    /* Internship certificate image size (slightly increased) */
+    .experience-certificate {
+      max-width: 360px; /* 👈 increased */
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+    }
+
+    /* Solid professional box for experience details */
+    .experience-right-box {
+      background: #0f172a;
+      border-radius: 18px;
+      padding: 2rem;
+      flex: 1;
+    }
+
+    /* Mobile professionalism only */
     @media (max-width: 768px) {
       .experience-container {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.6rem;
       }
 
       .experience-left {
@@ -30,8 +46,12 @@
       }
 
       .experience-certificate {
-        max-width: 260px;
+        max-width: 280px;
         margin: 0 auto;
+      }
+
+      .experience-right-box {
+        text-align: center;
       }
     }
   </style>
@@ -80,8 +100,8 @@
             />
           </div>
 
-          <!-- RIGHT: EXPERIENCE DETAILS -->
-          <div class="experience-right">
+          <!-- RIGHT: EXPERIENCE DETAILS (SOLID BOX) -->
+          <div class="experience-right-box">
 
             <h3 class="exp-role">Data Analyst Intern</h3>
             <h4 class="exp-company">AIvariant · 6 Months</h4>
