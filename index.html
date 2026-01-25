@@ -111,34 +111,26 @@
     </div>
   </footer>
 
-  <!-- ================= CHATBOT ================= -->
-  <div class="chatbot-launcher">
-    <p class="ai-label">Tayyab AI Assistant</p>
-    <div id="chatbot-icon" class="chatbot-icon">🤖</div>
+ <!-- ================= CHATBOT ================= -->
+<div class="chatbot-launcher">
+  <div id="chatbot-icon" class="chatbot-icon">🤖</div>
+</div>
+
+<div id="chatbot" class="chatbot-popup hidden">
+
+  <div class="chatbot-header">
+    <span>Tayyab’s AI Assistant</span>
+    <button id="chatbotClose">✕</button>
   </div>
 
-  <div id="chatbot" class="chatbot hidden flex-col">
-    <div class="chat-header">Tayyab’s AI Assistant</div>
-    <div id="chat-body" class="chat-body"></div>
+  <div id="chat-body" class="chatbot-body"></div>
 
-    <div class="chat-input">
-      <button id="optionsBtn">⚙️</button>
-      <input type="text" id="userInput" placeholder="Ask about Tayyab..." />
-      <button id="sendBtn">Send</button>
-    </div>
-
-    <div id="optionsMenu" class="options-menu hidden">
-      <button class="option-item">About</button>
-      <button class="option-item">Education</button>
-      <button class="option-item">Skills</button>
-      <button class="option-item">Experience</button>
-      <button class="option-item">Projects</button>
-      <button class="option-item">Certificates</button>
-      <button class="option-item">Mail ID</button>
-      <button class="option-item">LinkedIn ID</button>
-      <button class="option-item">Roles and Responsibilities</button>
-    </div>
+  <div class="chatbot-input">
+    <input type="text" id="userInput" placeholder="Ask me anything..." />
+    <button id="sendBtn">Send</button>
   </div>
+
+</div>
 
   <!-- ================= SCRIPTS ================= -->
   <script src="data.js"></script>
