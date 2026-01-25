@@ -730,20 +730,20 @@
   display: flex;
   justify-content: center;
   gap: 3rem;              /* more spacing between certificates */
-  max-width: 1200px;     /* allow wider layout */
+  max-width: 1500px;     /* allow wider layout */
   margin: 2rem auto 0;
 }
 
 /* Increase certificate card size */
 .cert-item {
-  max-width: 480px;      /* 👈 increased card width */
+  max-width: 580px;      /* 👈 increased card width */
   width: 100%;
   text-align: center;
 }
 
 /* Increase certificate image size (MEDIUM–LARGE) */
 .cert-img {
-  width: 420px;          /* 👈 visible increase */
+  width: 520px;          /* 👈 visible increase */
   max-width: 100%;
   height: auto;
   object-fit: contain;
@@ -751,7 +751,7 @@
 }
 
 /* Mobile – stack vertically with good size */
-@media (max-width: 768px) {
+@media (max-width: 868px) {
   .cert-grid {
     flex-direction: column;
     gap: 2rem;
@@ -762,6 +762,6 @@
   }
 
   .cert-img {
-    width: 300px;        /* readable but not oversized */
+    width: 400px;        /* readable but not oversized */
   }
 }
