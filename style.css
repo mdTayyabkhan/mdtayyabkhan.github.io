@@ -769,3 +769,60 @@
     height: 400px !important;
   }
 }
+
+/* =====================================
+   CONTACT SECTION – CENTERED SOLID BOX
+===================================== */
+
+/* Center everything */
+.contact-center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Solid dialog box */
+.contact-solid-box {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(2, 6, 23, 0.95)
+  );
+  border-radius: 22px;
+  padding: 2.5rem;
+  max-width: 720px;
+  width: 100%;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  text-align: center;
+}
+
+/* Space between text and social links */
+.contact-solid-box .footer-social-row {
+  margin-top: 1.4rem;
+  justify-content: center;
+}
+
+/* Email visibility fix */
+.contact-solid-box .footer-email-row a {
+  color: #e5e7eb;
+  font-weight: 500;
+}
+
+/* Inputs spacing */
+.contact-solid-box input,
+.contact-solid-box textarea {
+  margin-top: 1rem;
+}
+
+/* Submit button BELOW solid box */
+.contact-card button[type="submit"] {
+  margin: 1.6rem auto 0;
+  display: block;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .contact-solid-box {
+    padding: 2rem 1.4rem;
+  }
+}
