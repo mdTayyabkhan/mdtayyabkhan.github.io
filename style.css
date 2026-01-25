@@ -945,3 +945,48 @@
     height: 70vh;
   }
 }
+
+/* =====================================
+   CHATBOT INPUT & OPTIONS FIX
+===================================== */
+
+/* Input text visibility */
+.chatbot-input input {
+  background: #ffffff;
+  color: #111827;            /* 👈 dark visible text */
+  font-size: 0.95rem;
+}
+
+.chatbot-input input::placeholder {
+  color: #6b7280;            /* 👈 muted placeholder */
+}
+
+/* Options menu inside popup */
+.options-menu {
+  position: absolute;
+  bottom: 64px;
+  right: 12px;
+  background: #020617;
+  border-radius: 14px;
+  padding: 0.6rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  z-index: 20;
+}
+
+.option-item {
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  text-align: left;
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.option-item:hover {
+  background: rgba(255,255,255,0.08);
+}
