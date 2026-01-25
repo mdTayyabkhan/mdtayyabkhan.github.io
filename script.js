@@ -82,7 +82,7 @@ window.openCertModal = function (certId) {
 };
 
 /* ==================================================
-   CHATBOT – FINAL STABLE VERSION
+   CHATBOT – FINAL FIXED VERSION (REFERENCE MATCHED)
 ================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const chatbot = document.getElementById("chatbot");
@@ -91,10 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("userInput");
   const sendBtn = document.getElementById("sendBtn");
   const optionsBtn = document.getElementById("optionsBtn");
-  const optionsMenu = document.getElementById("optionsMenu");
 
-  if (!chatbot || !icon) return;
+  if (!chatbot || !icon || !chatBody) return;
 
+  /* ---------- helpers ---------- */
   function addMessage(type, text) {
     const div = document.createElement("div");
     div.className = type === "bot" ? "bot-msg" : "user-msg";
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function respond(q) {
     if (!window.portfolioData) {
-      addMessage("bot", "Data loading, please try again.");
+      addMessage("bot", "Data is loading. Please try again.");
       return;
     }
 
@@ -118,49 +118,77 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (query.includes("certificate")) res = portfolioData.certificates.join("<br>");
     else if (query.includes("mail")) res = portfolioData.contact.email;
     else if (query.includes("linkedin"))
-      res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
+      res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn Profile</a>`;
 
     setTimeout(() => addMessage("bot", res), 200);
   }
 
-  /* Toggle chatbot */
-  icon.onclick = (e) => {
+  /* ---------- chatbot toggle ---------- */
+  icon.addEventListener("click", (e) => {
     e.stopPropagation();
     chatbot.classList.toggle("hidden");
 
     if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
-      addMessage("bot", "👋 Hi! Ask me about Tayyab’s skills, projects, or experience.");
+      addMessage(
+        "bot",
+        "👋 <b>Hi!</b> I’m Tayyab’s AI Assistant.<br>Ask me about his skills, projects, experience, or certifications."
+      );
     }
-  };
+  });
 
-  chatbot.onclick = (e) => e.stopPropagation();
+  chatbot.addEventListener("click", (e) => e.stopPropagation());
 
-  document.onclick = () => {
+  document.addEventListener("click", () => {
     chatbot.classList.add("hidden");
-    optionsMenu.classList.add("hidden");
-  };
+  });
 
-  sendBtn.onclick = () => {
+  /* ---------- send message ---------- */
+  sendBtn?.addEventListener("click", () => {
     if (!input.value.trim()) return;
     addMessage("user", input.value);
     respond(input.value);
     input.value = "";
-  };
+  });
 
-  input.onkeydown = (e) => {
+  input?.addEventListener("keydown", (e) => {
     if (e.key === "Enter") sendBtn.click();
-  };
+  });
 
-  optionsBtn.onclick = (e) => {
+  /* ---------- options as chat buttons ---------- */
+  optionsBtn?.addEventListener("click", (e) => {
     e.stopPropagation();
-    optionsMenu.classList.toggle("hidden");
-  };
+    showChatOptions();
+  });
 
-  optionsMenu.onclick = (e) => {
-    if (e.target.classList.contains("option-item")) {
-      addMessage("user", e.target.innerText);
-      respond(e.target.innerText);
-      optionsMenu.classList.add("hidden");
-    }
-  };
+  function showChatOptions() {
+    const options = [
+      "About",
+      "Skills",
+      "Experience",
+      "Projects",
+      "Certificates",
+      "Mail ID",
+      "LinkedIn ID"
+    ];
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "chat-options";
+
+    options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = "chat-option";
+      btn.innerText = opt;
+
+      btn.onclick = () => {
+        addMessage("user", opt);
+        respond(opt);
+        wrapper.remove();
+      };
+
+      wrapper.appendChild(btn);
+    });
+
+    chatBody.appendChild(wrapper);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
 });
