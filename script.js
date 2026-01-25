@@ -82,15 +82,15 @@ window.openCertModal = function (certId) {
 };
 
 /* ==================================================
-   CHATBOT – POPUP STYLE (FINAL, FIXED)
+   CHATBOT – POPUP STYLE (UPDATED BEHAVIOR)
 ================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const chatbot = document.getElementById("chatbot");
   const chatBody = document.getElementById("chat-body");
   const sendBtn = document.getElementById("sendBtn");
   const userInput = document.getElementById("userInput");
-  const closeBtn = document.getElementById("chatbotClose");
-
+  const optionsBtn = document.getElementById("optionsBtn");
+  const optionsMenu = document.getElementById("optionsMenu");
   const chatbotIcons = document.querySelectorAll(".chatbot-icon");
 
   if (!chatbot || chatbotIcons.length === 0) return;
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => addMessage("bot", res), 200);
   }
 
-  /* Open chatbot popup */
+  /* ICON TOGGLE (OPEN / CLOSE) */
   chatbotIcons.forEach(icon => {
     icon.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -135,34 +135,45 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
         addMessage(
           "bot",
-          "👋 Hello! I’m <b>Tayyab’s AI Assistant</b>.<br>Ask me about skills, projects, dashboards, or contact info."
+          "👋 Hello! I’m <b>Tayyab’s AI Assistant</b>.<br>Ask me about skills, experience, projects, or certifications."
         );
       }
     });
   });
 
-  /* Send message */
-  sendBtn?.addEventListener("click", () => {
+  /* SEND MESSAGE */
+  sendBtn.addEventListener("click", () => {
     if (!userInput.value.trim()) return;
     addMessage("user", userInput.value);
     respond(userInput.value);
     userInput.value = "";
   });
 
-  userInput?.addEventListener("keydown", (e) => {
+  userInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") sendBtn.click();
   });
 
-  /* Close button */
-  closeBtn?.addEventListener("click", (e) => {
+  /* OPTIONS ICON */
+  optionsBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    chatbot.classList.add("hidden");
+    optionsMenu.classList.toggle("hidden");
   });
 
-  /* Close on outside click */
+  /* OPTIONS CLICK */
+  optionsMenu.addEventListener("click", (e) => {
+    if (e.target.classList.contains("option-item")) {
+      const text = e.target.innerText;
+      addMessage("user", text);
+      respond(text);
+      optionsMenu.classList.add("hidden");
+    }
+  });
+
+  /* OUTSIDE CLICK CLOSE */
   document.addEventListener("click", (e) => {
     if (!chatbot.contains(e.target) && !e.target.classList.contains("chatbot-icon")) {
       chatbot.classList.add("hidden");
+      optionsMenu.classList.add("hidden");
     }
   });
 });
