@@ -82,7 +82,7 @@ window.openCertModal = function (certId) {
 };
 
 /* ==================================================
-   CHATBOT – POPUP STYLE (UPDATED BEHAVIOR)
+   CHATBOT – POPUP STYLE (FIXED FOR REAL)
 ================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const chatbot = document.getElementById("chatbot");
@@ -91,10 +91,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const userInput = document.getElementById("userInput");
   const optionsBtn = document.getElementById("optionsBtn");
   const optionsMenu = document.getElementById("optionsMenu");
-  const chatbotIcons = document.querySelectorAll(".chatbot-icon");
+  const chatbotIcon = document.getElementById("chatbot-icon");
 
-  if (!chatbot || chatbotIcons.length === 0) return;
+  if (!chatbot || !chatbotIcon) return;
 
+  /* -------------------------
+     UTILS
+  -------------------------- */
   function addMessage(sender, text) {
     const div = document.createElement("div");
     div.className = sender === "bot" ? "bot-msg" : "user-msg";
@@ -126,22 +129,35 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => addMessage("bot", res), 200);
   }
 
-  /* ICON TOGGLE (OPEN / CLOSE) */
-  chatbotIcons.forEach(icon => {
-    icon.addEventListener("click", (e) => {
-      e.stopPropagation();
-      chatbot.classList.toggle("hidden");
+  /* -------------------------
+     ICON TOGGLE (OPEN / CLOSE)
+  -------------------------- */
+  chatbotIcon.addEventListener("click", (e) => {
+    e.stopPropagation(); // 🔴 critical
+    chatbot.classList.toggle("hidden");
 
-      if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
-        addMessage(
-          "bot",
-          "👋 Hello! I’m <b>Tayyab’s AI Assistant</b>.<br>Ask me about skills, experience, projects, or certifications."
-        );
-      }
-    });
+    if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
+      addMessage(
+        "bot",
+        "👋 Hello! I’m <b>Tayyab’s AI Assistant</b>.<br>Ask me about skills, experience, projects, or certifications."
+      );
+    }
   });
 
-  /* SEND MESSAGE */
+  /* -------------------------
+     PREVENT INNER CLICKS FROM CLOSING
+  -------------------------- */
+  chatbot.addEventListener("click", (e) => {
+    e.stopPropagation(); // 🔴 critical
+  });
+
+  optionsMenu?.addEventListener("click", (e) => {
+    e.stopPropagation(); // 🔴 critical
+  });
+
+  /* -------------------------
+     SEND MESSAGE
+  -------------------------- */
   sendBtn.addEventListener("click", () => {
     if (!userInput.value.trim()) return;
     addMessage("user", userInput.value);
@@ -153,13 +169,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Enter") sendBtn.click();
   });
 
-  /* OPTIONS ICON */
+  /* -------------------------
+     OPTIONS TOGGLE
+  -------------------------- */
   optionsBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // 🔴 critical
     optionsMenu.classList.toggle("hidden");
   });
 
-  /* OPTIONS CLICK */
   optionsMenu.addEventListener("click", (e) => {
     if (e.target.classList.contains("option-item")) {
       const text = e.target.innerText;
@@ -169,11 +186,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* OUTSIDE CLICK CLOSE */
-  document.addEventListener("click", (e) => {
-    if (!chatbot.contains(e.target) && !e.target.classList.contains("chatbot-icon")) {
-      chatbot.classList.add("hidden");
-      optionsMenu.classList.add("hidden");
-    }
+  /* -------------------------
+     CLOSE ON OUTSIDE CLICK
+  -------------------------- */
+  document.addEventListener("click", () => {
+    chatbot.classList.add("hidden");
+    optionsMenu.classList.add("hidden");
   });
 });
