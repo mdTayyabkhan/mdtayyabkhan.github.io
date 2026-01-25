@@ -82,21 +82,26 @@ window.openCertModal = function (certId) {
 };
 
 /* ==================================================
-   CHATBOT – POPUP STYLE (FIXED FOR REAL)
+   CHATBOT – POPUP STYLE (NULL-SAFE & STABLE)
 ================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const chatbot = document.getElementById("chatbot");
   const chatBody = document.getElementById("chat-body");
   const sendBtn = document.getElementById("sendBtn");
   const userInput = document.getElementById("userInput");
-  const optionsBtn = document.getElementById("optionsBtn");
-  const optionsMenu = document.getElementById("optionsMenu");
   const chatbotIcon = document.getElementById("chatbot-icon");
 
-  if (!chatbot || !chatbotIcon) return;
+  const optionsBtn = document.getElementById("optionsBtn");
+  const optionsMenu = document.getElementById("optionsMenu");
+
+  // Hard stop if core elements missing
+  if (!chatbot || !chatbotIcon || !chatBody || !sendBtn || !userInput) {
+    console.warn("Chatbot core elements missing on this page.");
+    return;
+  }
 
   /* -------------------------
-     UTILS
+     MESSAGE HELPERS
   -------------------------- */
   function addMessage(sender, text) {
     const div = document.createElement("div");
@@ -133,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
      ICON TOGGLE (OPEN / CLOSE)
   -------------------------- */
   chatbotIcon.addEventListener("click", (e) => {
-    e.stopPropagation(); // 🔴 critical
+    e.stopPropagation();
     chatbot.classList.toggle("hidden");
 
     if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
@@ -144,16 +149,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* -------------------------
-     PREVENT INNER CLICKS FROM CLOSING
-  -------------------------- */
-  chatbot.addEventListener("click", (e) => {
-    e.stopPropagation(); // 🔴 critical
-  });
-
-  optionsMenu?.addEventListener("click", (e) => {
-    e.stopPropagation(); // 🔴 critical
-  });
+  /* Prevent inner clicks from closing */
+  chatbot.addEventListener("click", (e) => e.stopPropagation());
 
   /* -------------------------
      SEND MESSAGE
@@ -170,27 +167,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* -------------------------
-     OPTIONS TOGGLE
+     OPTIONS (SAFE CHECK)
   -------------------------- */
-  optionsBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // 🔴 critical
-    optionsMenu.classList.toggle("hidden");
-  });
+  if (optionsBtn && optionsMenu) {
+    optionsBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      optionsMenu.classList.toggle("hidden");
+    });
 
-  optionsMenu.addEventListener("click", (e) => {
-    if (e.target.classList.contains("option-item")) {
-      const text = e.target.innerText;
-      addMessage("user", text);
-      respond(text);
-      optionsMenu.classList.add("hidden");
-    }
-  });
+    optionsMenu.addEventListener("click", (e) => {
+      if (e.target.classList.contains("option-item")) {
+        const text = e.target.innerText;
+        addMessage("user", text);
+        respond(text);
+        optionsMenu.classList.add("hidden");
+      }
+    });
+  }
 
   /* -------------------------
      CLOSE ON OUTSIDE CLICK
   -------------------------- */
   document.addEventListener("click", () => {
     chatbot.classList.add("hidden");
-    optionsMenu.classList.add("hidden");
+    if (optionsMenu) optionsMenu.classList.add("hidden");
   });
 });
