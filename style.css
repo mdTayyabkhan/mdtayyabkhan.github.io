@@ -611,3 +611,27 @@
   }
 }
 
+/* =====================================
+   PROJECT SOCIAL DIALOG BOX
+===================================== */
+
+.project-social-box {
+  margin: 3rem auto 0;
+  max-width: 900px;
+  background: #0f172a;
+  border-radius: 20px;
+  padding: 2.4rem;
+  text-align: center;
+}
+
+.project-social-text {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 1.4rem;
+}
+
+.footer-social-row.center {
+  justify-content: center;
+  gap: 1rem;
+}
+
