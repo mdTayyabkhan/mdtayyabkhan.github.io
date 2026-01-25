@@ -635,3 +635,30 @@
   gap: 1rem;
 }
 
+/* =====================================
+   MODAL VISIBILITY FIX (CRITICAL)
+===================================== */
+
+/* Ensure modal is hidden by default */
+.modal-overlay.hidden {
+  display: none !important;
+}
+
+/* Only show modal when JS removes .hidden */
+.modal-overlay:not(.hidden) {
+  display: flex;
+}
+
+/* Improve modal content readability */
+.modal-content {
+  background: linear-gradient(145deg, #020617, #020617ee);
+}
+
+#modalBody h2 {
+  margin-bottom: 0.8rem;
+}
+
+#modalBody p {
+  margin-bottom: 0.9rem;
+  line-height: 1.6;
+}
