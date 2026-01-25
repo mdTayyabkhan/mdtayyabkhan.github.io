@@ -543,6 +543,41 @@
 
 
 /* =====================================
+   PROJECT MODAL – CENTER POPUP
+===================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #020617;
+  border-radius: 18px;
+  max-width: 720px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Close (X) button */
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+
+/* =====================================
    PROJECT LAYOUT FIX
    Desktop: Horizontal
    Mobile: Vertical
