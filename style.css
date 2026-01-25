@@ -722,46 +722,50 @@
 }
 
 /* =====================================
-   CERTIFICATES – FINAL SIZE ADJUSTMENT
+   CERTIFICATES – FORCE SIZE OVERRIDE
+   (FINAL FIX – HEIGHT + WIDTH)
 ===================================== */
 
-/* Allow certificates to take more screen space */
+/* Certificate layout */
 .cert-grid {
   display: flex;
   justify-content: center;
-  gap: 3rem;              /* more spacing between certificates */
-  max-width: 1500px;     /* allow wider layout */
-  margin: 2rem auto 0;
+  gap: 3.5rem;
+  margin-top: 2.5rem;
 }
 
-/* Increase certificate card size */
+/* Certificate card */
 .cert-item {
-  max-width: 580px;      /* 👈 increased card width */
-  width: 100%;
+  width: 520px !important;
+  max-width: 520px !important;
   text-align: center;
 }
 
-/* Increase certificate image size (MEDIUM–LARGE) */
+/* FORCE image size */
 .cert-img {
-  width: 520px;          /* 👈 visible increase */
-  max-width: 100%;
-  height: auto;
+  width: 520px !important;
+  height: 360px !important;   /* 👈 THIS IS THE KEY */
+  max-width: none !important;
+  max-height: none !important;
   object-fit: contain;
-  border-radius: 14px;
+  border-radius: 16px;
 }
 
-/* Mobile – stack vertically with good size */
-@media (max-width: 868px) {
+/* Mobile – vertical but still large */
+@media (max-width: 768px) {
   .cert-grid {
     flex-direction: column;
-    gap: 2rem;
+    align-items: center;
+    gap: 2.2rem;
   }
 
   .cert-item {
-    max-width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .cert-img {
-    width: 400px;        /* readable but not oversized */
+    width: 90% !important;
+    height: 300px !important;
   }
 }
