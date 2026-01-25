@@ -111,43 +111,33 @@
     </div>
   </footer>
 
- <!-- ================= CHATBOT ================= -->
-<div class="chatbot-launcher">
-  <div id="chatbot-icon" class="chatbot-icon">🤖</div>
-</div>
+<!-- ================= CHATBOT ================= -->
+<div id="chatbot-icon" class="chatbot-icon">🤖</div>
 
 <div id="chatbot" class="chatbot-popup hidden">
-
-  <div class="chatbot-header">
-    <span>Tayyab’s AI Assistant</span>
-    <button id="chatbotClose">✕</button>
+  <div class="chat-header">
+    Tayyab’s AI Assistant
   </div>
 
-  <div id="chat-body" class="chatbot-body"></div>
+  <div id="chat-body" class="chat-body"></div>
 
-  <div class="chatbot-input">
-    <input type="text" id="userInput" placeholder="Ask me anything..." />
+  <div class="chat-input">
+    <button id="optionsBtn">⚙️</button>
+    <input
+      type="text"
+      id="userInput"
+      placeholder="Ask me anything..."
+    />
     <button id="sendBtn">Send</button>
   </div>
 
+  <div id="optionsMenu" class="options-menu hidden">
+    <button class="option-item">About</button>
+    <button class="option-item">Skills</button>
+    <button class="option-item">Experience</button>
+    <button class="option-item">Projects</button>
+    <button class="option-item">Certificates</button>
+    <button class="option-item">Mail ID</button>
+    <button class="option-item">LinkedIn ID</button>
+  </div>
 </div>
-
-  <!-- ================= SCRIPTS ================= -->
-  <script src="data.js"></script>
-  <script src="script.js?v=INDEXFINAL"></script>
-  <script src="particles.js"></script>
-
-  <!-- 2. Chatbot close on outside click (NO existing logic altered) -->
-  <script>
-    document.addEventListener("click", function (e) {
-      const chatbot = document.getElementById("chatbot");
-      const icon = document.getElementById("chatbot-icon");
-
-      if (!chatbot.contains(e.target) && !icon.contains(e.target)) {
-        chatbot.classList.add("hidden");
-      }
-    });
-  </script>
-
-</body>
-</html>
