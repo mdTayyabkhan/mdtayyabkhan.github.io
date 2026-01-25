@@ -59,72 +59,96 @@
 
   <!-- ================= PROJECTS ================= -->
   <main class="page-main">
-    <section class="card-section">
-      <div class="content-card">
+  <section class="card-section">
+    <div class="content-card">
 
-        <h2 class="section-heading">Business Analytics Projects</h2>
-        <p class="section-subtext">
-          Real-world style analytics projects focused on business reporting, KPI tracking, and decision-support dashboards using SQL, Power BI, and Excel.
+      <h2 class="section-heading">Business Analytics Projects</h2>
+      <p class="section-subtext">
+        Real-world analytics dashboards designed to solve business problems and support data-driven decisions.
+      </p>
+
+      <div class="projects-grid">
+
+        <!-- PROJECT 1 -->
+        <article class="project-item">
+          <img src="assets/projects/project1.jpg" class="project-thumb" alt="Stock Market Dashboard" />
+          <h3 class="project-title">Stock Market Performance & Risk Analysis</h3>
+
+          <p class="project-desc">
+            Interactive dashboard analyzing market trends, sector performance, and risk exposure.
+          </p>
+
+          <div class="project-actions">
+            <a href="https://earnest-madeleine-db8a20.netlify.app/" target="_blank" class="btn-primary">
+              Explore Dashboard
+            </a>
+            <button class="btn-secondary" onclick="openProjectInfoModal('project1')">
+              More Info
+            </button>
+          </div>
+        </article>
+
+        <!-- PROJECT 2 -->
+        <article class="project-item">
+          <img src="assets/projects/project2.jpg" class="project-thumb" alt="Pizza Sales Dashboard" />
+          <h3 class="project-title">Pizza Sales Performance & KPI Analysis</h3>
+
+          <p class="project-desc">
+            Sales and KPI analysis to identify revenue drivers and product performance.
+          </p>
+
+          <div class="project-actions">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiMmQxNjZmZDctOWNkOS00NzRmLThlYTItMDBhNzQ2OTliY2RjIiwidCI6ImY0YzA3OTlhLTlmNmItNGRiMi1iZTVmLWQwODA5NjlhMTkxMyJ9"
+               target="_blank" class="btn-primary">
+              Explore Dashboard
+            </a>
+            <button class="btn-secondary" onclick="openProjectInfoModal('project2')">
+              More Info
+            </button>
+          </div>
+        </article>
+
+        <!-- PROJECT 3 -->
+        <article class="project-item">
+          <img src="assets/projects/project3.jpg" class="project-thumb" alt="Flipkart Dashboard" />
+          <h3 class="project-title">Flipkart Sales & Revenue Analytics</h3>
+
+          <p class="project-desc">
+            Revenue, profitability, and customer behavior analytics for strategic planning.
+          </p>
+
+          <div class="project-actions">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZGJkODhiNDQtMGM1Ni00YmExLWIzYTUtNzI2ZDBiNTc4NDkzIiwidCI6ImY0YzA3OTlhLTlmNmItNGRiMi1iZTVmLWQwODA5NjlhMTkxMyJ9"
+               target="_blank" class="btn-primary">
+              Explore Dashboard
+            </a>
+            <button class="btn-secondary" onclick="openProjectInfoModal('project3')">
+              More Info
+            </button>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- SOCIAL DIALOG BOX -->
+      <div class="project-social-box">
+        <p>
+          Explore my social media profiles or connect with me to discuss data analytics opportunities.
         </p>
 
-        <div class="projects-grid">
-
-          <!-- PROJECT 1 -->
-          <article class="project-item">
-            <img src="assets/projects/project1.jpg" alt="Stock Market Dashboard" class="project-thumb" />
-            <h3 class="project-title">Stock Market Performance & Risk Analysis Dashboard</h3>
-            <p class="project-desc"><strong>Business Problem:</strong> Understanding market performance, sector trends, and risk exposure.</p>
-            <p class="project-desc">
-              <strong>What this dashboard helps answer:</strong>
-              • Sector performance • Volatility • Risk vs return
-            </p>
-
-            <div class="project-actions">
-              <a href="https://earnest-madeleine-db8a20.netlify.app/" target="_blank" class="btn-primary">
-                Explore Dashboard
-              </a>
-              <button class="btn-secondary" onclick="openProjectInfoModal('project1')">
-                More Info
-              </button>
-            </div>
-          </article>
-
-          <!-- PROJECT 2 -->
-          <article class="project-item">
-            <img src="assets/projects/project2.jpg" alt="Pizza Sales Dashboard" class="project-thumb" />
-            <h3 class="project-title">Pizza Sales Performance & KPI Analysis</h3>
-
-            <div class="project-actions">
-              <a href="https://app.powerbi.com/view?r=eyJrIjoiMmQxNjZmZDctOWNkOS00NzRmLThlYTItMDBhNzQ2OTliY2RjIiwidCI6ImY0YzA3OTlhLTlmNmItNGRiMi1iZTVmLWQwODA5NjlhMTkxMyJ9"
-                 target="_blank" class="btn-primary">
-                Explore Dashboard
-              </a>
-              <button class="btn-secondary" onclick="openProjectInfoModal('project2')">
-                More Info
-              </button>
-            </div>
-          </article>
-
-          <!-- PROJECT 3 -->
-          <article class="project-item">
-            <img src="assets/projects/project3.jpg" alt="Flipkart Dashboard" class="project-thumb" />
-            <h3 class="project-title">Flipkart Sales & Revenue Analytics Dashboard</h3>
-
-            <div class="project-actions">
-              <a href="https://app.powerbi.com/view?r=eyJrIjoiZGJkODhiNDQtMGM1Ni00YmExLWIzYTUtNzI2ZDBiNTc4NDkzIiwidCI6ImY0YzA3OTlhLTlmNmItNGRiMi1iZTVmLWQwODA5NjlhMTkxMyJ9"
-                 target="_blank" class="btn-primary">
-                Explore Dashboard
-              </a>
-              <button class="btn-secondary" onclick="openProjectInfoModal('project3')">
-                More Info
-              </button>
-            </div>
-          </article>
-
+        <div class="footer-social-row center">
+          <a href="https://linkedin.com/in/mohammadtayyabkhan" target="_blank" class="social-pill linkedin">
+            <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/mdTayyabkhan" target="_blank" class="social-pill github">
+            <i class="fa-brands fa-github"></i><span>GitHub</span>
+          </a>
         </div>
       </div>
-    </section>
-  </main>
+
+    </div>
+  </section>
+</main>
 
   <!-- ================= FOOTER (FROM OLD CODE – UNCHANGED) ================= -->
   <footer class="contact-footer">
