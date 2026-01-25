@@ -541,3 +541,38 @@
   border-radius: 16px;
 }
 
+
+/* =====================================
+   PROJECT LAYOUT FIX
+   Desktop: Horizontal
+   Mobile: Vertical
+===================================== */
+
+/* Desktop / Laptop */
+.projects-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+/* Project card size */
+.project-item {
+  min-width: 360px;
+  max-width: 360px;
+  flex-shrink: 0;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .projects-grid {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+
+  .project-item {
+    max-width: 100%;
+  }
+}
+
