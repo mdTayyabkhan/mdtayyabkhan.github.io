@@ -82,114 +82,85 @@ window.openCertModal = function (certId) {
 };
 
 /* ==================================================
-   CHATBOT – POPUP STYLE (NULL-SAFE & STABLE)
+   CHATBOT – FINAL STABLE VERSION
 ================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const chatbot = document.getElementById("chatbot");
+  const icon = document.getElementById("chatbot-icon");
   const chatBody = document.getElementById("chat-body");
+  const input = document.getElementById("userInput");
   const sendBtn = document.getElementById("sendBtn");
-  const userInput = document.getElementById("userInput");
-  const chatbotIcon = document.getElementById("chatbot-icon");
-
   const optionsBtn = document.getElementById("optionsBtn");
   const optionsMenu = document.getElementById("optionsMenu");
 
-  // Hard stop if core elements missing
-  if (!chatbot || !chatbotIcon || !chatBody || !sendBtn || !userInput) {
-    console.warn("Chatbot core elements missing on this page.");
-    return;
-  }
+  if (!chatbot || !icon) return;
 
-  /* -------------------------
-     MESSAGE HELPERS
-  -------------------------- */
-  function addMessage(sender, text) {
+  function addMessage(type, text) {
     const div = document.createElement("div");
-    div.className = sender === "bot" ? "bot-msg" : "user-msg";
+    div.className = type === "bot" ? "bot-msg" : "user-msg";
     div.innerHTML = text;
     chatBody.appendChild(div);
     chatBody.scrollTop = chatBody.scrollHeight;
   }
 
-  function respond(query) {
-    if (typeof portfolioData === "undefined") {
-      addMessage("bot", "Information is loading, please try again.");
+  function respond(q) {
+    if (!window.portfolioData) {
+      addMessage("bot", "Data loading, please try again.");
       return;
     }
 
-    const q = query.toLowerCase();
+    const query = q.toLowerCase();
     let res = portfolioData.summary;
 
-    if (q.includes("skill")) res = portfolioData.skills.join("<br>");
-    else if (q.includes("experience")) res = portfolioData.experience;
-    else if (q.includes("project")) res = portfolioData.projects.join("<br>");
-    else if (q.includes("certificate")) res = portfolioData.certificates.join("<br>");
-    else if (q.includes("linkedin"))
-      res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn Profile</a>`;
-    else if (q.includes("github"))
-      res = `<a href="${portfolioData.contact.github}" target="_blank">GitHub Profile</a>`;
-    else if (q.includes("mail") || q.includes("email"))
-      res = portfolioData.contact.email;
+    if (query.includes("skill")) res = portfolioData.skills.join("<br>");
+    else if (query.includes("experience")) res = portfolioData.experience;
+    else if (query.includes("project")) res = portfolioData.projects.join("<br>");
+    else if (query.includes("certificate")) res = portfolioData.certificates.join("<br>");
+    else if (query.includes("mail")) res = portfolioData.contact.email;
+    else if (query.includes("linkedin"))
+      res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a>`;
 
     setTimeout(() => addMessage("bot", res), 200);
   }
 
-  /* -------------------------
-     ICON TOGGLE (OPEN / CLOSE)
-  -------------------------- */
-  chatbotIcon.addEventListener("click", (e) => {
+  /* Toggle chatbot */
+  icon.onclick = (e) => {
     e.stopPropagation();
     chatbot.classList.toggle("hidden");
 
     if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
-      addMessage(
-        "bot",
-        "👋 Hello! I’m <b>Tayyab’s AI Assistant</b>.<br>Ask me about skills, experience, projects, or certifications."
-      );
+      addMessage("bot", "👋 Hi! Ask me about Tayyab’s skills, projects, or experience.");
     }
-  });
+  };
 
-  /* Prevent inner clicks from closing */
-  chatbot.addEventListener("click", (e) => e.stopPropagation());
+  chatbot.onclick = (e) => e.stopPropagation();
 
-  /* -------------------------
-     SEND MESSAGE
-  -------------------------- */
-  sendBtn.addEventListener("click", () => {
-    if (!userInput.value.trim()) return;
-    addMessage("user", userInput.value);
-    respond(userInput.value);
-    userInput.value = "";
-  });
-
-  userInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") sendBtn.click();
-  });
-
-  /* -------------------------
-     OPTIONS (SAFE CHECK)
-  -------------------------- */
-  if (optionsBtn && optionsMenu) {
-    optionsBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      optionsMenu.classList.toggle("hidden");
-    });
-
-    optionsMenu.addEventListener("click", (e) => {
-      if (e.target.classList.contains("option-item")) {
-        const text = e.target.innerText;
-        addMessage("user", text);
-        respond(text);
-        optionsMenu.classList.add("hidden");
-      }
-    });
-  }
-
-  /* -------------------------
-     CLOSE ON OUTSIDE CLICK
-  -------------------------- */
-  document.addEventListener("click", () => {
+  document.onclick = () => {
     chatbot.classList.add("hidden");
-    if (optionsMenu) optionsMenu.classList.add("hidden");
-  });
+    optionsMenu.classList.add("hidden");
+  };
+
+  sendBtn.onclick = () => {
+    if (!input.value.trim()) return;
+    addMessage("user", input.value);
+    respond(input.value);
+    input.value = "";
+  };
+
+  input.onkeydown = (e) => {
+    if (e.key === "Enter") sendBtn.click();
+  };
+
+  optionsBtn.onclick = (e) => {
+    e.stopPropagation();
+    optionsMenu.classList.toggle("hidden");
+  };
+
+  optionsMenu.onclick = (e) => {
+    if (e.target.classList.contains("option-item")) {
+      addMessage("user", e.target.innerText);
+      respond(e.target.innerText);
+      optionsMenu.classList.add("hidden");
+    }
+  };
 });
