@@ -736,16 +736,16 @@
 
 /* Medium-sized certificate images */
 .cert-img {
-  width: 320px;          /* 👈 increased size */
+  width: 450px;          /* 👈 increased size */
   max-width: 100%;
   height: auto;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 15px;
 }
 
 /* Keep certificate cards aligned */
 .cert-item {
-  max-width: 360px;
+  max-width: 420px;
   text-align: center;
 }
 
