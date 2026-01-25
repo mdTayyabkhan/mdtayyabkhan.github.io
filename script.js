@@ -43,7 +43,7 @@ window.openProjectInfoModal = function (projectId) {
 };
 
 /* ==================================================
-   CERTIFICATE MODAL (NEW – REQUIRED)
+   CERTIFICATE MODAL
 ================================================== */
 window.openCertModal = function (certId) {
   const modalOverlay = document.getElementById("modalOverlay");
@@ -82,15 +82,14 @@ window.openCertModal = function (certId) {
 };
 
 /* ==================================================
-   CHATBOT FINAL STABLE LOGIC (ALL PAGES)
+   CHATBOT – POPUP STYLE (FINAL, FIXED)
 ================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const chatbot = document.getElementById("chatbot");
   const chatBody = document.getElementById("chat-body");
   const sendBtn = document.getElementById("sendBtn");
   const userInput = document.getElementById("userInput");
-  const optionsBtn = document.getElementById("optionsBtn");
-  const optionsMenu = document.getElementById("optionsMenu");
+  const closeBtn = document.getElementById("chatbotClose");
 
   const chatbotIcons = document.querySelectorAll(".chatbot-icon");
 
@@ -127,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => addMessage("bot", res), 200);
   }
 
+  /* Open chatbot popup */
   chatbotIcons.forEach(icon => {
     icon.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -135,12 +135,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
         addMessage(
           "bot",
-          "👋 Hi! I’m <b>Tayyab’s AI Assistant</b>.<br>Ask me about his skills, experience, projects, or certifications."
+          "👋 Hello! I’m <b>Tayyab’s AI Assistant</b>.<br>Ask me about skills, projects, dashboards, or contact info."
         );
       }
     });
   });
 
+  /* Send message */
   sendBtn?.addEventListener("click", () => {
     if (!userInput.value.trim()) return;
     addMessage("user", userInput.value);
@@ -152,23 +153,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Enter") sendBtn.click();
   });
 
-  optionsBtn?.addEventListener("click", (e) => {
+  /* Close button */
+  closeBtn?.addEventListener("click", (e) => {
     e.stopPropagation();
-    optionsMenu.classList.toggle("hidden");
+    chatbot.classList.add("hidden");
   });
 
-  optionsMenu?.addEventListener("click", (e) => {
-    if (e.target.classList.contains("option-item")) {
-      addMessage("user", e.target.innerText);
-      respond(e.target.innerText);
-      optionsMenu.classList.add("hidden");
-    }
-  });
-
+  /* Close on outside click */
   document.addEventListener("click", (e) => {
-    if (!chatbot.contains(e.target)) {
+    if (!chatbot.contains(e.target) && !e.target.classList.contains("chatbot-icon")) {
       chatbot.classList.add("hidden");
-      optionsMenu?.classList.add("hidden");
     }
   });
 });
