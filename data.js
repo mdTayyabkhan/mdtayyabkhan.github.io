@@ -92,13 +92,13 @@ const projectDetails = {
     brief:
       "<strong>Project Overview:</strong> An end-to-end sales and revenue analytics dashboard designed to monitor performance across regions, products, and customers in an e-commerce environment.<br><br><strong>Business Problem:</strong> The business required a centralized view to track revenue growth, profitability, and order trends across multiple years and zones, making performance monitoring and strategic planning challenging.",
     points: [
-      "<strong>Approach & Tools Used:</strong> Integrated multi-year e-commerce sales data using Excel and SQL.",
+      "<strong>Approach & Tools Used:</strong><br>",
+      "Integrated multi-year e-commerce sales data using Excel and SQL.",
       "Built interactive dashboards in Power BI for regional and customer analysis.",
-      "<strong>Approach & Tools Used:</strong> <br>",
       "Analyzed revenue, profit, orders, and delivery patterns.",
       "Applied KPI tracking for trend comparison.",
-      "Observed steady revenue growth with relatively stable profit trends.",
       "<br><strong>Key Insights Delivered:</strong><br>",
+      "Observed steady revenue growth with relatively stable profit trends.",
       "Identified zones contributing the highest share of revenue.",
       "Highlighted dominant customer segments and delivery preferences.",
       "<br><strong>Business Value / Impact:</strong> <br>",
