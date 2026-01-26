@@ -16,7 +16,6 @@
   <!-- ================= HEADER / NAV ================= -->
   <header class="site-header">
     <nav class="nav-container">
-
       <div class="nav-left">
         <h1 id="typingName" class="nav-name">Mohammad Tayyab Khan</h1>
       </div>
@@ -29,7 +28,6 @@
         <li><a href="certificates.html" class="active">Certificates</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-
     </nav>
   </header>
 
@@ -42,97 +40,104 @@
         <p class="section-subtext">
           Industry-recognized credentials validating my skills in data analytics, business intelligence, and visualization.
         </p>
-<!-- ===== Analytics Foundations ===== -->
-<h3 class="section-subheading">Analytics Foundations</h3>
-<p class="section-subtext" style="margin-bottom:1.2rem;">
-  Validates strong fundamentals in data analysis, reporting, and business-oriented problem solving.
-</p>
 
-<!-- ===== BI & Visualization Tools ===== -->
-<h3 class="section-subheading">BI & Data Visualization</h3>
-<p class="section-subtext" style="margin-bottom:1.2rem;">
-  Demonstrates ability to communicate insights clearly through business-focused dashboards.
-</p>
+        <!-- ===== Analytics Foundations ===== -->
+        <h3 class="section-subheading">Analytics Foundations</h3>
+        <p class="section-subtext" style="margin-bottom:1.2rem;">
+          Validates strong fundamentals in data analysis, reporting, and business-oriented problem solving.
+        </p>
 
-<div class="cert-grid">
+        <!-- ===== BI & Visualization Tools ===== -->
+        <h3 class="section-subheading">BI & Data Visualization</h3>
+        <p class="section-subtext" style="margin-bottom:1.2rem;">
+          Demonstrates ability to communicate insights clearly through business-focused dashboards.
+        </p>
 
-  <!-- CERTIFICATE 1 -->
-  <article class="cert-item">
-    <img src="assets/Certificates/cert1.jpg" 
-         alt="Certified Data Analyst" 
-         class="cert-img" />
-    <h3 class="cert-title">Certified Data Analyst</h3>
-    <button class="btn-secondary" onclick="openCertModal('cert1')">View Details</button>
-  </article>
+        <div class="cert-grid">
 
-  <!-- CERTIFICATE 2 -->
-  <article class="cert-item">
-    <img src="assets/Certificates/cert2.jpg" 
-         alt="Data Visualisation: Empowering Business with Effective Insights" 
-         class="cert-img" />
-    <h3 class="cert-title">Data Visualisation: Empowering Business with Effective Insights</h3>
-    <button class="btn-secondary" onclick="openCertModal('cert2')">View Details</button>
-  </article>
+          <!-- CERTIFICATE 1 -->
+          <article class="cert-item">
+            <img src="assets/Certificates/cert1.jpg"
+                 alt="Certified Data Analyst"
+                 class="cert-img" />
+            <h3 class="cert-title">Certified Data Analyst</h3>
+            <button class="btn-secondary" onclick="openCertModal('cert1')">
+              View Details
+            </button>
+          </article>
 
-</div>
+          <!-- CERTIFICATE 2 -->
+          <article class="cert-item">
+            <img src="assets/Certificates/cert2.jpg"
+                 alt="Data Visualisation: Empowering Business with Effective Insights"
+                 class="cert-img" />
+            <h3 class="cert-title">
+              Data Visualisation: Empowering Business with Effective Insights
+            </h3>
+            <button class="btn-secondary" onclick="openCertModal('cert2')">
+              View Details
+            </button>
+          </article>
 
-  
-  <!-- ================= MODAL (Only one, shared across pages) ================= -->
+        </div> <!-- end cert-grid -->
+
+      </div> <!-- end content-card -->
+    </section>
+  </main>
+
+  <!-- ================= MODAL ================= -->
   <div id="modalOverlay" class="modal-overlay hidden">
-  <div id="modalContent" class="modal-content">
-    <button id="closeModal" class="modal-close">&times;</button>
-    <div id="modalBody"></div>
-  </div>
-</div>
-
-<!-- ================= CHATBOT FLOATING ICON ================= -->
-<div class="chatbot-launcher">
-  <div class="ai-label">AI Assistant</div>
-  <div id="chatbotIcon" class="chatbot-icon">🤖</div>
-</div>
-
-<!-- ================= CHATBOT POPUP ================= -->
-<div id="chatbotPopup">
-
-  <div class="chat-header">
-    Tayyab Khan Assistant
-  </div>
-
-  <div id="chatBody" class="chat-body">
-    <div class="bot-msg">
-      👋 Welcome! This is Tayyab Khan Assistance.
+    <div id="modalContent" class="modal-content">
+      <button id="closeModal" class="modal-close">&times;</button>
+      <div id="modalBody"></div>
     </div>
   </div>
 
-  <div class="chat-footer">
-    <button class="options-btn" onclick="toggleOptions()">⚙️</button>
-    <input
-      type="text"
-      id="userInput"
-      placeholder="Ask recruiter-style questions…"
-    />
-    <button class="send-btn" onclick="sendMessage()">Send</button>
+  <!-- ================= CHATBOT FLOATING ICON ================= -->
+  <div class="chatbot-launcher">
+    <div class="ai-label">AI Assistant</div>
+    <div id="chatbotIcon" class="chatbot-icon">🤖</div>
   </div>
 
-  <div id="typingIndicator" class="typing-indicator">
-    Assistant is typing<span>.</span><span>.</span><span>.</span>
+  <!-- ================= CHATBOT POPUP ================= -->
+  <div id="chatbotPopup">
+    <div class="chat-header">
+      Tayyab Khan Assistant
+    </div>
+
+    <div id="chatBody" class="chat-body">
+      <div class="bot-msg">
+        👋 Welcome! This is Tayyab Khan Assistance.
+      </div>
+    </div>
+
+    <div class="chat-footer">
+      <button class="options-btn" onclick="toggleOptions()">⚙️</button>
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Ask recruiter-style questions…"
+      />
+      <button class="send-btn" onclick="sendMessage()">Send</button>
+    </div>
+
+    <div id="typingIndicator" class="typing-indicator">
+      Assistant is typing<span>.</span><span>.</span><span>.</span>
+    </div>
+
+    <div id="optionsPanel" class="options-panel">
+      <button onclick="sendQuick('Tell me about yourself')">About</button>
+      <button onclick="sendQuick('What are your skills?')">Skills</button>
+      <button onclick="sendQuick('Explain your projects')">Projects</button>
+      <button onclick="sendQuick('Why should we hire you?')">Why Hire Me</button>
+      <button onclick="sendQuick('Can I download your resume?')">Resume</button>
+    </div>
   </div>
+  <!-- ================= END CHATBOT ================= -->
 
-  <div id="optionsPanel" class="options-panel">
-    <button onclick="sendQuick('Tell me about yourself')">About</button>
-    <button onclick="sendQuick('What are your skills?')">Skills</button>
-    <button onclick="sendQuick('Explain your projects')">Projects</button>
-    <button onclick="sendQuick('Why should we hire you?')">Why Hire Me</button>
-    <button onclick="sendQuick('Can I download your resume?')">Resume</button>
-  </div>
-
-</div>
-<!-- ================= END CHATBOT ================= -->
-
-<!-- ================= LOAD MAIN SCRIPT (CRITICAL) ================= -->
-<script src="data.js"></script>
-<script src="script.js"></script>
+  <!-- ================= LOAD MAIN SCRIPT ================= -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
-
