@@ -1018,3 +1018,43 @@
 #chatbotPopup.open {
   display: flex;
 }
+
+/* ===== Typography consistency (Recruiter readability) ===== */
+.section-heading {
+  line-height: 1.25;
+}
+
+.section-subtext,
+.project-desc,
+.about-points li,
+.footer-text {
+  line-height: 1.6;
+}
+
+/* ===== Section spacing refinement (no layout change) ===== */
+.section-heading {
+  margin-bottom: 0.6rem;
+}
+
+.section-subtext {
+  margin-bottom: 1.4rem;
+}
+
+/* ===== Dark theme text contrast safety ===== */
+.project-desc,
+.about-points li,
+.footer-text,
+.cert-title {
+  color: #e5e7eb;
+}
+
+/* ===== Profile image visual balance ===== */
+.about-photo-wrap {
+  transform: scale(0.94);
+  opacity: 0.95;
+}
+
+/* ===== Project text spacing refinement ===== */
+.project-desc {
+  margin-bottom: 0.6rem;
+}
