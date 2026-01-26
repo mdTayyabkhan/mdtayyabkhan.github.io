@@ -1058,3 +1058,18 @@
 .project-desc {
   margin-bottom: 0.6rem;
 }
+
+/* ===== Index page footer email alignment fix ===== */
+
+/* Center email exactly below LinkedIn & GitHub */
+.footer-email-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.6rem; /* small professional gap */
+}
+
+/* Ensure icon + text stay aligned */
+.footer-email-row i {
+  margin-right: 0.4rem;
+}
