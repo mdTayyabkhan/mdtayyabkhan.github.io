@@ -1099,3 +1099,29 @@
   overflow: visible;
   max-height: none;
 }
+
+/* ===============================
+   MODAL SCROLL FIX (FINAL)
+   Removes forced internal scrolling
+=============================== */
+
+/* Allow modal to grow naturally */
+.modal-content {
+  max-height: none;        /* removes 80vh restriction */
+  overflow: visible;       /* no internal scroll */
+}
+
+/* Ensure injected content does not scroll */
+#modalBody {
+  max-height: none;
+  overflow: visible;
+}
+
+/* ===============================
+   PROJECT MODAL WIDTH ADJUSTMENT
+   Slight increase for readability
+=============================== */
+
+.modal-content {
+  max-width: 780px; /* was ~720px → subtle +60px */
+}
