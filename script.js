@@ -82,103 +82,106 @@ window.openCertModal = function (certId) {
 };
 
 /* ==================================================
-   CHATBOT LOGIC (EXISTING)
+   CHATBOT LOGIC – SAFE & FINAL
 ================================================== */
-const chatBody = document.getElementById("chatBody");
-const optionsPanel = document.getElementById("optionsPanel");
-const typingIndicator = document.getElementById("typingIndicator");
-const input = document.getElementById("userInput");
+document.addEventListener("DOMContentLoaded", () => {
 
-const answers = {
-  "tell me about yourself":
-    "I am an entry-level Data Analyst with hands-on experience in Excel, SQL, and Power BI, specializing in MIS reporting and business insights.",
+  const chatBody = document.getElementById("chatBody");
+  const optionsPanel = document.getElementById("optionsPanel");
+  const typingIndicator = document.getElementById("typingIndicator");
+  const input = document.getElementById("userInput");
+  const chatbotIcon = document.getElementById("chatbotIcon");
+  const chatbotPopup = document.getElementById("chatbotPopup");
 
-  "what are your skills?":
-    "SQL, Advanced Excel, Power BI, dashboarding, data cleaning, KPI analysis, MIS reporting.",
+  if (!chatbotIcon || !chatbotPopup || !chatBody || !input) {
+    console.warn("❌ Chatbot elements missing in DOM");
+    return;
+  }
 
-  "explain your projects":
-    "I have built Sales Analytics and E-commerce dashboards focusing on trends, KPIs, and decision-making. You can view them in the Projects section of this portfolio.",
+  const answers = {
+    "tell me about yourself":
+      "I am an entry-level Data Analyst with hands-on experience in Excel, SQL, and Power BI, specializing in MIS reporting and business insights.",
 
-  "why should we hire you?":
-    "I bring strong analytical thinking, accuracy, and the ability to convert raw data into meaningful insights that support business decisions.",
+    "what are your skills?":
+      "SQL, Advanced Excel, Power BI, dashboarding, data cleaning, KPI analysis, MIS reporting.",
 
-  "do you have internship experience?":
-    "Yes, I worked as a Data Analyst Intern handling large datasets, creating MIS reports, and automating recurring reports.",
+    "explain your projects":
+      "I have built Sales Analytics and E-commerce dashboards focusing on trends, KPIs, and decision-making.",
 
-  "can i download your resume?":
-    "You can download my resume here: 👉 <a href='resume.pdf' target='_blank'>Download Resume</a>"
-};
+    "why should we hire you?":
+      "I bring strong analytical thinking, accuracy, and the ability to convert raw data into meaningful insights.",
 
-function sendMessage() {
-  const text = input.value.trim();
-  if (!text) return;
+    "do you have internship experience?":
+      "Yes, I worked as a Data Analyst Intern handling large datasets, creating MIS reports, and automating recurring reports.",
 
-  addUserMsg(text);
-  input.value = "";
-  respond(text.toLowerCase());
-}
+    "can i download your resume?":
+      "You can download my resume here 👉 <a href='resume.pdf' target='_blank'>Download Resume</a>"
+  };
 
-function sendQuick(text) {
-  addUserMsg(text);
-  respond(text.toLowerCase());
-  optionsPanel.style.display = "none";
-}
-
-function addUserMsg(text) {
-  const div = document.createElement("div");
-  div.className = "user-msg";
-  div.innerText = text;
-  chatBody.appendChild(div);
-  chatBody.scrollTop = chatBody.scrollHeight;
-}
-
-function respond(query) {
-  typingIndicator.style.display = "block";
-
-  setTimeout(() => {
-    typingIndicator.style.display = "none";
-
-    const reply =
-      answers[query] ||
-      "That’s a great question. I’d be happy to explain this further during an interview.";
-
+  function addUserMsg(text) {
     const div = document.createElement("div");
-    div.className = "bot-msg";
-    div.innerHTML = reply;
+    div.className = "user-msg";
+    div.innerText = text;
     chatBody.appendChild(div);
     chatBody.scrollTop = chatBody.scrollHeight;
-  }, 900);
-}
+  }
 
-function toggleOptions() {
-  optionsPanel.style.display =
-    optionsPanel.style.display === "block" ? "none" : "block";
-}
+  function respond(query) {
+    if (typingIndicator) typingIndicator.style.display = "block";
 
-input.addEventListener("keypress", e => {
-  if (e.key === "Enter") sendMessage();
-});
+    setTimeout(() => {
+      if (typingIndicator) typingIndicator.style.display = "none";
 
-/* ==================================================
-   CHATBOT TOGGLE & FLOATING BEHAVIOR (ADDED)
-================================================== */
-const chatbotIcon = document.getElementById("chatbotIcon");
-const chatbotPopup = document.getElementById("chatbotPopup");
+      const reply =
+        answers[query] ||
+        "That’s a great question. I’d be happy to discuss this during an interview.";
 
-if (chatbotIcon && chatbotPopup) {
-  chatbotIcon.addEventListener("click", (e) => {
-    e.stopPropagation();
-    chatbotPopup.style.display =
-      chatbotPopup.style.display === "flex" ? "none" : "flex";
+      const div = document.createElement("div");
+      div.className = "bot-msg";
+      div.innerHTML = reply;
+      chatBody.appendChild(div);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }, 700);
+  }
+
+  window.sendMessage = function () {
+    const text = input.value.trim();
+    if (!text) return;
+    addUserMsg(text);
+    input.value = "";
+    respond(text.toLowerCase());
+  };
+
+  window.sendQuick = function (text) {
+    addUserMsg(text);
+    respond(text.toLowerCase());
+    if (optionsPanel) optionsPanel.style.display = "none";
+  };
+
+  window.toggleOptions = function () {
+    if (!optionsPanel) return;
+    optionsPanel.style.display =
+      optionsPanel.style.display === "block" ? "none" : "block";
+  };
+
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") window.sendMessage();
   });
 
-  document.addEventListener("click", (e) => {
+  /* ===== CHATBOT TOGGLE ===== */
+  chatbotIcon.addEventListener("click", e => {
+    e.stopPropagation();
+    chatbotPopup.classList.toggle("open");
+  });
+
+  document.addEventListener("click", e => {
     if (
       !chatbotPopup.contains(e.target) &&
       !chatbotIcon.contains(e.target)
     ) {
-      chatbotPopup.style.display = "none";
-      optionsPanel.style.display = "none";
+      chatbotPopup.classList.remove("open");
+      if (optionsPanel) optionsPanel.style.display = "none";
     }
   });
-}
+
+});
