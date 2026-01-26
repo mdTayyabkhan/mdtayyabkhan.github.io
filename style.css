@@ -1092,3 +1092,10 @@
   margin-top: 1.5rem;
   text-align: center;
 }
+
+/* ===== Certificate Modal: no scrolling ===== */
+
+.cert-modal #modalBody {
+  overflow: visible;
+  max-height: none;
+}
