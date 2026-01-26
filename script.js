@@ -54,15 +54,14 @@ window.openCertModal = function (certId) {
     return;
   }
 
-  if (typeof certificateDetails === "undefined") {
+  if (typeof certDetails === "undefined") {
     modalBody.innerHTML = "<p style='color:white'>Certificate data not loaded.</p>";
   } else {
-    const c = certificateDetails[certId];
+    const c = certDetails[certId];
     modalBody.innerHTML = `
       <div style="background:#020617;color:#e5e7eb;padding:28px;border-radius:16px;height:80vh;overflow:auto">
         <h2>${c.title}</h2>
-        <p>${c.description}</p>
-        ${c.link ? `<a href="${c.link}" target="_blank">View Certificate</a>` : ""}
+        <p>${c.brief}</p>
       </div>
     `;
   }
@@ -82,7 +81,7 @@ window.openCertModal = function (certId) {
 };
 
 /* ==================================================
-   CHATBOT LOGIC – SAFE & FINAL
+   CHATBOT LOGIC – SAFE, FINAL & DYNAMIC
 ================================================== */
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -98,26 +97,72 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const answers = {
-    "tell me about yourself":
-      "I am an entry-level Data Analyst with hands-on experience in Excel, SQL, and Power BI, specializing in MIS reporting and business insights.",
+  /* ===============================
+     DYNAMIC RESPONSE ENGINE
+  =============================== */
+  function getDynamicResponse(query) {
+    const q = query.toLowerCase();
 
-    "what are your skills?":
-      "SQL, Advanced Excel, Power BI, dashboarding, data cleaning, KPI analysis, MIS reporting.",
+    /* CONTACT */
+    if (q.includes("email") || q.includes("mail")) {
+      return `📧 Email: <a href="mailto:${portfolioData.contact.email}">
+        ${portfolioData.contact.email}</a>`;
+    }
 
-    "explain your projects":
-      "I have built Sales Analytics and E-commerce dashboards focusing on trends, KPIs, and decision-making.",
+    if (q.includes("linkedin")) {
+      return `🔗 LinkedIn: <a href="${portfolioData.contact.linkedin}" target="_blank">
+        View Profile</a>`;
+    }
 
-    "why should we hire you?":
-      "I bring strong analytical thinking, accuracy, and the ability to convert raw data into meaningful insights.",
+    if (q.includes("github")) {
+      return `🐙 GitHub: <a href="${portfolioData.contact.github}" target="_blank">
+        View Projects</a>`;
+    }
 
-    "do you have internship experience?":
-      "Yes, I worked as a Data Analyst Intern handling large datasets, creating MIS reports, and automating recurring reports.",
+    if (q.includes("contact")) {
+      return `
+        📧 <a href="mailto:${portfolioData.contact.email}">${portfolioData.contact.email}</a><br>
+        🔗 <a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn</a><br>
+        🐙 <a href="${portfolioData.contact.github}" target="_blank">GitHub</a>
+      `;
+    }
 
-    "can i download your resume?":
-      "You can download my resume here 👉 <a href='resume.pdf' target='_blank'>Download Resume</a>"
-  };
+    /* ABOUT / SUMMARY */
+    if (q.includes("about") || q.includes("yourself") || q.includes("summary")) {
+      return portfolioData.summary;
+    }
 
+    /* SKILLS */
+    if (q.includes("skill")) {
+      return `🛠 Skills:<br>• ${portfolioData.skills.join("<br>• ")}`;
+    }
+
+    /* EXPERIENCE / INTERNSHIP */
+    if (q.includes("experience") || q.includes("internship")) {
+      return portfolioData.experience;
+    }
+
+    /* PROJECTS */
+    if (q.includes("project")) {
+      return `📊 Projects:<br>• ${portfolioData.projects.join("<br>• ")}`;
+    }
+
+    /* CERTIFICATES */
+    if (q.includes("certificate") || q.includes("certification")) {
+      return `🎓 Certifications:<br>• ${portfolioData.certificates.join("<br>• ")}`;
+    }
+
+    /* RESUME */
+    if (q.includes("resume") || q.includes("cv")) {
+      return `📄 <a href="resume.pdf" target="_blank">Download Resume</a>`;
+    }
+
+    return "That’s a great question. I’d be happy to discuss this in detail during an interview.";
+  }
+
+  /* ===============================
+     CHAT FUNCTIONS
+  =============================== */
   function addUserMsg(text) {
     const div = document.createElement("div");
     div.className = "user-msg";
@@ -132,9 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       if (typingIndicator) typingIndicator.style.display = "none";
 
-      const reply =
-        answers[query] ||
-        "That’s a great question. I’d be happy to discuss this during an interview.";
+      const reply = getDynamicResponse(query);
 
       const div = document.createElement("div");
       div.className = "bot-msg";
@@ -168,7 +211,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Enter") window.sendMessage();
   });
 
-  /* ===== CHATBOT TOGGLE ===== */
+  /* ===============================
+     CHATBOT TOGGLE
+  =============================== */
   chatbotIcon.addEventListener("click", e => {
     e.stopPropagation();
     chatbotPopup.classList.toggle("open");
