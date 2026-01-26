@@ -1007,3 +1007,14 @@
   color: #9ca3af;
 }
 
+
+/* ================= CHATBOT POPUP VISIBILITY FIX ================= */
+
+/* Ensure popup uses flex when opened */
+#chatbotPopup {
+  display: none;
+}
+
+#chatbotPopup.open {
+  display: flex;
+}
