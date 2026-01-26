@@ -81,6 +81,9 @@ window.openCertModal = function (certId) {
   };
 };
 
+/* ==================================================
+   CHATBOT LOGIC (EXISTING)
+================================================== */
 const chatBody = document.getElementById("chatBody");
 const optionsPanel = document.getElementById("optionsPanel");
 const typingIndicator = document.getElementById("typingIndicator");
@@ -155,3 +158,27 @@ function toggleOptions() {
 input.addEventListener("keypress", e => {
   if (e.key === "Enter") sendMessage();
 });
+
+/* ==================================================
+   CHATBOT TOGGLE & FLOATING BEHAVIOR (ADDED)
+================================================== */
+const chatbotIcon = document.getElementById("chatbotIcon");
+const chatbotPopup = document.getElementById("chatbotPopup");
+
+if (chatbotIcon && chatbotPopup) {
+  chatbotIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    chatbotPopup.style.display =
+      chatbotPopup.style.display === "flex" ? "none" : "flex";
+  });
+
+  document.addEventListener("click", (e) => {
+    if (
+      !chatbotPopup.contains(e.target) &&
+      !chatbotIcon.contains(e.target)
+    ) {
+      chatbotPopup.style.display = "none";
+      optionsPanel.style.display = "none";
+    }
+  });
+}
