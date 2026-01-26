@@ -134,8 +134,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* SKILLS */
     if (q.includes("skill")) {
-      return `🛠 Skills:<br>• ${portfolioData.skills.join("<br>• ")}`;
-    }
+  return `
+🛠 <strong>Core Skills:</strong><br>
+• Excel (Advanced reporting, Pivot Tables, Power Query)<br>
+• SQL (Joins, aggregations, business queries)<br>
+• Power BI (Interactive dashboards, KPI tracking)<br>
+• Tableau (Visualization & reporting)<br>
+• Python (Data analysis basics)<br>
+• MIS & Business Reporting
+`;
+}
 
     /* EXPERIENCE / INTERNSHIP */
     if (q.includes("experience") || q.includes("internship")) {
@@ -148,14 +156,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* CERTIFICATES */
-    if (q.includes("certificate") || q.includes("certification")) {
-      return `🎓 Certifications:<br>• ${portfolioData.certificates.join("<br>• ")}`;
-    }
+    if (q.includes("project")) {
+  return `
+📊 <strong>Projects Overview:</strong><br>
+• <strong>Stock Market Performance & Risk Analysis</strong> – Risk, volatility, and sector performance analysis using Power BI<br>
+• <strong>Pizza Sales Performance & KPI Analysis</strong> – Revenue drivers, best sellers, and product performance insights<br>
+• <strong>Flipkart Sales & Revenue Analytics</strong> – Revenue, profit, customer behavior, and order trend analysis
+`;
+}
 
     /* RESUME */
-    if (q.includes("resume") || q.includes("cv")) {
-      return `📄 <a href="resume.pdf" target="_blank">Download Resume</a>`;
-    }
+    if (q.includes("skill")) {
+  return `
+🛠 <strong>Core Skills:</strong><br>
+• Excel (Advanced reporting, Pivot Tables, Power Query)<br>
+• SQL (Joins, aggregations, business queries)<br>
+• Power BI (Interactive dashboards, KPI tracking)<br>
+• Tableau (Visualization & reporting)<br>
+• Python (Data analysis basics)<br>
+• MIS & Business Reporting
+`;
+}
 
     return "That’s a great question. I’d be happy to discuss this in detail during an interview.";
   }
