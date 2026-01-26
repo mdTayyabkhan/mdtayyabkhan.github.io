@@ -81,114 +81,77 @@ window.openCertModal = function (certId) {
   };
 };
 
-/* ==================================================
-   CHATBOT – FINAL FIXED VERSION (REFERENCE MATCHED)
-================================================== */
-document.addEventListener("DOMContentLoaded", () => {
-  const chatbot = document.getElementById("chatbot");
-  const icon = document.getElementById("chatbot-icon");
-  const chatBody = document.getElementById("chat-body");
-  const input = document.getElementById("userInput");
-  const sendBtn = document.getElementById("sendBtn");
-  const optionsBtn = document.getElementById("optionsBtn");
+const chatBody = document.getElementById("chatBody");
+const optionsPanel = document.getElementById("optionsPanel");
+const typingIndicator = document.getElementById("typingIndicator");
+const input = document.getElementById("userInput");
 
-  if (!chatbot || !icon || !chatBody) return;
+const answers = {
+  "tell me about yourself":
+    "I am an entry-level Data Analyst with hands-on experience in Excel, SQL, and Power BI, specializing in MIS reporting and business insights.",
 
-  /* ---------- helpers ---------- */
-  function addMessage(type, text) {
+  "what are your skills?":
+    "SQL, Advanced Excel, Power BI, dashboarding, data cleaning, KPI analysis, MIS reporting.",
+
+  "explain your projects":
+    "I have built Sales Analytics and E-commerce dashboards focusing on trends, KPIs, and decision-making. You can view them in the Projects section of this portfolio.",
+
+  "why should we hire you?":
+    "I bring strong analytical thinking, accuracy, and the ability to convert raw data into meaningful insights that support business decisions.",
+
+  "do you have internship experience?":
+    "Yes, I worked as a Data Analyst Intern handling large datasets, creating MIS reports, and automating recurring reports.",
+
+  "can i download your resume?":
+    "You can download my resume here: 👉 <a href='resume.pdf' target='_blank'>Download Resume</a>"
+};
+
+function sendMessage() {
+  const text = input.value.trim();
+  if (!text) return;
+
+  addUserMsg(text);
+  input.value = "";
+  respond(text.toLowerCase());
+}
+
+function sendQuick(text) {
+  addUserMsg(text);
+  respond(text.toLowerCase());
+  optionsPanel.style.display = "none";
+}
+
+function addUserMsg(text) {
+  const div = document.createElement("div");
+  div.className = "user-msg";
+  div.innerText = text;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function respond(query) {
+  typingIndicator.style.display = "block";
+
+  setTimeout(() => {
+    typingIndicator.style.display = "none";
+
+    const reply =
+      answers[query] ||
+      "That’s a great question. I’d be happy to explain this further during an interview.";
+
     const div = document.createElement("div");
-    div.className = type === "bot" ? "bot-msg" : "user-msg";
-    div.innerHTML = text;
+    div.className = "bot-msg";
+    div.innerHTML = reply;
     chatBody.appendChild(div);
     chatBody.scrollTop = chatBody.scrollHeight;
-  }
+  }, 900);
+}
 
-  function respond(q) {
-    if (!window.portfolioData) {
-      addMessage("bot", "Data is loading. Please try again.");
-      return;
-    }
+function toggleOptions() {
+  optionsPanel.style.display =
+    optionsPanel.style.display === "block" ? "none" : "block";
+}
 
-    const query = q.toLowerCase();
-    let res = portfolioData.summary;
-
-    if (query.includes("skill")) res = portfolioData.skills.join("<br>");
-    else if (query.includes("experience")) res = portfolioData.experience;
-    else if (query.includes("project")) res = portfolioData.projects.join("<br>");
-    else if (query.includes("certificate")) res = portfolioData.certificates.join("<br>");
-    else if (query.includes("mail")) res = portfolioData.contact.email;
-    else if (query.includes("linkedin"))
-      res = `<a href="${portfolioData.contact.linkedin}" target="_blank">LinkedIn Profile</a>`;
-
-    setTimeout(() => addMessage("bot", res), 200);
-  }
-
-  /* ---------- chatbot toggle ---------- */
-  icon.addEventListener("click", (e) => {
-    e.stopPropagation();
-    chatbot.classList.toggle("hidden");
-
-    if (!chatbot.classList.contains("hidden") && chatBody.innerHTML === "") {
-      addMessage(
-        "bot",
-        "👋 <b>Hi!</b> I’m Tayyab’s AI Assistant.<br>Ask me about his skills, projects, experience, or certifications."
-      );
-    }
-  });
-
-  chatbot.addEventListener("click", (e) => e.stopPropagation());
-
-  document.addEventListener("click", () => {
-    chatbot.classList.add("hidden");
-  });
-
-  /* ---------- send message ---------- */
-  sendBtn?.addEventListener("click", () => {
-    if (!input.value.trim()) return;
-    addMessage("user", input.value);
-    respond(input.value);
-    input.value = "";
-  });
-
-  input?.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") sendBtn.click();
-  });
-
-  /* ---------- options as chat buttons ---------- */
-  optionsBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    showChatOptions();
-  });
-
-  function showChatOptions() {
-    const options = [
-      "About",
-      "Skills",
-      "Experience",
-      "Projects",
-      "Certificates",
-      "Mail ID",
-      "LinkedIn ID"
-    ];
-
-    const wrapper = document.createElement("div");
-    wrapper.className = "chat-options";
-
-    options.forEach(opt => {
-      const btn = document.createElement("button");
-      btn.className = "chat-option";
-      btn.innerText = opt;
-
-      btn.onclick = () => {
-        addMessage("user", opt);
-        respond(opt);
-        wrapper.remove();
-      };
-
-      wrapper.appendChild(btn);
-    });
-
-    chatBody.appendChild(wrapper);
-    chatBody.scrollTop = chatBody.scrollHeight;
-  }
+input.addEventListener("keypress", e => {
+  if (e.key === "Enter") sendMessage();
 });
