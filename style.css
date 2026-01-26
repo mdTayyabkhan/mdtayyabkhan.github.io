@@ -937,3 +937,73 @@
   font-size: 13px;
   color: #9ca3af;
 }
+
+/* ==================================================
+   CHATBOT POPUP (ADDED – SAFE INTEGRATION)
+   Does NOT affect other sections
+================================================== */
+
+/* Popup container (hidden by default) */
+#chatbotPopup {
+  position: fixed;
+  right: 24px;
+  bottom: 96px; /* above icon */
+  width: 360px;
+  height: 520px;
+  background: #020617;
+  border-radius: 18px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+  display: none;           /* 👈 CRITICAL */
+  flex-direction: column;
+  z-index: 9998;           /* below icon, above site */
+  overflow: hidden;
+}
+
+/* Chat header */
+#chatbotPopup .chat-header {
+  background: #fbbf24;
+  color: #020617;
+  font-weight: 700;
+  padding: 12px;
+  text-align: center;
+}
+
+/* Chat body */
+#chatbotPopup .chat-body {
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+}
+
+/* Footer */
+#chatbotPopup .chat-footer {
+  display: flex;
+  gap: 6px;
+  padding: 10px;
+}
+
+/* Ensure input doesn’t inherit contact styles */
+#chatbotPopup input {
+  background: #ffffff;
+  color: #020617;
+}
+
+/* Options panel positioning */
+#chatbotPopup .options-panel {
+  position: absolute;
+  bottom: 64px;
+  left: 10px;
+  background: #0f172a;
+  padding: 10px;
+  border-radius: 12px;
+  display: none;
+  z-index: 9999;
+}
+
+/* Typing indicator safety */
+#chatbotPopup .typing-indicator {
+  padding: 6px 14px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
