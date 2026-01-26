@@ -111,33 +111,38 @@
     </div>
   </footer>
 
-<!-- ================= CHATBOT ================= -->
-<div id="chatbot-icon" class="chatbot-icon">🤖</div>
+<!-- ================= CHATBOT SECTION ================= -->
+<div class="chatbot-container">
 
-<div id="chatbot" class="chatbot-popup hidden">
   <div class="chat-header">
     Tayyab’s AI Assistant
   </div>
 
-  <div id="chat-body" class="chat-body"></div>
+  <div id="chatBody" class="chat-body">
+    <div class="bot-msg">👋 Welcome! Ask me anything about Tayyab.</div>
 
-  <div class="chat-input">
-    <button id="optionsBtn">⚙️</button>
-    <input
-      type="text"
-      id="userInput"
-      placeholder="Ask me anything..."
-    />
-    <button id="sendBtn">Send</button>
+    <button class="quick-btn" onclick="sendQuick('Tell me about yourself')">
+      tell me about yourself
+    </button>
   </div>
 
-  <div id="optionsMenu" class="options-menu hidden">
-    <button class="option-item">About</button>
-    <button class="option-item">Skills</button>
-    <button class="option-item">Experience</button>
-    <button class="option-item">Projects</button>
-    <button class="option-item">Certificates</button>
-    <button class="option-item">Mail ID</button>
-    <button class="option-item">LinkedIn ID</button>
+  <div class="chat-footer">
+    <button class="options-btn" onclick="toggleOptions()">⚙️</button>
+    <input type="text" id="userInput" placeholder="Ask recruiter-style questions…" />
+    <button class="send-btn" onclick="sendMessage()">Send</button>
   </div>
+
+  <div id="typingIndicator" class="typing-indicator">
+    Assistant is typing<span>.</span><span>.</span><span>.</span>
+  </div>
+
+  <div id="optionsPanel" class="options-panel">
+    <button onclick="sendQuick('What are your skills?')">Skills</button>
+    <button onclick="sendQuick('Explain your projects')">Projects</button>
+    <button onclick="sendQuick('Why should we hire you?')">Why Hire Me</button>
+    <button onclick="sendQuick('Do you have internship experience?')">Internship</button>
+    <button onclick="sendQuick('Can I download your resume?')">Resume</button>
+  </div>
+
 </div>
+<!-- ================= END CHATBOT ================= -->
