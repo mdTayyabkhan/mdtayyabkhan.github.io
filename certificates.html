@@ -77,24 +77,32 @@
   </div>
 </div>
 
-<!-- ================= CHATBOT SECTION ================= -->
-<div class="chatbot-container">
+<!-- ================= CHATBOT FLOATING ICON ================= -->
+<div class="chatbot-launcher">
+  <div class="ai-label">AI Assistant</div>
+  <div id="chatbotIcon" class="chatbot-icon">🤖</div>
+</div>
+
+<!-- ================= CHATBOT POPUP ================= -->
+<div id="chatbotPopup">
 
   <div class="chat-header">
-    Tayyab’s AI Assistant
+    Tayyab Khan Assistant
   </div>
 
   <div id="chatBody" class="chat-body">
-    <div class="bot-msg">👋 Welcome! Ask me anything about Tayyab.</div>
-
-    <button class="quick-btn" onclick="sendQuick('Tell me about yourself')">
-      tell me about yourself
-    </button>
+    <div class="bot-msg">
+      👋 Welcome! This is Tayyab Khan Assistance.
+    </div>
   </div>
 
   <div class="chat-footer">
     <button class="options-btn" onclick="toggleOptions()">⚙️</button>
-    <input type="text" id="userInput" placeholder="Ask recruiter-style questions…" />
+    <input
+      type="text"
+      id="userInput"
+      placeholder="Ask recruiter-style questions…"
+    />
     <button class="send-btn" onclick="sendMessage()">Send</button>
   </div>
 
@@ -103,10 +111,10 @@
   </div>
 
   <div id="optionsPanel" class="options-panel">
+    <button onclick="sendQuick('Tell me about yourself')">About</button>
     <button onclick="sendQuick('What are your skills?')">Skills</button>
     <button onclick="sendQuick('Explain your projects')">Projects</button>
     <button onclick="sendQuick('Why should we hire you?')">Why Hire Me</button>
-    <button onclick="sendQuick('Do you have internship experience?')">Internship</button>
     <button onclick="sendQuick('Can I download your resume?')">Resume</button>
   </div>
 
