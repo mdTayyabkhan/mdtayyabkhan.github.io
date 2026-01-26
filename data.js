@@ -48,39 +48,39 @@ const projectDetails = {
   project1: {
     title: "Stock Market Performance & Risk Analysis Dashboard",
     brief:
-      "A Power BI dashboard built to analyze multi-year stock market data, helping users understand performance trends, sector behavior, and risk exposure for analytical and comparative decision-making.",
+      "<strong>Business Problem:</strong> Lack of a consolidated view to evaluate market performance, sector risk, and volatility for informed investment analysis.",
     points: [
-      "Analyzed stock performance trends across multiple years to identify growth and decline patterns.",
-      "Compared sector-wise performance to highlight relative market strength and weaknesses.",
-      "Evaluated volatility and return-based KPIs to understand risk versus return behavior.",
-      "Designed interactive visuals enabling users to explore trends by time period and sector.",
-      "Structured the dashboard to support quick interpretation of market performance and risk indicators."
+      "<strong>Approach:</strong> Analyzed multi-year stock market data using return, beta, volatility, and risk-adjusted metrics.",
+      "<strong>Approach:</strong> Built interactive Power BI dashboards to compare sector-wise performance and market trends.",
+      "<strong>Insights:</strong> Identified periods of negative average returns despite stable market volume.",
+      "<strong>Insights:</strong> Highlighted sector-level risk dispersion and correlation patterns.",
+      "<strong>Business Impact:</strong> Enabled risk-aware evaluation of market and sector performance for analytical decision-making."
     ]
   },
 
   project2: {
     title: "Pizza Sales Performance & KPI Analysis",
     brief:
-      "An end-to-end business analytics project that analyzes sales performance and operational KPIs to help understand revenue drivers and product performance.",
+      "<strong>Business Problem:</strong> The business needed visibility into sales performance, product contribution, and order behavior to identify revenue drivers.",
     points: [
-      "Prepared and cleaned sales data using SQL to ensure accuracy and consistency for reporting.",
-      "Built a multi-page Power BI dashboard to monitor sales performance and key business metrics.",
-      "Tracked KPIs such as total revenue, order volume, and average order value to assess performance.",
-      "Identified top-performing and underperforming products to support business decisions.",
-      "Enabled interactive analysis using slicers for product category, size, and time periods."
+      "<strong>Approach:</strong> Consolidated order, revenue, and product data to track end-to-end sales KPIs.",
+      "<strong>Approach:</strong> Designed dashboards for daily, monthly, category-wise, and size-wise analysis.",
+      "<strong>Insights:</strong> Identified best-selling pizzas contributing disproportionately to revenue.",
+      "<strong>Insights:</strong> Detected low-performing items despite similar pricing.",
+      "<strong>Business Impact:</strong> Supported data-driven menu optimization and demand planning."
     ]
   },
 
   project3: {
     title: "Flipkart Sales & Revenue Analytics Dashboard",
     brief:
-      "A business-focused analytics dashboard designed to analyze e-commerce sales data and provide insights into revenue trends, profitability, and product-level performance.",
+      "<strong>Business Problem:</strong> The business required a centralized view to monitor revenue, profit, orders, and customer behavior across regions and years.",
     points: [
-      "Cleaned and structured raw e-commerce sales data to prepare it for analysis and reporting.",
-      "Analyzed revenue, profit, and order-related KPIs to understand overall business performance.",
-      "Created dynamic measures and time-based calculations to track performance trends over time.",
-      "Developed interactive dashboards to highlight product performance and sales patterns.",
-      "Supported data-driven evaluation of sales trends and category contribution."
+      "<strong>Approach:</strong> Integrated multi-year e-commerce data covering revenue, profit, orders, and products.",
+      "<strong>Approach:</strong> Built interactive dashboards for zone-wise, customer-wise, and order-level analysis.",
+      "<strong>Insights:</strong> Observed steady revenue growth with relatively stable profit trends.",
+      "<strong>Insights:</strong> Identified dominant customer segments and delivery patterns.",
+      "<strong>Business Impact:</strong> Enabled strategic planning using unified sales, customer, and profit insights."
     ]
   }
 };
