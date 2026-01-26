@@ -1125,3 +1125,23 @@
 .modal-content {
   max-width: 880px; /* was ~720px → subtle +60px */
 }
+
+/* ===============================
+   MODAL – REMOVE BULLETS FOR
+   SECTION HEADINGS & EMPTY LINES
+=============================== */
+
+/* Remove marker for heading-style list items */
+#modalBody li strong::marker {
+  content: "";
+}
+
+/* Remove marker for list items that only act as spacing */
+#modalBody li:empty::marker {
+  content: "";
+}
+
+/* Safety: also remove marker if li contains only <br> */
+#modalBody li:has(br)::marker {
+  content: "";
+}
