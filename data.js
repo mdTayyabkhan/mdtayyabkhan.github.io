@@ -50,8 +50,9 @@ const projectDetails = {
     brief:
       "<strong>Project Overview:</strong> An analytical dashboard designed to evaluate overall market behavior, sector performance, and investment risk using historical stock market data. The project focuses on helping analysts and decision-makers interpret market movements beyond surface-level trends.<br><br><strong>Business Problem:</strong> Investors and analysts often lack a single consolidated view to assess market returns, volatility, and sector-level risk simultaneously. This makes it difficult to identify risk exposure and performance patterns across sectors.",
     points: [
-      "<strong>Approach & Tools Used:</strong> Cleaned and analyzed multi-year market data using Excel and SQL.",
-      "<strong>Approach & Tools Used:</strong> Calculated return, beta, volatility, and risk-adjusted metrics.",
+      "<strong>Approach & Tools Used:</strong>"
+      "Cleaned and analyzed multi-year market data using Excel and SQL.",
+      "Calculated return, beta, volatility, and risk-adjusted metrics.",
       "<strong>Approach & Tools Used:</strong> Built interactive dashboards using Power BI for trend and sector analysis.",
       "<strong>Approach & Tools Used:</strong> Applied KPI-driven visualizations for comparative insights.",
       "<strong>Key Insights Delivered:</strong> Identified periods of negative average returns despite stable market activity.",
