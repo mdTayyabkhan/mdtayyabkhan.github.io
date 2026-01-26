@@ -48,39 +48,39 @@ const projectDetails = {
   project1: {
     title: "Stock Market Performance & Risk Analysis Dashboard",
     brief:
-      "<strong>Business Problem:</strong> Lack of a consolidated view to evaluate market performance, sector risk, and volatility for informed investment analysis.",
+      "<strong>Project Overview:</strong> An analytical dashboard built to evaluate overall market performance, sector behavior, and investment risk using historical stock data.<br><br><strong>Business Problem:</strong> Analysts and decision-makers lacked a consolidated view to assess returns, volatility, and sector-level risk together, making risk-aware evaluation difficult.",
     points: [
-      "<strong>Approach:</strong> Analyzed multi-year stock market data using return, beta, volatility, and risk-adjusted metrics.",
-      "<strong>Approach:</strong> Built interactive Power BI dashboards to compare sector-wise performance and market trends.",
-      "<strong>Insights:</strong> Identified periods of negative average returns despite stable market volume.",
-      "<strong>Insights:</strong> Highlighted sector-level risk dispersion and correlation patterns.",
-      "<strong>Business Impact:</strong> Enabled risk-aware evaluation of market and sector performance for analytical decision-making."
+      "<strong>Approach & Tools:</strong> Cleaned and analyzed multi-year stock market data using Excel and SQL.",
+      "<strong>Approach & Tools:</strong> Calculated return, beta, volatility, and risk-adjusted metrics and built interactive Power BI dashboards.",
+      "<strong>Key Insights:</strong> Identified periods of negative average returns despite stable market activity.",
+      "<strong>Key Insights:</strong> Highlighted sectors with higher volatility and risk dispersion patterns.",
+      "<strong>Business Value:</strong> Enables risk-aware evaluation of market and sector performance to support informed investment analysis."
     ]
   },
 
   project2: {
     title: "Pizza Sales Performance & KPI Analysis",
     brief:
-      "<strong>Business Problem:</strong> The business needed visibility into sales performance, product contribution, and order behavior to identify revenue drivers.",
+      "<strong>Project Overview:</strong> A sales analytics dashboard designed to track revenue, orders, and product performance for a pizza business.<br><br><strong>Business Problem:</strong> The business lacked visibility into which products and categories were driving revenue versus those underperforming, limiting effective menu and sales decisions.",
     points: [
-      "<strong>Approach:</strong> Consolidated order, revenue, and product data to track end-to-end sales KPIs.",
-      "<strong>Approach:</strong> Designed dashboards for daily, monthly, category-wise, and size-wise analysis.",
-      "<strong>Insights:</strong> Identified best-selling pizzas contributing disproportionately to revenue.",
-      "<strong>Insights:</strong> Detected low-performing items despite similar pricing.",
-      "<strong>Business Impact:</strong> Supported data-driven menu optimization and demand planning."
+      "<strong>Approach & Tools:</strong> Consolidated order, revenue, and product data using SQL and Excel.",
+      "<strong>Approach & Tools:</strong> Built KPI-driven Power BI dashboards for daily, monthly, category-wise, and size-wise analysis.",
+      "<strong>Key Insights:</strong> Identified top-selling pizzas contributing a major share of total revenue.",
+      "<strong>Key Insights:</strong> Detected low-performing items despite similar pricing levels.",
+      "<strong>Business Value:</strong> Supports data-driven menu optimization, pricing decisions, and demand planning."
     ]
   },
 
   project3: {
     title: "Flipkart Sales & Revenue Analytics Dashboard",
     brief:
-      "<strong>Business Problem:</strong> The business required a centralized view to monitor revenue, profit, orders, and customer behavior across regions and years.",
+      "<strong>Project Overview:</strong> An end-to-end analytics dashboard providing a unified view of sales, revenue, profit, and customer behavior in an e-commerce context.<br><br><strong>Business Problem:</strong> The business required a centralized view to monitor performance across regions, customers, and time periods for strategic planning.",
     points: [
-      "<strong>Approach:</strong> Integrated multi-year e-commerce data covering revenue, profit, orders, and products.",
-      "<strong>Approach:</strong> Built interactive dashboards for zone-wise, customer-wise, and order-level analysis.",
-      "<strong>Insights:</strong> Observed steady revenue growth with relatively stable profit trends.",
-      "<strong>Insights:</strong> Identified dominant customer segments and delivery patterns.",
-      "<strong>Business Impact:</strong> Enabled strategic planning using unified sales, customer, and profit insights."
+      "<strong>Approach & Tools:</strong> Integrated multi-year e-commerce data using Excel and SQL.",
+      "<strong>Approach & Tools:</strong> Developed interactive Power BI dashboards for regional, customer, and order-level analysis.",
+      "<strong>Key Insights:</strong> Observed steady revenue growth with relatively stable profit trends.",
+      "<strong>Key Insights:</strong> Identified dominant customer segments and delivery patterns.",
+      "<strong>Business Value:</strong> Enables leadership to monitor business performance and support data-driven strategic decisions."
     ]
   }
 };
@@ -93,12 +93,12 @@ const certDetails = {
   cert1: {
     title: "Certified Data Analyst",
     brief:
-      "Excelr certification validating practical skills in Excel, SQL, and Power BI, with a focus on applying data analysis techniques to real-world business problems."
+      "<strong>Certificate Summary:</strong> Professional certification validating hands-on data analysis and business reporting skills using industry-relevant tools.<br><br><strong>Skills & Competencies Validated:</strong><br>• Data cleaning and analysis using Excel and SQL<br>• KPI tracking and MIS-style reporting<br>• Dashboard development using Power BI<br>• Translating raw data into business insights<br><br><strong>Practical Relevance:</strong> This certification supports real-world analytics work such as KPI monitoring, dashboard creation, and stakeholder-ready reporting in data analyst and MIS roles."
   },
 
   cert2: {
     title: "Data Visualisation: Empowering Business with Effective Insights",
     brief:
-      "TATA certification demonstrating the ability to communicate insights clearly and effectively through data visualization to support business decision-making."
+      "<strong>Certificate Summary:</strong> Industry-backed certification focused on communicating data insights clearly to business and non-technical stakeholders.<br><br><strong>Skills & Competencies Validated:</strong><br>• Designing business-focused data visualizations<br>• Selecting appropriate charts for different business questions<br>• Communicating insights through dashboards<br>• Supporting decision-making using visual storytelling<br><br><strong>Practical Relevance:</strong> Strengthens the ability to convert analytical findings into clear, actionable insights and improves collaboration between data teams and business users."
   }
 };
