@@ -71,16 +71,19 @@ const projectDetails = {
     brief:
       "<strong>Project Overview:</strong> A sales analytics dashboard built to track revenue, orders, and product performance for a pizza business. The project focuses on understanding demand patterns and identifying drivers of sales performance.<br><br><strong>Business Problem:</strong> The business lacked visibility into which products, categories, and sizes were driving revenue versus those underperforming. Decision-makers needed clear insights to optimize the menu and sales strategy.",
     points: [
-      "<strong>Approach & Tools Used:</strong> Consolidated order, revenue, and product datasets using SQL and Excel.",
-      "<strong>Approach & Tools Used:</strong> Designed KPI dashboards in Power BI for daily and monthly trends.",
-      "<strong>Approach & Tools Used:</strong> Analyzed category-wise, size-wise, and product-level performance.",
-      "<strong>Approach & Tools Used:</strong> Created drill-down views for operational analysis.",
-      "<strong>Key Insights Delivered:</strong> Identified top-selling pizzas contributing the highest revenue share.",
-      "<strong>Key Insights Delivered:</strong> Detected low-performing items despite similar pricing.",
-      "<strong>Key Insights Delivered:</strong> Observed consistent demand patterns across specific days and months.",
-      "<strong>Business Value / Impact:</strong> Supports data-driven menu optimization and pricing decisions.",
-      "<strong>Business Value / Impact:</strong> Helps reduce focus on low-performing products.",
-      "<strong>Business Value / Impact:</strong> Improves demand planning and inventory alignment."
+      "<strong>Approach & Tools Used:</strong> <br>",
+      "Consolidated order, revenue, and product datasets using SQL and Excel.",
+      "Designed KPI dashboards in Power BI for daily and monthly trends.",
+      "Analyzed category-wise, size-wise, and product-level performance.",
+      "Created drill-down views for operational analysis.",
+      "<br><strong>Key Insights Delivered:</strong><br>",
+      "Identified top-selling pizzas contributing the highest revenue share.",
+      "Detected low-performing items despite similar pricing.",
+      "Observed consistent demand patterns across specific days and months.",
+      "<br><strong>Business Value / Impact:</strong> <br>",
+      "Supports data-driven menu optimization and pricing decisions.",
+      "Helps reduce focus on low-performing products.",
+      "Improves demand planning and inventory alignment."
     ]
   },
 
@@ -91,14 +94,17 @@ const projectDetails = {
     points: [
       "<strong>Approach & Tools Used:</strong> Integrated multi-year e-commerce sales data using Excel and SQL.",
       "Built interactive dashboards in Power BI for regional and customer analysis.",
-      "<strong>Approach & Tools Used:</strong> Analyzed revenue, profit, orders, and delivery patterns.",
-      "<strong>Approach & Tools Used:</strong> Applied KPI tracking for trend comparison.",
-      "<strong>Key Insights Delivered:</strong> Observed steady revenue growth with relatively stable profit trends.",
-      "<strong>Key Insights Delivered:</strong> Identified zones contributing the highest share of revenue.",
-      "<strong>Key Insights Delivered:</strong> Highlighted dominant customer segments and delivery preferences.",
-      "<strong>Business Value / Impact:</strong> Enables leadership to monitor business health at a glance.",
-      "<strong>Business Value / Impact:</strong> Supports strategic planning using unified sales and customer insights.",
-      "<strong>Business Value / Impact:</strong> Helps optimize regional and operational decision-making."
+      "<strong>Approach & Tools Used:</strong> <br>",
+      "Analyzed revenue, profit, orders, and delivery patterns.",
+      "Applied KPI tracking for trend comparison.",
+      "Observed steady revenue growth with relatively stable profit trends.",
+      "<br><strong>Key Insights Delivered:</strong><br>",
+      "Identified zones contributing the highest share of revenue.",
+      "Highlighted dominant customer segments and delivery preferences.",
+      "<br><strong>Business Value / Impact:</strong> <br>",
+      "Enables leadership to monitor business health at a glance.",
+      "Supports strategic planning using unified sales and customer insights.",
+      "Helps optimize regional and operational decision-making."
     ]
   }
 };
